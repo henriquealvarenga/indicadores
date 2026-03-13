@@ -1,0 +1,55 @@
+# Prefácio {.unnumbered}
+
+```{r}
+#| label: setup
+#| include: false
+source("R/utils.R")
+instalar_se_necessario(pacotes)
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(glue)
+library(patchwork)
+```
+
+Este livreto é um material de apoio para a disciplina de **Métodos Científicos em Medicina 2** do curso de graduação em Medicina do UNIPTAN (AFYA).
+
+## Objetivo
+
+Apresentar de forma didática e aplicada os principais **indicadores de saúde** utilizados em Saúde Pública, combinando:
+
+- Fundamentos teóricos e conceituais
+- Dados reais do sistema de saúde brasileiro (DATASUS, IBGE, SINAN)
+- Visualizações construídas com código reprodutível em **R**
+- Análise crítica das limitações e do uso ético dos dados
+
+## Estrutura do livro
+
+O livro está organizado em quatro partes:
+
+| Parte | Conteúdo |
+|-------|----------|
+| **I — Fundamentos** | Conceitos básicos, indicadores de fecundidade/natalidade e mortalidade |
+| **II — Indicadores Avançados** | Morbidade, cobertura vacinal e padronização de taxas |
+| **III — Contexto Brasileiro** | Transição epidemiológica, Atenção Primária e desigualdades raciais |
+| **IV — Pensamento Crítico** | Limitações dos indicadores e uso responsável dos dados |
+
+## Reprodutibilidade
+
+Todos os gráficos e tabelas deste livro foram construídos com código em R. O leitor pode expandir os blocos de código para ver exatamente como cada análise foi realizada. Os dados utilizados são, sempre que possível, obtidos diretamente de bases públicas brasileiras.
+
+::: {.callout-note}
+## Como usar este material
+
+Clique em **"Mostrar código R"** abaixo de qualquer gráfico para ver o código-fonte. Você pode copiá-lo e adaptá-lo para suas próprias análises.
+:::
+
+## Pré-requisitos
+
+Para reproduzir as análises, você precisará de:
+
+- [R](https://cran.r-project.org/) (versão ≥ 4.2)
+- [RStudio](https://posit.co/download/rstudio-desktop/) ou editor de sua preferência
+- [Quarto](https://quarto.org/docs/get-started/) (versão ≥ 1.4)
+- Pacotes R: `tidyverse`, `httr2`, `janitor`, `scales`, `knitr`, `kableExtra`, `glue`, `patchwork`

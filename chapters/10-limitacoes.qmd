@@ -1,0 +1,172 @@
+# Limitações dos Indicadores de Saúde
+
+```{r}
+#| label: setup-10
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(glue)
+```
+
+Indicadores são simplificações da realidade. Toda medida carrega imprecisões, contextos ignorados e riscos de interpretação equivocada. Conhecer as limitações dos indicadores é parte fundamental da formação do profissional de saúde crítico e responsável [@rouquayrol2017].
+
+## Qualidade do dado: subregistro e erros
+
+::: {.callout-important}
+## Princípio fundamental
+
+Um indicador é tão bom quanto a qualidade dos dados que o compõem. **Dados ruins produzem indicadores ruins** — independentemente da sofisticação do método.
+:::
+
+### Subregistro de óbitos
+
+Regiões remotas ou com baixa cobertura de saúde sub-notificam mortes. A mortalidade real pode ser subestimada em até **40%** em alguns municípios brasileiros, especialmente em comunidades indígenas, quilombolas e zonas rurais do Norte e Nordeste.
+
+```{r}
+#| label: fig-subregistro
+#| fig-cap: "Estimativa de subregistro de óbitos por região — Brasil"
+
+# Valores aproximados baseados em estimativas de Busca Ativa / SVS
+# Consulte relatórios do MS/SVS para dados exatos
+subreg <- tibble::tribble(
+  ~regiao, ~subregistro,
+  "Norte",        25.0,
+  "Nordeste",     18.0,
+  "Centro-Oeste",  8.0,
+  "Sudeste",       3.5,
+  "Sul",           2.5
+)
+
+ggplot(subreg, aes(x = reorder(regiao, subregistro), y = subregistro, fill = regiao)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = paste0(fmt_br(subregistro), "%")), hjust = -0.2, size = 4) +
+  coord_flip() +
+  scale_fill_manual(values = cores_regioes) +
+  scale_y_continuous(limits = c(0, 32)) +
+  labs(
+    title = "Subregistro de óbitos: problema concentrado no Norte e Nordeste",
+    subtitle = "Estimativas de subregistro do SIM por região",
+    x = NULL, y = "Subregistro estimado (%)",
+    caption = "Fonte: Estimativas baseadas em Busca Ativa / SVS (valores aproximados)"
+  ) +
+  tema_indicadores() +
+  theme(legend.position = "none")
+```
+
+### Declaração de Óbito mal preenchida
+
+O preenchimento inadequado da DO é um problema epidemiológico grave:
+
+- "Parada cardiorrespiratória" como causa básica é **clinicamente incorreto** — toda morte resulta em parada cardiorrespiratória
+- O médico deve identificar e registrar a **causa primária** da morte
+- Campos como raça/cor, escolaridade e ocupação frequentemente ficam em branco
+
+## Comparabilidade entre populações
+
+Taxas brutas **não são diretamente comparáveis** entre populações com estruturas etárias, sociais ou culturais distintas.
+
+- Diferenças nas **definições de caso** entre países (ex.: critérios para morte materna)
+- Sistemas de informação heterogêneos (SIM, SINASC, SINAN) com critérios e coberturas diferentes
+- Variações culturais na **autopercepção de saúde**
+- Solução: **padronização** e harmonização metodológica (ver @sec-padronizacao)
+
+## Falácia ecológica
+
+A falácia ecológica ocorre quando se inferem características **individuais** a partir de dados **agregados** populacionais.
+
+```{r}
+#| label: fig-falacia-ecologica
+#| fig-cap: "Ilustração da falácia ecológica"
+
+# Dados hipotéticos de bairros de uma cidade
+falacia <- tibble::tribble(
+  ~bairro, ~renda_media, ~taxa_homicidio, ~gini,
+  "Bairro A",  2500,  45.0, 0.55,
+  "Bairro B",  4000,  32.0, 0.48,
+  "Bairro C",  6500,  18.0, 0.42,
+  "Bairro D",  9000,  12.0, 0.35,
+  "Bairro E", 15000,   5.0, 0.28,
+  "Bairro F", 12000,  28.0, 0.62
+)
+
+ggplot(falacia, aes(x = renda_media, y = taxa_homicidio)) +
+  geom_point(aes(size = gini), color = cores_indicadores["perigo"], alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = cores_indicadores["destaque"],
+              linetype = "dashed") +
+  geom_text(aes(label = bairro), vjust = -1, size = 3) +
+  scale_x_continuous(labels = label_dollar(prefix = "R$ ", big.mark = ".")) +
+  labs(
+    title = "Cuidado com a falácia ecológica!",
+    subtitle = "A tendência geral esconde que o Bairro F tem alta renda E alta violência (desigualdade interna)",
+    x = "Renda média do bairro (R$)", y = "Taxa de homicídios (por 100 mil)",
+    size = "Índice de Gini",
+    caption = "Dados hipotéticos para fins ilustrativos"
+  ) +
+  tema_indicadores()
+```
+
+::: {.callout-warning}
+## Lição
+
+Uma região com alta renda per capita **E** alta taxa de homicídios pode ter extrema desigualdade interna. Indicadores ecológicos descrevem **populações**, não **indivíduos**.
+:::
+
+## Correlação não é causalidade
+
+A associação estatística entre dois indicadores **não implica** relação causal.
+
+```{r}
+#| label: fig-correlacao-espuria
+#| fig-cap: "Exemplo de correlação espúria: TVs e mortalidade infantil"
+
+espuria <- tibble::tribble(
+  ~pais, ~tvs_por_100, ~mi,
+  "País A",   5,  85,
+  "País B",  15,  60,
+  "País C",  35,  35,
+  "País D",  55,  22,
+  "País E",  75,  12,
+  "País F",  90,   6
+)
+
+ggplot(espuria, aes(x = tvs_por_100, y = mi)) +
+  geom_point(size = 4, color = cores_indicadores["destaque"]) +
+  geom_smooth(method = "lm", se = TRUE, alpha = 0.15, color = cores_indicadores["alerta"]) +
+  geom_text(aes(label = pais), vjust = -1, size = 3) +
+  labs(
+    title = "Correlação ≠ Causalidade",
+    subtitle = "TVs não protegem crianças — ambos refletem desenvolvimento socioeconômico",
+    x = "Televisores por 100 domicílios", y = "Mortalidade Infantil (por 1.000 NV)",
+    caption = "Dados hipotéticos — variável de confusão: renda/desenvolvimento"
+  ) +
+  tema_indicadores()
+```
+
+A explicação causal exige desenhos de estudo adequados (ensaios clínicos, coortes bem controlados) e análise criteriosa de **variáveis de confusão**.
+
+## Defasagem temporal
+
+Há sempre um intervalo entre o evento real e a consolidação dos dados:
+
+- No Brasil, óbitos podem levar **meses** para entrar no SIM com causa corretamente classificada
+- Durante epidemias, dados em tempo real **subestimam** a magnitude do problema
+- Dados do "último ano disponível" frequentemente refletem a situação de **12 a 24 meses antes**
+
+## Uso político seletivo
+
+Gestores podem selecionar indicadores favoráveis e omitir os desfavoráveis. Melhorias aparentes podem resultar de:
+
+- Mudanças metodológicas
+- Ampliação da cobertura do sistema de informação
+- Redefinição dos critérios diagnósticos
+
+::: {.callout-tip}
+## Proteção contra manipulação
+
+- Exigir **séries históricas longas** e múltiplos indicadores complementares
+- Questionar sempre: **o que não está sendo medido? Quem está fora do denominador?**
+- Preferir fontes independentes com metodologia transparente e auditável
+:::

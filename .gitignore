@@ -1,0 +1,26 @@
+# Quarto output
+_freeze/
+.quarto/
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.Renviron
+
+# Temporary files
+*~
+*.swp
+*.bak
+
+/.quarto/
+**/*.quarto_ipynb

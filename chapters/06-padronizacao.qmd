@@ -1,0 +1,159 @@
+# Padronização de Indicadores {#sec-padronizacao}
+
+```{r}
+#| label: setup-06
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(glue)
+```
+
+A padronização é a técnica epidemiológica utilizada para **eliminar o efeito de variáveis de confusão** — especialmente a estrutura etária — ao comparar taxas entre populações diferentes. Sem padronização, comparações diretas de taxas brutas podem ser completamente enganosas [@gordis2017].
+
+## O problema da estrutura etária
+
+```{r}
+#| label: fig-problema-idade
+#| fig-cap: "Por que taxas brutas enganam: o efeito da estrutura etária"
+
+# Exemplo didático: duas cidades
+cidades <- tibble::tribble(
+  ~faixa_etaria, ~pop_A, ~obitos_A, ~taxa_A, ~pop_B, ~obitos_B, ~taxa_B,
+  "0–14 anos",    5000,    5,      1.0,    1500,    2,      1.3,
+  "15–49 anos",   3500,    7,      2.0,    2000,    4,      2.0,
+  "50–64 anos",    800,    8,     10.0,    3000,   30,     10.0,
+  "65+ anos",      700,   14,     20.0,    3500,   70,     20.0
+)
+
+# TBM calculada
+tbm_a <- sum(cidades$obitos_A) / sum(cidades$pop_A) * 1000  # ~3.4
+tbm_b <- sum(cidades$obitos_B) / sum(cidades$pop_B) * 1000  # ~10.6
+
+tab_display <- cidades |>
+  mutate(
+    `Taxa A (‰)` = fmt_br(taxa_A),
+    `Taxa B (‰)` = fmt_br(taxa_B)
+  ) |>
+  select(faixa_etaria, pop_A, obitos_A, `Taxa A (‰)`, pop_B, obitos_B, `Taxa B (‰)`)
+
+names(tab_display) <- c("Faixa etária", "Pop A", "Óbitos A", "Taxa A (‰)",
+                         "Pop B", "Óbitos B", "Taxa B (‰)")
+
+tabela_indicador(tab_display, caption = glue(
+  "Cidade A: TBM = {fmt_br(tbm_a)}‰ | Cidade B: TBM = {fmt_br(tbm_b)}‰ — mas as taxas por faixa etária são praticamente iguais!"
+))
+```
+
+::: {.callout-tip}
+## Conclusão do exemplo
+
+A Cidade A parece muito mais "saudável" (TBM = `r fmt_br(tbm_a)`‰ vs. `r fmt_br(tbm_b)`‰), mas isso ocorre porque é uma cidade **jovem**. As taxas por faixa etária são praticamente idênticas! A diferença observada é um **artefato da composição etária**.
+:::
+
+## Padronização Direta
+
+Aplica as taxas específicas por faixa etária da população estudada a uma **população-padrão** (referência).
+
+### Passo a passo
+
+1. Calcular as taxas específicas por faixa etária em cada população
+2. Escolher uma população-padrão (ex.: população brasileira, população OMS)
+3. Multiplicar cada taxa pela população-padrão da faixa correspondente
+4. Somar os óbitos esperados → dividir pela população-padrão total
+
+::: {.formula-box}
+**Taxa Padronizada** = Σ (Taxa específica_i × Pop-padrão_i) / Pop-padrão total
+:::
+
+```{r}
+#| label: fig-padronizacao-direta
+#| fig-cap: "Exemplo prático de padronização direta"
+
+# Usando população-padrão hipotética
+pop_padrao <- c(3000, 3000, 2500, 1500)  # distribuição padrão
+taxas_A <- cidades$taxa_A / 1000
+taxas_B <- cidades$taxa_B / 1000
+
+esperados_A <- taxas_A * pop_padrao
+esperados_B <- taxas_B * pop_padrao
+
+taxa_pad_A <- sum(esperados_A) / sum(pop_padrao) * 1000
+taxa_pad_B <- sum(esperados_B) / sum(pop_padrao) * 1000
+
+pad_result <- tibble(
+  Cidade = c("A", "B"),
+  `TBM bruta (‰)` = c(fmt_br(tbm_a), fmt_br(tbm_b)),
+  `Taxa padronizada (‰)` = c(fmt_br(taxa_pad_A), fmt_br(taxa_pad_B)),
+  Interpretação = c("Antes parecia melhor", "Antes parecia pior")
+)
+
+tabela_indicador(pad_result, caption = "Após padronização, as taxas se equiparam")
+```
+
+### Aplicação: natalidade por região do Brasil
+
+```{r}
+#| label: fig-tbn-padronizada
+#| fig-cap: "TBN bruta vs. padronizada por região — Brasil 2004"
+
+# Valores aproximados baseados em IBGE/DATASUS e OPAS, 2008
+# Servem para demonstrar o conceito de padronização — consulte fontes originais para dados exatos
+tbn_pad <- tibble::tribble(
+  ~regiao, ~bruta, ~padronizada,
+  "Norte",        25.5, 22.1,
+  "Nordeste",     22.8, 21.4,
+  "Sudeste",      16.2, 18.3,
+  "Sul",          15.4, 17.8,
+  "Centro-Oeste", 19.8, 19.2
+)
+
+tbn_pad_long <- tbn_pad |>
+  pivot_longer(-regiao, names_to = "tipo", values_to = "taxa") |>
+  mutate(tipo = ifelse(tipo == "bruta", "Taxa Bruta", "Taxa Padronizada"))
+
+ggplot(tbn_pad_long, aes(x = regiao, y = taxa, fill = tipo)) +
+  geom_col(position = "dodge", width = 0.7) +
+  geom_text(aes(label = fmt_br(taxa)), position = position_dodge(0.7),
+            vjust = -0.5, size = 3) +
+  scale_fill_manual(values = c("Taxa Bruta" = cores_indicadores["alerta"],
+                                "Taxa Padronizada" = cores_indicadores["destaque"])) +
+  scale_y_continuous(limits = c(0, 30)) +
+  labs(
+    title = "Padronização reduz diferenças regionais de natalidade",
+    subtitle = "Sudeste e Sul 'sobem' após padronização; Norte e Nordeste 'descem'",
+    x = NULL, y = "TBN (por 1.000 hab.)", fill = NULL,
+    caption = "Fonte: IBGE/DATASUS; OPAS, 2008 (valores aproximados)"
+  ) +
+  tema_indicadores()
+```
+
+## Padronização Indireta — SMR
+
+Usada quando **não se conhecem** as taxas específicas da população estudada, mas apenas o total de óbitos observados.
+
+::: {.formula-box}
+**SMR** = (Óbitos Observados / Óbitos Esperados) × 100
+:::
+
+```{r}
+#| label: tbl-smr-interpretacao
+#| tbl-cap: "Interpretação do SMR (Standardized Mortality Ratio)"
+
+smr_interp <- tibble::tribble(
+  ~SMR, ~Interpretação, ~Exemplo,
+  "< 100", "Mortalidade menor que a esperada", "SMR = 80 → 20% menos óbitos que o esperado",
+  "= 100", "Mortalidade igual à esperada",     "Sem diferença em relação à referência",
+  "> 100", "Mortalidade maior que a esperada",  "SMR = 145 → 45% mais óbitos que o esperado"
+)
+
+tabela_indicador(smr_interp)
+```
+
+::: {.callout-note}
+## Exemplo prático
+
+Trabalhadores rurais expostos a agrotóxicos com **SMR = 145** para câncer de pulmão indicam mortalidade por câncer 45% superior à da população geral, sugerindo risco ocupacional.
+:::

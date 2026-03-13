@@ -1,0 +1,164 @@
+# Indicadores de Morbidade
+
+```{r}
+#| label: setup-04
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(glue)
+library(patchwork)
+```
+
+Os indicadores de morbidade medem a **frequência de doenças** em uma população. Diferentemente dos indicadores de mortalidade, eles capturam o adoecimento — incluindo doenças que raramente matam, mas causam grande sofrimento e incapacidade [@medronho2009].
+
+## Incidência e Prevalência
+
+Esses são os dois indicadores mais fundamentais da epidemiologia descritiva.
+
+### Taxa de Incidência
+
+Mede a **velocidade de ocorrência** de novos casos em uma população em risco.
+
+::: {.formula-box}
+**Taxa de Incidência** = Casos novos no período / Pessoa-tempo em risco
+:::
+
+### Prevalência
+
+Mede a **proporção de casos existentes** (novos + antigos) em um ponto ou período no tempo.
+
+::: {.formula-box}
+**Prevalência** = Casos existentes / População total no momento
+:::
+
+```{r}
+#| label: fig-incidencia-prevalencia
+#| fig-cap: "Relação entre incidência, prevalência, cura e mortalidade"
+
+# Diagrama conceitual como gráfico
+conceito <- tibble::tribble(
+  ~Medida, ~`O que mede`, ~`Tipo`, ~`Utilidade principal`,
+  "Incidência", "Casos NOVOS por tempo", "Fluxo (dinâmica)", "Avaliar risco, etiologia",
+  "Prevalência", "Casos EXISTENTES no momento", "Estoque (estática)", "Planejar serviços, recursos"
+)
+
+tabela_indicador(conceito, caption = "Incidência vs. Prevalência")
+```
+
+::: {.callout-note}
+## Relação entre incidência e prevalência
+
+**Prevalência ≈ Incidência × Duração da doença**
+
+- Doenças de longa duração (diabetes, HIV com tratamento) → alta prevalência mesmo com incidência moderada
+- Doenças de curta duração (gripe) ou muito letais → prevalência baixa
+:::
+
+## Dengue no Brasil: um caso de incidência epidêmica
+
+```{r}
+#| label: fig-dengue-incidencia
+#| fig-cap: "Taxa de incidência de dengue no Brasil (2010–2024)"
+
+# Dados oficiais: SINAN/SVS/Ministério da Saúde — Série histórica de casos prováveis
+# Fontes: Boletins Epidemiológicos SVS e Agência Brasil (consolidação final 2024)
+# Casos em milhares; população IBGE projeções; incidência calculada
+dengue <- tibble::tribble(
+  ~ano, ~casos_mil, ~pop_milhoes, ~incidencia,
+  2010,  1012,  190.7,  530.6,
+  2011,   739,  192.4,  384.1,
+  2012,   590,  194.0,  304.1,
+  2013,  1455,  195.5,  744.2,
+  2014,   589,  197.0,  299.0,
+  2015,  1689,  198.4,  851.3,
+  2016,  1484,  199.8,  742.7,
+  2017,   253,  201.0,  125.9,
+  2018,   216,  202.2,  106.8,
+  2019,  1545,  203.2,  760.3,
+  2020,   988,  204.1,  484.1,
+  2021,   544,  204.9,  265.5,
+  2022,  1451,  205.5,  706.1,
+  2023,  1659,  206.0,  805.3,
+  2024,  6485,  206.5, 3140.9
+)
+
+ggplot(dengue, aes(x = ano, y = incidencia)) +
+  geom_col(fill = ifelse(dengue$incidencia > 700, cores_indicadores["perigo"],
+                          cores_indicadores["destaque"]),
+           alpha = 0.8, width = 0.8) +
+  scale_x_continuous(breaks = dengue$ano) +
+  scale_y_continuous(labels = label_number(big.mark = ".")) +
+  labs(
+    title = "Padrão epidêmico da dengue no Brasil",
+    subtitle = "Grandes surtos cíclicos — 2024 bateu recorde com >6,4 milhões de casos",
+    x = "Ano", y = "Incidência (por 100 mil hab.)",
+    caption = "Fonte: SINAN/SVS/Ministério da Saúde (2024 = dados preliminares)"
+  ) +
+  tema_indicadores() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Prevalência de Doenças Crônicas
+
+```{r}
+#| label: fig-prevalencia-dcnt
+#| fig-cap: "Prevalência estimada de DCNT selecionadas — Brasil adulto"
+
+# Dados reais da PNS 2019 (IBGE) e Vigitel 2023 (SVS/MS)
+# PNS 2019: hipertensão 23,9%, diabetes 7,7%, depressão 10,2%, asma 5,3%
+# Vigitel 2023: obesidade 24,3%
+# DRC: PNS 2019 reportou 1,4% (autodeclaração de diagnóstico médico)
+dcnt <- tibble::tribble(
+  ~doenca, ~prevalencia, ~fonte,
+  "Hipertensão arterial",  23.9, "PNS 2019",
+  "Obesidade (IMC ≥ 30)",  24.3, "Vigitel 2023",
+  "Depressão",             10.2, "PNS 2019",
+  "Diabetes mellitus",      7.7, "PNS 2019",
+  "Asma",                   5.3, "PNS 2019",
+  "Doença renal crônica",   1.4, "PNS 2019"
+)
+
+ggplot(dcnt, aes(x = reorder(doenca, prevalencia), y = prevalencia)) +
+  geom_col(fill = cores_indicadores["destaque"], width = 0.7) +
+  geom_text(aes(label = paste0(fmt_br(prevalencia), "%")), hjust = -0.1, size = 3.5) +
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 32)) +
+  labs(
+    title = "Doenças crônicas afetam 1 em cada 4 adultos brasileiros",
+    subtitle = "Hipertensão e obesidade lideram",
+    x = NULL, y = "Prevalência (%)",
+    caption = "Fonte: PNS 2019 / Vigitel 2023 — IBGE / SVS"
+  ) +
+  tema_indicadores()
+```
+
+## Notificação Compulsória e o SINAN
+
+O Sistema de Informação de Agravos de Notificação (SINAN) é a principal fonte de dados sobre doenças de notificação compulsória no Brasil. A lista de doenças é atualizada periodicamente pelo Ministério da Saúde.
+
+```{r}
+#| label: tbl-notificacao
+#| tbl-cap: "Exemplos de doenças de notificação compulsória imediata"
+
+notif <- tibble::tribble(
+  ~Doença, ~Periodicidade, ~Importância,
+  "Dengue (óbito)",     "Imediata (24h)",  "Monitoramento de surtos",
+  "COVID-19",           "Imediata (24h)",  "Vigilância epidemiológica",
+  "Meningite",          "Imediata (24h)",  "Risco de surto",
+  "Sarampo",            "Imediata (24h)",  "Doença eliminada — vigilância ativa",
+  "Tuberculose",        "Semanal",         "Endemia nacional",
+  "Sífilis congênita",  "Semanal",         "Indicador sentinela de pré-natal",
+  "Hanseníase",         "Semanal",         "Endemia em eliminação"
+)
+
+tabela_indicador(notif)
+```
+
+::: {.callout-warning}
+## Viés de notificação
+
+Doenças que afetam populações vulneráveis ou estigmatizadas — como tuberculose, HIV/AIDS e transtornos mentais — tendem a ser **subnotificadas** por barreiras de acesso e discriminação nos serviços de saúde. Isso produz uma subestimação sistemática do problema nos grupos que já são menos visíveis nos sistemas de informação.
+:::

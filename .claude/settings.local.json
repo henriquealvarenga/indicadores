@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Rscript -e ':*)",
+      "Bash(Rscript -e 'install.packages\\(c\\(\"\"sidrar\"\"\\), repos=\"\"https://cran.r-project.org\"\", quiet=TRUE\\); cat\\(\"\"sidrar installed:\"\", \"\"sidrar\"\" %in% installed.packages\\(\\)[,\"\"Package\"\"], \"\"\\\\n\"\"\\)')",
+      "WebSearch",
+      "WebFetch(domain:www.scielo.br)",
+      "WebFetch(domain:www.scielosp.org)",
+      "WebFetch(domain:www.gov.br)",
+      "WebFetch(domain:ojs.brazilianjournals.com.br)",
+      "WebFetch(domain:basedosdados.org)"
+    ]
+  }
+}

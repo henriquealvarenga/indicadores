@@ -1,0 +1,162 @@
+# Indicadores de Fecundidade e Natalidade
+
+```{r}
+#| label: setup-02
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(glue)
+```
+
+## Taxa de Fecundidade Total (TFT)
+
+A Taxa de Fecundidade Total representa o número médio de filhos que uma mulher teria ao final do seu período reprodutivo (convencionalmente, dos 15 aos 49 anos), caso seguisse as taxas de fecundidade específicas por idade observadas em uma determinada população e período.
+
+::: {.formula-box}
+**TFT** = Σ (Taxa de fecundidade específica por idade) × 5
+:::
+
+### Interpretação e valores de referência
+
+- **Nível de reposição populacional**: TFT ≥ 2,1 filhos por mulher
+- Países com TFT < 1,5 enfrentam risco de "armadilha de baixa fecundidade"
+
+### Evolução da TFT no Brasil
+
+```{r}
+#| label: fig-tft-brasil
+#| fig-cap: "Evolução da Taxa de Fecundidade Total no Brasil — dados IBGE"
+
+# Dados reais: IBGE — Projeções da População (Revisão 2018) — SIDRA tabela 7360
+tft_brasil <- carregar_dados("tft_brasil") |>
+  filter(ano >= 2000, ano <= 2030)
+
+ggplot(tft_brasil, aes(x = ano, y = valor)) +
+  geom_line(color = cores_indicadores["destaque"], linewidth = 1.2) +
+  geom_point(color = cores_indicadores["destaque"], size = 2.5) +
+  geom_hline(yintercept = 2.1, linetype = "dashed", color = cores_indicadores["alerta"], linewidth = 0.8) +
+  annotate("text", x = 2025, y = 2.2, label = "Nível de reposição (2,1)",
+           color = cores_indicadores["alerta"], fontface = "italic", size = 3.5) +
+  scale_x_continuous(breaks = seq(2000, 2030, 5)) +
+  scale_y_continuous(limits = c(1, 2.5), breaks = seq(1, 2.5, 0.25)) +
+  labs(
+    title = "Fecundidade no Brasil: abaixo da reposição desde 2005",
+    subtitle = glue("TFT caiu de {fmt_br(tft_brasil$valor[tft_brasil$ano == 2000])} (2000) para {fmt_br(tft_brasil$valor[tft_brasil$ano == 2024])} (2024) filhos por mulher"),
+    x = "Ano", y = "TFT (filhos por mulher)",
+    caption = fonte_dados("tft_brasil")
+  ) +
+  tema_indicadores()
+```
+
+### TFT por região do Brasil
+
+```{r}
+#| label: fig-tft-regiao
+#| fig-cap: "TFT por Grande Região — dados IBGE"
+
+# Dados reais: IBGE — SIDRA 7360 por região
+tft_regiao <- carregar_dados("tft_regiao") |>
+  filter(ano %in% c(2000, 2010, 2020))
+
+ggplot(tft_regiao, aes(x = factor(ano), y = valor, fill = regiao)) +
+  geom_col(position = "dodge", width = 0.7) +
+  geom_hline(yintercept = 2.1, linetype = "dashed", color = "#333") +
+  geom_text(aes(label = fmt_br(valor)), position = position_dodge(0.7),
+            vjust = -0.5, size = 2.8) +
+  scale_fill_manual(values = cores_regioes) +
+  scale_y_continuous(limits = c(0, 3.5)) +
+  labs(
+    title = "Todas as regiões convergem para abaixo da reposição",
+    subtitle = "Norte era a única acima de 2,1 em 2010; em 2020 já caiu",
+    x = "Ano", y = "TFT (filhos por mulher)", fill = "Região",
+    caption = fonte_dados("tft_regiao")
+  ) +
+  tema_indicadores()
+```
+
+### Comparação internacional
+
+```{r}
+#| label: fig-tft-internacional
+#| fig-cap: "TFT em países selecionados (estimativas ONU)"
+
+# Dados de referência internacional — ONU World Population Prospects 2022
+# Valores verificados no relatório WPP 2022 (https://population.un.org/wpp/)
+tft_paises <- tibble::tribble(
+  ~pais, ~tft, ~grupo, ~fonte,
+  "Níger",          6.7, "Alta fecundidade",        "WPP 2022",
+  "Nigéria",        5.1, "Alta fecundidade",        "WPP 2022",
+  "Índia",          2.0, "Próximo à reposição",     "WPP 2022",
+  "EUA",            1.6, "Abaixo da reposição",     "WPP 2022",
+  "Brasil",         1.6, "Abaixo da reposição",     "IBGE 2018",
+  "Canadá",         1.4, "Abaixo da reposição",     "WPP 2022",
+  "Japão",          1.3, "Muito baixa",             "WPP 2022",
+  "Coreia do Sul",  0.8, "Muito baixa",             "WPP 2022"
+)
+
+ggplot(tft_paises, aes(x = reorder(pais, tft), y = tft, fill = grupo)) +
+  geom_col(width = 0.7) +
+  geom_hline(yintercept = 2.1, linetype = "dashed", color = "#333", linewidth = 0.6) +
+  geom_text(aes(label = fmt_br(tft)), hjust = -0.2, size = 3.5) +
+  coord_flip() +
+  scale_fill_manual(values = c(
+    "Alta fecundidade" = "#d95f02",
+    "Próximo à reposição" = "#66a61e",
+    "Abaixo da reposição" = "#2c7fb8",
+    "Muito baixa" = "#e31a1c"
+  )) +
+  scale_y_continuous(limits = c(0, 8)) +
+  labs(
+    title = "Fecundidade global: um panorama desigual",
+    subtitle = "Linha tracejada = nível de reposição (2,1)",
+    x = NULL, y = "TFT (filhos por mulher)", fill = "Classificação",
+    caption = "Fonte: ONU — World Population Prospects 2022; Brasil: IBGE Projeções 2018"
+  ) +
+  tema_indicadores()
+```
+
+## Taxa Bruta de Natalidade (TBN)
+
+Mede o número de nascimentos em relação à população total:
+
+::: {.formula-box}
+**TBN** = (Nascidos vivos no ano / População total no meio do ano) × 1.000
+:::
+
+### Natalidade vs. Fecundidade
+
+::: {.callout-important}
+## Diferença fundamental
+
+- **Natalidade**: nascimentos em relação à **população total**
+- **Fecundidade**: capacidade reprodutiva das **mulheres em idade fértil**
+
+Uma população envelhecida pode ter baixa natalidade mesmo com fecundidade relativamente mantida.
+:::
+
+### TBN por região do Brasil
+
+```{r}
+#| label: fig-tbn-regioes
+#| fig-cap: "Taxa Bruta de Natalidade por região do Brasil — dados IBGE"
+
+# Dados reais: IBGE — SIDRA 7360 por região
+tbn_regiao <- carregar_dados("tbn_regiao") |>
+  filter(ano >= 2000, ano <= 2030)
+
+ggplot(tbn_regiao, aes(x = ano, y = valor, color = regiao, group = regiao)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  scale_color_manual(values = cores_regioes) +
+  scale_x_continuous(breaks = seq(2000, 2030, 5)) +
+  labs(
+    title = "Queda da natalidade em todas as regiões",
+    subtitle = "Norte e Nordeste permanecem com taxas mais elevadas",
+    x = "Ano", y = "TBN (por 1.000 hab.)", color = "Região",
+    caption = fonte_dados("tbn_regiao")
+  ) +
+  tema_indicadores()
+```

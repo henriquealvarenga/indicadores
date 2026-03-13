@@ -1,0 +1,144 @@
+# Cobertura Vacinal
+
+```{r}
+#| label: setup-05
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(glue)
+library(patchwork)
+```
+
+A cobertura vacinal é um indicador de **proteção coletiva** que mede a proporção da população-alvo que recebeu determinada vacina em um período. É fundamental para avaliar o desempenho do Programa Nacional de Imunizações (PNI) e o risco de ressurgimento de doenças imunopreveníveis [@pni2024].
+
+::: {.formula-box}
+**Cobertura Vacinal (%)** = (Doses aplicadas na população-alvo / População-alvo) × 100
+:::
+
+## Metas de cobertura e imunidade coletiva
+
+Cada vacina possui uma meta específica de cobertura, que depende da transmissibilidade do agente (R₀) e da eficácia da vacina.
+
+```{r}
+#| label: tbl-metas-vacinas
+#| tbl-cap: "Metas de cobertura vacinal — PNI/Brasil"
+
+metas <- tibble::tribble(
+  ~Vacina, ~`Meta (%)`, ~`Doença prevenida`, ~`R₀ aproximado`,
+  "BCG",                     90, "Tuberculose (formas graves)",   "2–5",
+  "Poliomielite (VIP/VOP)",  95, "Poliomielite",                 "5–7",
+  "Tríplice viral (SCR)",    95, "Sarampo, caxumba, rubéola",    "12–18",
+  "Pentavalente (DTP-Hib-HB)", 95, "Difteria, tétano, coqueluche, Hib, Hepatite B", "5–17",
+  "Febre amarela",           95, "Febre amarela",                "4–7",
+  "COVID-19 (esquema primário)", 90, "COVID-19",                 "3–8",
+  "HPV",                     80, "HPV (câncer cervical)",        "—",
+  "Influenza",               90, "Gripe (grupos prioritários)",  "1–2"
+)
+
+tabela_indicador(metas)
+```
+
+## Queda da cobertura vacinal no Brasil
+
+O Brasil, que foi referência mundial em imunização, vem enfrentando uma **queda preocupante** nas coberturas desde 2016.
+
+```{r}
+#| label: fig-cobertura-historica
+#| fig-cap: "Evolução da cobertura vacinal de vacinas selecionadas — Brasil"
+
+# Valores aproximados baseados em SI-PNI/DATASUS — consulte TabNet para dados exatos
+cob_vacinal <- tibble::tribble(
+  ~ano, ~triplice_viral, ~polio, ~pentavalente,
+  2010, 99.9, 100.0, 98.3,
+  2012, 99.5,  96.5, 93.8,
+  2014, 97.1, 96.8, 94.9,
+  2016, 95.4, 84.4, 89.3,
+  2017, 83.8, 84.7, 80.5,
+  2018, 92.6, 89.5, 87.5,
+  2019, 93.1, 84.2, 80.0,
+  2020, 81.6, 76.1, 76.2,
+  2021, 80.7, 77.2, 75.1,
+  2022, 83.0, 77.2, 80.8,
+  2023, 89.7, 84.6, 86.0
+)
+
+cob_long <- cob_vacinal |>
+  pivot_longer(-ano, names_to = "vacina", values_to = "cobertura") |>
+  mutate(vacina = case_match(vacina,
+    "triplice_viral" ~ "Tríplice Viral",
+    "polio" ~ "Poliomielite",
+    "pentavalente" ~ "Pentavalente"
+  ))
+
+ggplot(cob_long, aes(x = ano, y = cobertura, color = vacina)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  geom_hline(yintercept = 95, linetype = "dashed", color = "#333", linewidth = 0.5) +
+  annotate("text", x = 2022, y = 96.5, label = "Meta: 95%",
+           fontface = "italic", size = 3, color = "#333") +
+  scale_color_manual(values = c(
+    "Tríplice Viral" = "#2c7fb8",
+    "Poliomielite" = "#d95f02",
+    "Pentavalente" = "#1b9e77"
+  )) +
+  scale_y_continuous(limits = c(70, 105), breaks = seq(70, 100, 5)) +
+  labs(
+    title = "Queda da cobertura vacinal no Brasil (2010–2023)",
+    subtitle = "Nenhuma das três vacinas atingiu a meta de 95% nos últimos 5 anos",
+    x = "Ano", y = "Cobertura (%)", color = "Vacina",
+    caption = "Fonte: SI-PNI / DATASUS (valores aproximados)"
+  ) +
+  tema_indicadores()
+```
+
+::: {.callout-important}
+## Consequências da queda
+
+- **Sarampo**: surtos em 2018-2019 após anos sem transmissão endêmica
+- **Poliomielite**: risco de reintrodução em municípios com cobertura < 80%
+- **Coqueluche**: aumento de casos em lactentes jovens
+:::
+
+## Cobertura vacinal por região
+
+```{r}
+#| label: fig-cobertura-regiao
+#| fig-cap: "Cobertura da Tríplice Viral (D1, 1 ano) por região — 2023"
+
+# Valores aproximados baseados em SI-PNI/DATASUS — consulte TabNet para dados exatos
+cob_regiao <- tibble::tribble(
+  ~regiao, ~cobertura,
+  "Sul",          93.5,
+  "Sudeste",      91.2,
+  "Centro-Oeste", 89.8,
+  "Nordeste",     87.3,
+  "Norte",        82.1
+)
+
+ggplot(cob_regiao, aes(x = reorder(regiao, cobertura), y = cobertura, fill = regiao)) +
+  geom_col(width = 0.6) +
+  geom_hline(yintercept = 95, linetype = "dashed", color = "#333") +
+  geom_text(aes(label = paste0(fmt_br(cobertura), "%")), hjust = -0.1, size = 4) +
+  coord_flip() +
+  scale_fill_manual(values = cores_regioes) +
+  scale_y_continuous(limits = c(0, 105)) +
+  labs(
+    title = "Desigualdade regional na cobertura vacinal",
+    subtitle = "Nenhuma região atingiu a meta de 95% para Tríplice Viral em 2023",
+    x = NULL, y = "Cobertura (%)",
+    caption = "Fonte: SI-PNI / DATASUS (dados aproximados)"
+  ) +
+  tema_indicadores() +
+  theme(legend.position = "none")
+```
+
+## Fatores associados à queda
+
+1. **Hesitação vacinal** e desinformação em redes sociais
+2. **Dificuldades logísticas** — horários limitados das UBS, falta de estoque
+3. **Percepção de risco reduzida** — sucesso das vacinas tornou as doenças "invisíveis"
+4. **Pandemia de COVID-19** — desorganização dos serviços de rotina
+5. **Mudanças no sistema de registro** — migração do SI-PNI para novo sistema

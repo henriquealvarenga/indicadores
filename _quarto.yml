@@ -1,0 +1,111 @@
+project:
+  type: book
+  output-dir: docs
+
+lang: pt-BR
+
+book:
+  title: "Indicadores de Saúde"
+  subtitle: "Conceitos, Métodos e Aplicações com Dados do Brasil"
+  author:
+    - name: "Prof. Henrique Alvarenga da Silva"
+      affiliation: "UNIPTAN (AFYA)"
+      orcid: ""
+  date: today
+  date-format: "DD/MM/YYYY"
+
+  reader-mode: true
+  page-navigation: true
+  back-to-top-navigation: true
+  search: true
+  repo-url: https://github.com/henriquealvarenga/indicadores-de-saude
+  repo-actions: [edit, issue]
+  sharing: [twitter, facebook, linkedin]
+
+  sidebar:
+    style: docked
+    background: light
+    logo: images/logo.png
+    collapse-level: 2
+
+  page-footer:
+    left: |
+      Indicadores de Saúde — UNIPTAN (AFYA)
+    center: |
+      Material de apoio para Métodos Científicos em Medicina 2
+    right: |
+      Construído com [Quarto](https://quarto.org/)
+
+  chapters:
+    - index.qmd
+    - part: "Fundamentos"
+      chapters:
+        - chapters/01-introducao.qmd
+        - chapters/02-fecundidade-natalidade.qmd
+        - chapters/03-mortalidade.qmd
+    - part: "Indicadores Avançados"
+      chapters:
+        - chapters/04-morbidade.qmd
+        - chapters/05-cobertura-vacinal.qmd
+        - chapters/06-padronizacao.qmd
+    - part: "Contexto Brasileiro"
+      chapters:
+        - chapters/07-transicao-epidemiologica.qmd
+        - chapters/08-atencao-primaria.qmd
+        - chapters/09-desigualdades-raca.qmd
+    - part: "Pensamento Crítico"
+      chapters:
+        - chapters/10-limitacoes.qmd
+        - chapters/11-uso-responsavel.qmd
+    - references.qmd
+    - about.qmd
+
+bibliography: references.bib
+csl: references/csl_styles/ABNT.csl
+cite-method: citeproc
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    number-depth: 3
+    code-fold: true
+    code-summary: "Mostrar código R"
+    code-tools: true
+    code-overflow: wrap
+    code-line-numbers: true
+    highlight-style: github
+    fig-responsive: true
+    fig-align: center
+    fig-width: 8
+    fig-height: 5
+    df-print: kable
+    smooth-scroll: true
+    link-external-icon: true
+    link-external-newwindow: true
+    fontsize: 1rem
+    linestretch: 1.6
+    mainfont: "Nunito Sans, sans-serif"
+    monofont: "Fira Code, monospace"
+    include-in-header:
+      - text: |
+          <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  cache: true
+  freeze: auto
+
+knitr:
+  opts_chunk:
+    fig.retina: 2
+    dpi: 150
+    out.width: "100%"
+    comment: "#>"

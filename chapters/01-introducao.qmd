@@ -1,0 +1,87 @@
+# O que são Indicadores de Saúde?
+
+```{r}
+#| label: setup-01
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+Indicadores de saúde são medidas que sintetizam informações sobre o **estado de saúde** de uma população ou sobre os **determinantes e condicionantes** que influenciam esse estado. Segundo a Organização Pan-Americana da Saúde (OPAS), um indicador é uma medida que resume informações relevantes sobre um atributo e uma dimensão do estado de saúde, ou ainda do desempenho do sistema de saúde [@opas2008].
+
+Um indicador **não descreve a realidade em toda a sua complexidade** — ele simplifica e quantifica aspectos específicos para permitir comparação, monitoramento e tomada de decisão em saúde pública.
+
+## Para que servem?
+
+- **Mensurar** o estado de saúde de uma população em determinado tempo e lugar
+- **Comparar** populações distintas ou a mesma população em períodos diferentes
+- **Orientar** a formulação, o acompanhamento e a avaliação de políticas de saúde
+- **Identificar** grupos vulneráveis e prioridades de intervenção
+- **Subsidiar** a alocação de recursos no sistema de saúde
+
+## Categorias de indicadores (RIPSA/OPAS)
+
+A Rede Interagencial de Informações para a Saúde (RIPSA), com base nas recomendações da OPAS, organiza os indicadores nas seguintes categorias:
+
+```{r}
+#| label: tbl-categorias
+#| tbl-cap: "Categorias de indicadores de saúde segundo a RIPSA/OPAS"
+
+categorias <- tibble::tribble(
+  ~Categoria, ~Descrição, ~Exemplos,
+  "A — Demográficos",       "Estrutura e dinâmica populacional",     "Taxa de crescimento, razão de dependência, índice de envelhecimento",
+  "B — Socioeconômicos",    "Condições sociais e econômicas",        "Índice de Gini, renda per capita, cobertura da Atenção Básica",
+  "C — Mortalidade",        "Óbitos e seus determinantes",           "Taxa Bruta de Mortalidade, mortalidade infantil, mortalidade materna",
+  "D — Morbidade",          "Adoecimento e fatores de risco",        "Incidência e prevalência de doenças, cobertura vacinal",
+  "E — Recursos",           "Infraestrutura do sistema de saúde",    "Leitos hospitalares por habitante, médicos por habitante",
+  "F — Cobertura",          "Acesso aos serviços de saúde",          "Proporção de partos hospitalares, cobertura de pré-natal"
+)
+
+tabela_indicador(categorias)
+```
+
+## Tipos de medida em epidemiologia
+
+```{r}
+#| label: fig-tipos-medida
+#| fig-cap: "Tipos de medida epidemiológica e suas características"
+
+tipos <- tibble::tribble(
+  ~Tipo, ~Definição, ~Exemplo,
+  "Proporção",  "Numerador contido no denominador",            "Prevalência, mortalidade proporcional",
+  "Taxa",       "Incorpora o tempo em risco no denominador",   "Taxa de incidência, taxa de mortalidade",
+  "Razão",      "Numerador e denominador independentes",       "Razão de mortalidade materna (RMM)",
+  "Índice",     "Medida composta com múltiplas variáveis",     "IDH, Índice de Gini"
+)
+
+tabela_indicador(tipos, caption = "Tipos de medida epidemiológica")
+```
+
+::: {.callout-warning}
+## Atenção
+
+Indicadores são ferramentas de síntese — toda simplificação implica **perda de informação**. A interpretação criteriosa é parte indispensável do trabalho epidemiológico.
+:::
+
+## Fontes de dados no Brasil
+
+O Brasil possui um dos sistemas de informação em saúde mais abrangentes da América Latina. As principais bases de dados são:
+
+```{r}
+#| label: fig-fontes-dados
+#| fig-cap: "Principais sistemas de informação em saúde do Brasil"
+
+fontes <- tibble::tribble(
+  ~Sistema, ~Sigla, ~`Tipo de dado`,
+  "Sistema de Informações sobre Mortalidade",     "SIM",    "Óbitos (Declaração de Óbito)",
+  "Sistema de Informações sobre Nascidos Vivos",  "SINASC", "Nascimentos (DN)",
+  "Sistema de Informação de Agravos de Notificação", "SINAN", "Doenças de notificação compulsória",
+  "Sistema de Informações Hospitalares",          "SIH",    "Internações pelo SUS",
+  "Sistema de Informação do PNI",                 "SI-PNI", "Coberturas vacinais",
+  "Pesquisa Nacional por Amostra de Domicílios",  "PNAD",   "Dados socioeconômicos e de saúde"
+)
+
+tabela_indicador(fontes, caption = "Sistemas de Informação em Saúde — Brasil")
+```

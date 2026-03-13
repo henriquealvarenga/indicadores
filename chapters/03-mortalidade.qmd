@@ -1,0 +1,330 @@
+# Indicadores de Mortalidade
+
+```{r}
+#| label: setup-03
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(glue)
+library(patchwork)
+```
+
+## Por que não basta contar mortes?
+
+Um erro frequente é confundir o **número absoluto de óbitos** com o **risco de morte**. Os números absolutos são influenciados diretamente pelo tamanho da população — populações maiores terão mais mortes, mesmo que o risco individual seja idêntico [@gordis2017].
+
+```{r}
+#| label: fig-absoluto-vs-taxa
+#| fig-cap: "Números absolutos vs. taxas: o caso do câncer nos EUA"
+
+# Valores ilustrativos baseados no exemplo didático de Gordis, Epidemiologia, 5ª ed., 2017
+# Os valores são aproximados e servem para demonstrar o conceito — consulte a fonte original
+eua_cancer <- tibble::tribble(
+  ~ano, ~obitos_mil, ~pop_milhoes, ~taxa_100mil,
+  1920,  100,  106, 94.3,
+  1940,  160,  132, 121.2,
+  1960,  280,  179, 156.4,
+  1980,  400,  226, 177.0,
+  2000,  550,  281, 195.7,
+  2011,  580,  311, 186.5
+)
+
+p1 <- ggplot(eua_cancer, aes(x = ano, y = obitos_mil)) +
+  geom_col(fill = cores_indicadores["alerta"], alpha = 0.8, width = 12) +
+  scale_y_continuous(labels = label_number(big.mark = ".")) +
+  labs(title = "Óbitos absolutos (milhares)", x = "Ano", y = "Óbitos (milhares)") +
+  tema_indicadores(base_size = 10)
+
+p2 <- ggplot(eua_cancer, aes(x = ano, y = taxa_100mil)) +
+  geom_line(color = cores_indicadores["destaque"], linewidth = 1.2) +
+  geom_point(color = cores_indicadores["destaque"], size = 2.5) +
+  labs(title = "Taxa por 100 mil hab.", x = "Ano", y = "Taxa") +
+  tema_indicadores(base_size = 10)
+
+p1 + p2 +
+  plot_annotation(
+    title = "Números absolutos exageram a tendência",
+    subtitle = "EUA — mortes por câncer: aumento de 5× nos absolutos, mas ~2× na taxa",
+    caption = "Fonte: Baseado em Gordis, Epidemiologia, 5ª ed., 2017 (valores ilustrativos aproximados)"
+  )
+```
+
+::: {.callout-tip}
+## Conclusão
+
+Precisamos sempre trabalhar com **taxas** (mortes por unidade de população exposta), e não apenas com contagens absolutas.
+:::
+
+## Taxa Bruta de Mortalidade (TBM)
+
+::: {.formula-box}
+**TBM** = (Total de óbitos no ano / População no meio do ano) × 1.000
+:::
+
+Caracteriza o risco médio de morte por qualquer causa. Contudo, a TBM **não controla a estrutura etária** — populações mais envelhecidas apresentam TBM mais elevada, mesmo com riscos etários idênticos (ver @sec-padronizacao).
+
+```{r}
+#| label: fig-tbm-brasil
+#| fig-cap: "Evolução da Taxa Bruta de Mortalidade no Brasil — projeções IBGE"
+
+# Dados reais: IBGE — SIDRA 7360
+tbm_brasil <- carregar_dados("tbm_brasil") |>
+  filter(ano >= 2010, ano <= 2040)
+
+ggplot(tbm_brasil, aes(x = ano, y = valor)) +
+  geom_line(color = cores_indicadores["destaque"], linewidth = 1) +
+  geom_point(color = cores_indicadores["destaque"], size = 2.5) +
+  scale_x_continuous(breaks = seq(2010, 2040, 5)) +
+  labs(
+    title = "TBM projetada: tendência de aumento pelo envelhecimento",
+    subtitle = "A TBM sobe não por piora da saúde, mas pela mudança na estrutura etária",
+    x = "Ano", y = "TBM (por 1.000 hab.)",
+    caption = fonte_dados("tbm_brasil")
+  ) +
+  tema_indicadores()
+```
+
+::: {.callout-warning}
+## Atenção
+
+As projeções do IBGE não capturam choques como a pandemia de COVID-19 (2020-2021), que elevou a TBM observada acima de 8,0 por mil hab. Os dados acima são projeções demográficas em cenário base.
+:::
+
+## Taxas de Mortalidade Específicas
+
+```{r}
+#| label: tbl-mortalidade-especifica
+#| tbl-cap: "Principais indicadores de mortalidade específica"
+
+mort_esp <- tibble::tribble(
+  ~Indicador, ~Fórmula, ~`Referência/Meta`,
+  "Mortalidade Infantil",  "Óbitos < 1 ano / NV × 1.000",          "Brasil 2022: ~10,9 (IBGE Projeções)",
+  "Mortalidade Materna",   "Óbitos maternos / NV × 100.000",       "ODS: < 70 por 100.000 NV",
+  "Mortalidade Neonatal",  "Óbitos 0-27 dias / NV × 1.000",        "Precoce (<7d) e Tardia (7-27d)",
+  "Mortalidade Perinatal", "Óbitos fetais + neonatais precoces / Nascimentos", "Qualidade obstétrica",
+  "Por causa específica",  "Óbitos por causa X / Pop × 100.000",   "Avalia eficácia de programas"
+)
+
+tabela_indicador(mort_esp)
+```
+
+## Mortalidade Infantil — Componentes
+
+A mortalidade infantil (MI) é considerada o indicador mais sensível do nível de desenvolvimento de uma sociedade [@rouquayrol2017].
+
+```{r}
+#| label: tbl-mi-componentes
+#| tbl-cap: "Componentes da mortalidade infantil e suas causas predominantes"
+
+mi_comp <- tibble::tribble(
+  ~Componente, ~Período, ~`Principais causas`,
+  "Neonatal Precoce", "0 a 6 dias",       "Asfixia perinatal, prematuridade, infecções, malformações",
+  "Neonatal Tardio",  "7 a 27 dias",      "Infecções, condições congênitas, prematuridade tardia",
+  "Pós-Neonatal",     "28 dias a < 1 ano", "Diarreia, pneumonia, desnutrição, causas externas"
+)
+
+tabela_indicador(mi_comp)
+```
+
+```{r}
+#| label: fig-mi-serie
+#| fig-cap: "Evolução da mortalidade infantil no Brasil — projeções IBGE"
+
+# Dados reais: IBGE — SIDRA 7362
+mi_brasil <- carregar_dados("mi_brasil") |>
+  filter(ano >= 2000, ano <= 2030)
+
+ggplot(mi_brasil, aes(x = ano, y = valor)) +
+  geom_area(fill = cores_indicadores["destaque"], alpha = 0.15) +
+  geom_line(color = cores_indicadores["destaque"], linewidth = 1.2) +
+  geom_point(color = cores_indicadores["destaque"], size = 2) +
+  scale_x_continuous(breaks = seq(2000, 2030, 5)) +
+  labs(
+    title = "Queda consistente da mortalidade infantil no Brasil",
+    subtitle = glue("De {fmt_br(mi_brasil$valor[mi_brasil$ano == 2000])} (2000) para {fmt_br(mi_brasil$valor[mi_brasil$ano == 2024])} (2024) por mil NV"),
+    x = "Ano", y = "MI (por 1.000 NV)",
+    caption = fonte_dados("mi_brasil")
+  ) +
+  tema_indicadores()
+```
+
+### Mortalidade Infantil por Região
+
+```{r}
+#| label: fig-mi-regiao
+#| fig-cap: "Mortalidade Infantil por Grande Região — projeções IBGE"
+
+# Dados reais: IBGE — SIDRA 7362 por região
+mi_regiao <- carregar_dados("mi_regiao") |>
+  filter(ano %in% c(2000, 2010, 2020))
+
+ggplot(mi_regiao, aes(x = factor(ano), y = valor, fill = regiao)) +
+  geom_col(position = "dodge", width = 0.7) +
+  geom_text(aes(label = fmt_br(valor)), position = position_dodge(0.7),
+            vjust = -0.5, size = 2.8) +
+  scale_fill_manual(values = cores_regioes) +
+  labs(
+    title = "Persistência das desigualdades regionais na MI",
+    subtitle = "Norte e Nordeste mantêm taxas acima do dobro do Sul",
+    x = "Ano", y = "MI (por 1.000 NV)", fill = "Região",
+    caption = fonte_dados("mi_regiao")
+  ) +
+  tema_indicadores()
+```
+
+## Esperança de Vida ao Nascer
+
+```{r}
+#| label: fig-ev-brasil
+#| fig-cap: "Esperança de vida ao nascer por sexo — projeções IBGE"
+
+# Dados reais: IBGE — SIDRA 7362
+ev_brasil <- carregar_dados("ev_brasil") |>
+  filter(ano >= 2000, ano <= 2040)
+
+ev_long <- ev_brasil |>
+  pivot_longer(c(total, masculino, feminino), names_to = "sexo", values_to = "ev") |>
+  mutate(sexo = case_match(sexo,
+    "total" ~ "Total",
+    "masculino" ~ "Masculino",
+    "feminino" ~ "Feminino"
+  ))
+
+ggplot(ev_long, aes(x = ano, y = ev, color = sexo)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.5) +
+  scale_color_manual(values = c("Total" = "#333", "Masculino" = "#2c7fb8", "Feminino" = "#e7298a")) +
+  scale_x_continuous(breaks = seq(2000, 2040, 5)) +
+  labs(
+    title = "Esperança de vida ao nascer: mulheres vivem ~7 anos a mais",
+    subtitle = "Tendência de aumento para ambos os sexos, com diferença persistente",
+    x = "Ano", y = "Esperança de vida (anos)", color = "Sexo",
+    caption = fonte_dados("ev_brasil")
+  ) +
+  tema_indicadores()
+```
+
+## Mortalidade Proporcional
+
+Indica a participação percentual de uma causa no total de óbitos.
+
+::: {.formula-box}
+**MP (%)** = (Óbitos por causa X / Total de óbitos) × 100
+:::
+
+```{r}
+#| label: fig-mp-brasil
+#| fig-cap: "Mortalidade proporcional por grupo de causas — Brasil (2022)"
+
+# Valores aproximados baseados em SIM/DATASUS — TabNet > Mortalidade 2022
+# Consulte http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10uf.def para dados exatos
+mp_brasil <- tibble::tribble(
+  ~causa, ~proporcao,
+  "Doenças do aparelho circulatório",   26.6,
+  "Neoplasias (cânceres)",              17.4,
+  "Doenças do aparelho respiratório",   11.8,
+  "Causas externas",                    10.8,
+  "Doenças endócrinas/metabólicas",      7.6,
+  "Doenças do aparelho digestivo",       5.6,
+  "Doenças infecciosas e parasitárias",  4.1,
+  "Outras causas",                      16.1
+)
+
+ggplot(mp_brasil, aes(x = reorder(causa, proporcao), y = proporcao)) +
+  geom_col(fill = cores_indicadores["destaque"], width = 0.7) +
+  geom_text(aes(label = paste0(fmt_br(proporcao), "%")), hjust = -0.1, size = 3.5) +
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 32)) +
+  labs(
+    title = "Perfil de mortalidade do Brasil em 2022",
+    subtitle = "DCNT dominam o perfil de mortalidade",
+    x = NULL, y = "Proporção (%)",
+    caption = "Fonte: SIM/DATASUS — TabNet, Mortalidade por capítulo CID-10, 2022 (valores aproximados)"
+  ) +
+  tema_indicadores()
+```
+
+::: {.callout-warning}
+## Armadilha interpretativa
+
+Uma queda na proporção de óbitos por doença infecciosa pode indicar tanto melhora do controle da infecção **quanto** aumento da mortalidade por doenças crônicas — sem alterar o risco absoluto.
+:::
+
+## Letalidade: CFR e IFR
+
+```{r}
+#| label: tbl-cfr-ifr
+#| tbl-cap: "Comparação entre CFR e IFR"
+
+cfr_ifr <- tibble::tribble(
+  ~Medida, ~Fórmula, ~`Denominador`,
+  "CFR (Case Fatality Rate)",      "Óbitos / Casos confirmados × 100", "Casos diagnosticados",
+  "IFR (Infection Fatality Rate)", "Óbitos / Casos estimados × 100",   "Inclui não diagnosticados"
+)
+
+tabela_indicador(cfr_ifr)
+```
+
+## DALY — Disability-Adjusted Life Year
+
+O DALY captura mortalidade prematura e morbidade. Amplamente utilizado pela OMS [@who2022].
+
+::: {.formula-box}
+**DALY** = YLL + YLD
+
+- **YLL** (*Years of Life Lost*): anos perdidos por morte prematura
+- **YLD** (*Years Lived with Disability*): anos vividos com incapacidade
+:::
+
+```{r}
+#| label: fig-daly-brasil
+#| fig-cap: "Principais causas de DALYs no Brasil (GBD 2019)"
+
+# Valores ilustrativos baseados em GBD 2019 — IHME (https://vizhub.healthdata.org/gbd-compare/)
+# Ordem de magnitude aproximada — consulte o GBD Results Tool para dados exatos
+daly_brasil <- tibble::tribble(
+  ~causa, ~daly_mil, ~tipo,
+  "Doenças cardiovasculares",    12500, "DCNT",
+  "Violência interpessoal",       7800, "Causas externas",
+  "Dor lombar/cervical",          6200, "DCNT",
+  "Transtornos depressivos",      5100, "Saúde mental",
+  "Diabetes mellitus",            4800, "DCNT",
+  "Acidentes de trânsito",        4200, "Causas externas",
+  "DPOC",                         3800, "DCNT",
+  "Neonatal",                     3500, "Materno-infantil",
+  "Neoplasias (cânceres)",        3200, "DCNT",
+  "Ansiedade",                    2800, "Saúde mental"
+)
+
+ggplot(daly_brasil, aes(x = reorder(causa, daly_mil), y = daly_mil / 1000, fill = tipo)) +
+  geom_col(width = 0.7) +
+  coord_flip() +
+  scale_fill_manual(values = c(
+    "DCNT" = "#2c7fb8", "Causas externas" = "#d95f02",
+    "Saúde mental" = "#7570b3", "Materno-infantil" = "#1b9e77"
+  )) +
+  labs(
+    title = "Carga de doença no Brasil (DALYs)",
+    subtitle = "DCNT e violência dominam; saúde mental é subestimada nas políticas",
+    x = NULL, y = "DALYs (milhões)", fill = "Grupo",
+    caption = "Fonte: Baseado em GBD 2019 — IHME (valores ilustrativos aproximados)"
+  ) +
+  tema_indicadores()
+```
+
+## Declaração de Óbito e Qualidade dos Dados
+
+A DO é o documento legal e epidemiológico que registra cada morte no Brasil. Problemas:
+
+- **Causas mal definidas**: "parada cardiorrespiratória" como causa básica é clinicamente incorreto
+- **Subregistro**: até 20-30% dos óbitos em regiões mais pobres não são registrados
+- **Erros de preenchimento**: campos como raça/cor e escolaridade ficam em branco
+
+::: {.callout-important}
+## Responsabilidade médica
+
+A DO possui campo específico para raça/cor — seu preenchimento correto é **obrigação ética e epidemiológica** do médico.
+:::

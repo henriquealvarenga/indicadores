@@ -1,0 +1,727 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Indicadores de Saúde",
+    "section": "",
+    "text": "Prefácio\nEste livreto é um material de apoio para a disciplina de Métodos Científicos em Medicina 2 do curso de graduação em Medicina do UNIPTAN (AFYA).",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "index.html#objetivo",
+    "href": "index.html#objetivo",
+    "title": "Indicadores de Saúde",
+    "section": "Objetivo",
+    "text": "Objetivo\nApresentar de forma didática e aplicada os principais indicadores de saúde utilizados em Saúde Pública, combinando:\n\nFundamentos teóricos e conceituais\nDados reais do sistema de saúde brasileiro (DATASUS, IBGE, SINAN)\nVisualizações construídas com código reprodutível em R\nAnálise crítica das limitações e do uso ético dos dados",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "index.html#estrutura-do-livro",
+    "href": "index.html#estrutura-do-livro",
+    "title": "Indicadores de Saúde",
+    "section": "Estrutura do livro",
+    "text": "Estrutura do livro\nO livro está organizado em quatro partes:\n\n\n\n\n\n\n\nParte\nConteúdo\n\n\n\n\nI — Fundamentos\nConceitos básicos, indicadores de fecundidade/natalidade e mortalidade\n\n\nII — Indicadores Avançados\nMorbidade, cobertura vacinal e padronização de taxas\n\n\nIII — Contexto Brasileiro\nTransição epidemiológica, Atenção Primária e desigualdades raciais\n\n\nIV — Pensamento Crítico\nLimitações dos indicadores e uso responsável dos dados",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "index.html#reprodutibilidade",
+    "href": "index.html#reprodutibilidade",
+    "title": "Indicadores de Saúde",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTodos os gráficos e tabelas deste livro foram construídos com código em R. O leitor pode expandir os blocos de código para ver exatamente como cada análise foi realizada. Os dados utilizados são, sempre que possível, obtidos diretamente de bases públicas brasileiras.\n\n\n\n\n\n\nNotaComo usar este material\n\n\n\nClique em “Mostrar código R” abaixo de qualquer gráfico para ver o código-fonte. Você pode copiá-lo e adaptá-lo para suas próprias análises.",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "index.html#pré-requisitos",
+    "href": "index.html#pré-requisitos",
+    "title": "Indicadores de Saúde",
+    "section": "Pré-requisitos",
+    "text": "Pré-requisitos\nPara reproduzir as análises, você precisará de:\n\nR (versão ≥ 4.2)\nRStudio ou editor de sua preferência\nQuarto (versão ≥ 1.4)\nPacotes R: tidyverse, httr2, janitor, scales, knitr, kableExtra, glue, patchwork",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "chapters/01-introducao.html",
+    "href": "chapters/01-introducao.html",
+    "title": "1  O que são Indicadores de Saúde?",
+    "section": "",
+    "text": "1.1 Para que servem?\nIndicadores de saúde são medidas que sintetizam informações sobre o estado de saúde de uma população ou sobre os determinantes e condicionantes que influenciam esse estado. Segundo a Organização Pan-Americana da Saúde (OPAS), um indicador é uma medida que resume informações relevantes sobre um atributo e uma dimensão do estado de saúde, ou ainda do desempenho do sistema de saúde (Organização Pan-Americana da Saúde, 2008).\nUm indicador não descreve a realidade em toda a sua complexidade — ele simplifica e quantifica aspectos específicos para permitir comparação, monitoramento e tomada de decisão em saúde pública.",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>O que são Indicadores de Saúde?</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-introducao.html#para-que-servem",
+    "href": "chapters/01-introducao.html#para-que-servem",
+    "title": "1  O que são Indicadores de Saúde?",
+    "section": "",
+    "text": "Mensurar o estado de saúde de uma população em determinado tempo e lugar\nComparar populações distintas ou a mesma população em períodos diferentes\nOrientar a formulação, o acompanhamento e a avaliação de políticas de saúde\nIdentificar grupos vulneráveis e prioridades de intervenção\nSubsidiar a alocação de recursos no sistema de saúde",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>O que são Indicadores de Saúde?</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-introducao.html#categorias-de-indicadores-ripsaopas",
+    "href": "chapters/01-introducao.html#categorias-de-indicadores-ripsaopas",
+    "title": "1  O que são Indicadores de Saúde?",
+    "section": "1.2 Categorias de indicadores (RIPSA/OPAS)",
+    "text": "1.2 Categorias de indicadores (RIPSA/OPAS)\nA Rede Interagencial de Informações para a Saúde (RIPSA), com base nas recomendações da OPAS, organiza os indicadores nas seguintes categorias:\n\n\nMostrar código R\ncategorias &lt;- tibble::tribble(\n  ~Categoria, ~Descrição, ~Exemplos,\n  \"A — Demográficos\",       \"Estrutura e dinâmica populacional\",     \"Taxa de crescimento, razão de dependência, índice de envelhecimento\",\n  \"B — Socioeconômicos\",    \"Condições sociais e econômicas\",        \"Índice de Gini, renda per capita, cobertura da Atenção Básica\",\n  \"C — Mortalidade\",        \"Óbitos e seus determinantes\",           \"Taxa Bruta de Mortalidade, mortalidade infantil, mortalidade materna\",\n  \"D — Morbidade\",          \"Adoecimento e fatores de risco\",        \"Incidência e prevalência de doenças, cobertura vacinal\",\n  \"E — Recursos\",           \"Infraestrutura do sistema de saúde\",    \"Leitos hospitalares por habitante, médicos por habitante\",\n  \"F — Cobertura\",          \"Acesso aos serviços de saúde\",          \"Proporção de partos hospitalares, cobertura de pré-natal\"\n)\n\ntabela_indicador(categorias)\n\n\n\n\nTabela 1.1: Categorias de indicadores de saúde segundo a RIPSA/OPAS\n\n\n\n\n\n\nCategoria\nDescrição\nExemplos\n\n\n\n\nA — Demográficos\nEstrutura e dinâmica populacional\nTaxa de crescimento, razão de dependência, índice de envelhecimento\n\n\nB — Socioeconômicos\nCondições sociais e econômicas\nÍndice de Gini, renda per capita, cobertura da Atenção Básica\n\n\nC — Mortalidade\nÓbitos e seus determinantes\nTaxa Bruta de Mortalidade, mortalidade infantil, mortalidade materna\n\n\nD — Morbidade\nAdoecimento e fatores de risco\nIncidência e prevalência de doenças, cobertura vacinal\n\n\nE — Recursos\nInfraestrutura do sistema de saúde\nLeitos hospitalares por habitante, médicos por habitante\n\n\nF — Cobertura\nAcesso aos serviços de saúde\nProporção de partos hospitalares, cobertura de pré-natal",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>O que são Indicadores de Saúde?</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-introducao.html#tipos-de-medida-em-epidemiologia",
+    "href": "chapters/01-introducao.html#tipos-de-medida-em-epidemiologia",
+    "title": "1  O que são Indicadores de Saúde?",
+    "section": "1.3 Tipos de medida em epidemiologia",
+    "text": "1.3 Tipos de medida em epidemiologia\n\n\nMostrar código R\ntipos &lt;- tibble::tribble(\n  ~Tipo, ~Definição, ~Exemplo,\n  \"Proporção\",  \"Numerador contido no denominador\",            \"Prevalência, mortalidade proporcional\",\n  \"Taxa\",       \"Incorpora o tempo em risco no denominador\",   \"Taxa de incidência, taxa de mortalidade\",\n  \"Razão\",      \"Numerador e denominador independentes\",       \"Razão de mortalidade materna (RMM)\",\n  \"Índice\",     \"Medida composta com múltiplas variáveis\",     \"IDH, Índice de Gini\"\n)\n\ntabela_indicador(tipos, caption = \"Tipos de medida epidemiológica\")\n\n\n\n\n\n\nTipos de medida epidemiológica\n\n\n\n\nTipo\n\n\nDefinição\n\n\nExemplo\n\n\n\n\n\n\nProporção\n\n\nNumerador contido no denominador\n\n\nPrevalência, mortalidade proporcional\n\n\n\n\nTaxa\n\n\nIncorpora o tempo em risco no denominador\n\n\nTaxa de incidência, taxa de mortalidade\n\n\n\n\nRazão\n\n\nNumerador e denominador independentes\n\n\nRazão de mortalidade materna (RMM)\n\n\n\n\nÍndice\n\n\nMedida composta com múltiplas variáveis\n\n\nIDH, Índice de Gini\n\n\n\n\n\n\nFigura 1.1: Tipos de medida epidemiológica e suas características\n\n\n\n\n\n\n\n\n\n\nAvisoAtenção\n\n\n\nIndicadores são ferramentas de síntese — toda simplificação implica perda de informação. A interpretação criteriosa é parte indispensável do trabalho epidemiológico.",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>O que são Indicadores de Saúde?</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-introducao.html#fontes-de-dados-no-brasil",
+    "href": "chapters/01-introducao.html#fontes-de-dados-no-brasil",
+    "title": "1  O que são Indicadores de Saúde?",
+    "section": "1.4 Fontes de dados no Brasil",
+    "text": "1.4 Fontes de dados no Brasil\nO Brasil possui um dos sistemas de informação em saúde mais abrangentes da América Latina. As principais bases de dados são:\n\n\nMostrar código R\nfontes &lt;- tibble::tribble(\n  ~Sistema, ~Sigla, ~`Tipo de dado`,\n  \"Sistema de Informações sobre Mortalidade\",     \"SIM\",    \"Óbitos (Declaração de Óbito)\",\n  \"Sistema de Informações sobre Nascidos Vivos\",  \"SINASC\", \"Nascimentos (DN)\",\n  \"Sistema de Informação de Agravos de Notificação\", \"SINAN\", \"Doenças de notificação compulsória\",\n  \"Sistema de Informações Hospitalares\",          \"SIH\",    \"Internações pelo SUS\",\n  \"Sistema de Informação do PNI\",                 \"SI-PNI\", \"Coberturas vacinais\",\n  \"Pesquisa Nacional por Amostra de Domicílios\",  \"PNAD\",   \"Dados socioeconômicos e de saúde\"\n)\n\ntabela_indicador(fontes, caption = \"Sistemas de Informação em Saúde — Brasil\")\n\n\n\n\n\n\nSistemas de Informação em Saúde — Brasil\n\n\n\n\nSistema\n\n\nSigla\n\n\nTipo de dado\n\n\n\n\n\n\nSistema de Informações sobre Mortalidade\n\n\nSIM\n\n\nÓbitos (Declaração de Óbito)\n\n\n\n\nSistema de Informações sobre Nascidos Vivos\n\n\nSINASC\n\n\nNascimentos (DN)\n\n\n\n\nSistema de Informação de Agravos de Notificação\n\n\nSINAN\n\n\nDoenças de notificação compulsória\n\n\n\n\nSistema de Informações Hospitalares\n\n\nSIH\n\n\nInternações pelo SUS\n\n\n\n\nSistema de Informação do PNI\n\n\nSI-PNI\n\n\nCoberturas vacinais\n\n\n\n\nPesquisa Nacional por Amostra de Domicílios\n\n\nPNAD\n\n\nDados socioeconômicos e de saúde\n\n\n\n\n\n\nFigura 1.2: Principais sistemas de informação em saúde do Brasil\n\n\n\n\n\n\n\n\n\n\nORGANIZAÇÃO PAN-AMERICANA DA SAÚDE. Indicadores Básicos para a Saúde no Brasil: Conceitos e Aplicações. Brasília: OPAS/OMS, 2008.",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>O que são Indicadores de Saúde?</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-fecundidade-natalidade.html",
+    "href": "chapters/02-fecundidade-natalidade.html",
+    "title": "2  Indicadores de Fecundidade e Natalidade",
+    "section": "",
+    "text": "2.1 Taxa de Fecundidade Total (TFT)\nA Taxa de Fecundidade Total representa o número médio de filhos que uma mulher teria ao final do seu período reprodutivo (convencionalmente, dos 15 aos 49 anos), caso seguisse as taxas de fecundidade específicas por idade observadas em uma determinada população e período.",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Indicadores de Fecundidade e Natalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-fecundidade-natalidade.html#taxa-de-fecundidade-total-tft",
+    "href": "chapters/02-fecundidade-natalidade.html#taxa-de-fecundidade-total-tft",
+    "title": "2  Indicadores de Fecundidade e Natalidade",
+    "section": "",
+    "text": "TFT = Σ (Taxa de fecundidade específica por idade) × 5\n\n\n2.1.1 Interpretação e valores de referência\n\nNível de reposição populacional: TFT ≥ 2,1 filhos por mulher\nPaíses com TFT &lt; 1,5 enfrentam risco de “armadilha de baixa fecundidade”\n\n\n\n2.1.2 Evolução da TFT no Brasil\n\n\nMostrar código R\n# Dados reais: IBGE — Projeções da População (Revisão 2018) — SIDRA tabela 7360\ntft_brasil &lt;- carregar_dados(\"tft_brasil\") |&gt;\n  filter(ano &gt;= 2000, ano &lt;= 2030)\n\nggplot(tft_brasil, aes(x = ano, y = valor)) +\n  geom_line(color = cores_indicadores[\"destaque\"], linewidth = 1.2) +\n  geom_point(color = cores_indicadores[\"destaque\"], size = 2.5) +\n  geom_hline(yintercept = 2.1, linetype = \"dashed\", color = cores_indicadores[\"alerta\"], linewidth = 0.8) +\n  annotate(\"text\", x = 2025, y = 2.2, label = \"Nível de reposição (2,1)\",\n           color = cores_indicadores[\"alerta\"], fontface = \"italic\", size = 3.5) +\n  scale_x_continuous(breaks = seq(2000, 2030, 5)) +\n  scale_y_continuous(limits = c(1, 2.5), breaks = seq(1, 2.5, 0.25)) +\n  labs(\n    title = \"Fecundidade no Brasil: abaixo da reposição desde 2005\",\n    subtitle = glue(\"TFT caiu de {fmt_br(tft_brasil$valor[tft_brasil$ano == 2000])} (2000) para {fmt_br(tft_brasil$valor[tft_brasil$ano == 2024])} (2024) filhos por mulher\"),\n    x = \"Ano\", y = \"TFT (filhos por mulher)\",\n    caption = fonte_dados(\"tft_brasil\")\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 2.1: Evolução da Taxa de Fecundidade Total no Brasil — dados IBGE\n\n\n\n\n\n\n\n2.1.3 TFT por região do Brasil\n\n\nMostrar código R\n# Dados reais: IBGE — SIDRA 7360 por região\ntft_regiao &lt;- carregar_dados(\"tft_regiao\") |&gt;\n  filter(ano %in% c(2000, 2010, 2020))\n\nggplot(tft_regiao, aes(x = factor(ano), y = valor, fill = regiao)) +\n  geom_col(position = \"dodge\", width = 0.7) +\n  geom_hline(yintercept = 2.1, linetype = \"dashed\", color = \"#333\") +\n  geom_text(aes(label = fmt_br(valor)), position = position_dodge(0.7),\n            vjust = -0.5, size = 2.8) +\n  scale_fill_manual(values = cores_regioes) +\n  scale_y_continuous(limits = c(0, 3.5)) +\n  labs(\n    title = \"Todas as regiões convergem para abaixo da reposição\",\n    subtitle = \"Norte era a única acima de 2,1 em 2010; em 2020 já caiu\",\n    x = \"Ano\", y = \"TFT (filhos por mulher)\", fill = \"Região\",\n    caption = fonte_dados(\"tft_regiao\")\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 2.2: TFT por Grande Região — dados IBGE\n\n\n\n\n\n\n\n2.1.4 Comparação internacional\n\n\nMostrar código R\n# Dados de referência internacional — ONU World Population Prospects 2022\n# Valores verificados no relatório WPP 2022 (https://population.un.org/wpp/)\ntft_paises &lt;- tibble::tribble(\n  ~pais, ~tft, ~grupo, ~fonte,\n  \"Níger\",          6.7, \"Alta fecundidade\",        \"WPP 2022\",\n  \"Nigéria\",        5.1, \"Alta fecundidade\",        \"WPP 2022\",\n  \"Índia\",          2.0, \"Próximo à reposição\",     \"WPP 2022\",\n  \"EUA\",            1.6, \"Abaixo da reposição\",     \"WPP 2022\",\n  \"Brasil\",         1.6, \"Abaixo da reposição\",     \"IBGE 2018\",\n  \"Canadá\",         1.4, \"Abaixo da reposição\",     \"WPP 2022\",\n  \"Japão\",          1.3, \"Muito baixa\",             \"WPP 2022\",\n  \"Coreia do Sul\",  0.8, \"Muito baixa\",             \"WPP 2022\"\n)\n\nggplot(tft_paises, aes(x = reorder(pais, tft), y = tft, fill = grupo)) +\n  geom_col(width = 0.7) +\n  geom_hline(yintercept = 2.1, linetype = \"dashed\", color = \"#333\", linewidth = 0.6) +\n  geom_text(aes(label = fmt_br(tft)), hjust = -0.2, size = 3.5) +\n  coord_flip() +\n  scale_fill_manual(values = c(\n    \"Alta fecundidade\" = \"#d95f02\",\n    \"Próximo à reposição\" = \"#66a61e\",\n    \"Abaixo da reposição\" = \"#2c7fb8\",\n    \"Muito baixa\" = \"#e31a1c\"\n  )) +\n  scale_y_continuous(limits = c(0, 8)) +\n  labs(\n    title = \"Fecundidade global: um panorama desigual\",\n    subtitle = \"Linha tracejada = nível de reposição (2,1)\",\n    x = NULL, y = \"TFT (filhos por mulher)\", fill = \"Classificação\",\n    caption = \"Fonte: ONU — World Population Prospects 2022; Brasil: IBGE Projeções 2018\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 2.3: TFT em países selecionados (estimativas ONU)",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Indicadores de Fecundidade e Natalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/02-fecundidade-natalidade.html#taxa-bruta-de-natalidade-tbn",
+    "href": "chapters/02-fecundidade-natalidade.html#taxa-bruta-de-natalidade-tbn",
+    "title": "2  Indicadores de Fecundidade e Natalidade",
+    "section": "2.2 Taxa Bruta de Natalidade (TBN)",
+    "text": "2.2 Taxa Bruta de Natalidade (TBN)\nMede o número de nascimentos em relação à população total:\n\nTBN = (Nascidos vivos no ano / População total no meio do ano) × 1.000\n\n\n2.2.1 Natalidade vs. Fecundidade\n\n\n\n\n\n\nImportanteDiferença fundamental\n\n\n\n\nNatalidade: nascimentos em relação à população total\nFecundidade: capacidade reprodutiva das mulheres em idade fértil\n\nUma população envelhecida pode ter baixa natalidade mesmo com fecundidade relativamente mantida.\n\n\n\n\n2.2.2 TBN por região do Brasil\n\n\nMostrar código R\n# Dados reais: IBGE — SIDRA 7360 por região\ntbn_regiao &lt;- carregar_dados(\"tbn_regiao\") |&gt;\n  filter(ano &gt;= 2000, ano &lt;= 2030)\n\nggplot(tbn_regiao, aes(x = ano, y = valor, color = regiao, group = regiao)) +\n  geom_line(linewidth = 1) +\n  geom_point(size = 2) +\n  scale_color_manual(values = cores_regioes) +\n  scale_x_continuous(breaks = seq(2000, 2030, 5)) +\n  labs(\n    title = \"Queda da natalidade em todas as regiões\",\n    subtitle = \"Norte e Nordeste permanecem com taxas mais elevadas\",\n    x = \"Ano\", y = \"TBN (por 1.000 hab.)\", color = \"Região\",\n    caption = fonte_dados(\"tbn_regiao\")\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 2.4: Taxa Bruta de Natalidade por região do Brasil — dados IBGE",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Indicadores de Fecundidade e Natalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-mortalidade.html",
+    "href": "chapters/03-mortalidade.html",
+    "title": "3  Indicadores de Mortalidade",
+    "section": "",
+    "text": "3.1 Por que não basta contar mortes?\nUm erro frequente é confundir o número absoluto de óbitos com o risco de morte. Os números absolutos são influenciados diretamente pelo tamanho da população — populações maiores terão mais mortes, mesmo que o risco individual seja idêntico (Gordis, 2017).\nMostrar código R\n# Valores ilustrativos baseados no exemplo didático de Gordis, Epidemiologia, 5ª ed., 2017\n# Os valores são aproximados e servem para demonstrar o conceito — consulte a fonte original\neua_cancer &lt;- tibble::tribble(\n  ~ano, ~obitos_mil, ~pop_milhoes, ~taxa_100mil,\n  1920,  100,  106, 94.3,\n  1940,  160,  132, 121.2,\n  1960,  280,  179, 156.4,\n  1980,  400,  226, 177.0,\n  2000,  550,  281, 195.7,\n  2011,  580,  311, 186.5\n)\n\np1 &lt;- ggplot(eua_cancer, aes(x = ano, y = obitos_mil)) +\n  geom_col(fill = cores_indicadores[\"alerta\"], alpha = 0.8, width = 12) +\n  scale_y_continuous(labels = label_number(big.mark = \".\")) +\n  labs(title = \"Óbitos absolutos (milhares)\", x = \"Ano\", y = \"Óbitos (milhares)\") +\n  tema_indicadores(base_size = 10)\n\np2 &lt;- ggplot(eua_cancer, aes(x = ano, y = taxa_100mil)) +\n  geom_line(color = cores_indicadores[\"destaque\"], linewidth = 1.2) +\n  geom_point(color = cores_indicadores[\"destaque\"], size = 2.5) +\n  labs(title = \"Taxa por 100 mil hab.\", x = \"Ano\", y = \"Taxa\") +\n  tema_indicadores(base_size = 10)\n\np1 + p2 +\n  plot_annotation(\n    title = \"Números absolutos exageram a tendência\",\n    subtitle = \"EUA — mortes por câncer: aumento de 5× nos absolutos, mas ~2× na taxa\",\n    caption = \"Fonte: Baseado em Gordis, Epidemiologia, 5ª ed., 2017 (valores ilustrativos aproximados)\"\n  )\n\n\n\n\n\n\n\n\nFigura 3.1: Números absolutos vs. taxas: o caso do câncer nos EUA",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indicadores de Mortalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-mortalidade.html#por-que-não-basta-contar-mortes",
+    "href": "chapters/03-mortalidade.html#por-que-não-basta-contar-mortes",
+    "title": "3  Indicadores de Mortalidade",
+    "section": "",
+    "text": "DicaConclusão\n\n\n\nPrecisamos sempre trabalhar com taxas (mortes por unidade de população exposta), e não apenas com contagens absolutas.",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indicadores de Mortalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-mortalidade.html#taxa-bruta-de-mortalidade-tbm",
+    "href": "chapters/03-mortalidade.html#taxa-bruta-de-mortalidade-tbm",
+    "title": "3  Indicadores de Mortalidade",
+    "section": "3.2 Taxa Bruta de Mortalidade (TBM)",
+    "text": "3.2 Taxa Bruta de Mortalidade (TBM)\n\nTBM = (Total de óbitos no ano / População no meio do ano) × 1.000\n\nCaracteriza o risco médio de morte por qualquer causa. Contudo, a TBM não controla a estrutura etária — populações mais envelhecidas apresentam TBM mais elevada, mesmo com riscos etários idênticos (ver Capítulo 6).\n\n\nMostrar código R\n# Dados reais: IBGE — SIDRA 7360\ntbm_brasil &lt;- carregar_dados(\"tbm_brasil\") |&gt;\n  filter(ano &gt;= 2010, ano &lt;= 2040)\n\nggplot(tbm_brasil, aes(x = ano, y = valor)) +\n  geom_line(color = cores_indicadores[\"destaque\"], linewidth = 1) +\n  geom_point(color = cores_indicadores[\"destaque\"], size = 2.5) +\n  scale_x_continuous(breaks = seq(2010, 2040, 5)) +\n  labs(\n    title = \"TBM projetada: tendência de aumento pelo envelhecimento\",\n    subtitle = \"A TBM sobe não por piora da saúde, mas pela mudança na estrutura etária\",\n    x = \"Ano\", y = \"TBM (por 1.000 hab.)\",\n    caption = fonte_dados(\"tbm_brasil\")\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 3.2: Evolução da Taxa Bruta de Mortalidade no Brasil — projeções IBGE\n\n\n\n\n\n\n\n\n\n\n\nAvisoAtenção\n\n\n\nAs projeções do IBGE não capturam choques como a pandemia de COVID-19 (2020-2021), que elevou a TBM observada acima de 8,0 por mil hab. Os dados acima são projeções demográficas em cenário base.",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indicadores de Mortalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-mortalidade.html#taxas-de-mortalidade-específicas",
+    "href": "chapters/03-mortalidade.html#taxas-de-mortalidade-específicas",
+    "title": "3  Indicadores de Mortalidade",
+    "section": "3.3 Taxas de Mortalidade Específicas",
+    "text": "3.3 Taxas de Mortalidade Específicas\n\n\nMostrar código R\nmort_esp &lt;- tibble::tribble(\n  ~Indicador, ~Fórmula, ~`Referência/Meta`,\n  \"Mortalidade Infantil\",  \"Óbitos &lt; 1 ano / NV × 1.000\",          \"Brasil 2022: ~10,9 (IBGE Projeções)\",\n  \"Mortalidade Materna\",   \"Óbitos maternos / NV × 100.000\",       \"ODS: &lt; 70 por 100.000 NV\",\n  \"Mortalidade Neonatal\",  \"Óbitos 0-27 dias / NV × 1.000\",        \"Precoce (&lt;7d) e Tardia (7-27d)\",\n  \"Mortalidade Perinatal\", \"Óbitos fetais + neonatais precoces / Nascimentos\", \"Qualidade obstétrica\",\n  \"Por causa específica\",  \"Óbitos por causa X / Pop × 100.000\",   \"Avalia eficácia de programas\"\n)\n\ntabela_indicador(mort_esp)\n\n\n\n\nTabela 3.1: Principais indicadores de mortalidade específica\n\n\n\n\n\n\nIndicador\nFórmula\nReferência/Meta\n\n\n\n\nMortalidade Infantil\nÓbitos &lt; 1 ano / NV × 1.000\nBrasil 2022: ~10,9 (IBGE Projeções)\n\n\nMortalidade Materna\nÓbitos maternos / NV × 100.000\nODS: &lt; 70 por 100.000 NV\n\n\nMortalidade Neonatal\nÓbitos 0-27 dias / NV × 1.000\nPrecoce (&lt;7d) e Tardia (7-27d)\n\n\nMortalidade Perinatal\nÓbitos fetais + neonatais precoces / Nascimentos\nQualidade obstétrica\n\n\nPor causa específica\nÓbitos por causa X / Pop × 100.000\nAvalia eficácia de programas",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indicadores de Mortalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-mortalidade.html#mortalidade-infantil-componentes",
+    "href": "chapters/03-mortalidade.html#mortalidade-infantil-componentes",
+    "title": "3  Indicadores de Mortalidade",
+    "section": "3.4 Mortalidade Infantil — Componentes",
+    "text": "3.4 Mortalidade Infantil — Componentes\nA mortalidade infantil (MI) é considerada o indicador mais sensível do nível de desenvolvimento de uma sociedade (Rouquayrol; Gurgel, 2017).\n\n\nMostrar código R\nmi_comp &lt;- tibble::tribble(\n  ~Componente, ~Período, ~`Principais causas`,\n  \"Neonatal Precoce\", \"0 a 6 dias\",       \"Asfixia perinatal, prematuridade, infecções, malformações\",\n  \"Neonatal Tardio\",  \"7 a 27 dias\",      \"Infecções, condições congênitas, prematuridade tardia\",\n  \"Pós-Neonatal\",     \"28 dias a &lt; 1 ano\", \"Diarreia, pneumonia, desnutrição, causas externas\"\n)\n\ntabela_indicador(mi_comp)\n\n\n\n\nTabela 3.2: Componentes da mortalidade infantil e suas causas predominantes\n\n\n\n\n\n\nComponente\nPeríodo\nPrincipais causas\n\n\n\n\nNeonatal Precoce\n0 a 6 dias\nAsfixia perinatal, prematuridade, infecções, malformações\n\n\nNeonatal Tardio\n7 a 27 dias\nInfecções, condições congênitas, prematuridade tardia\n\n\nPós-Neonatal\n28 dias a &lt; 1 ano\nDiarreia, pneumonia, desnutrição, causas externas\n\n\n\n\n\n\n\n\n\n\nMostrar código R\n# Dados reais: IBGE — SIDRA 7362\nmi_brasil &lt;- carregar_dados(\"mi_brasil\") |&gt;\n  filter(ano &gt;= 2000, ano &lt;= 2030)\n\nggplot(mi_brasil, aes(x = ano, y = valor)) +\n  geom_area(fill = cores_indicadores[\"destaque\"], alpha = 0.15) +\n  geom_line(color = cores_indicadores[\"destaque\"], linewidth = 1.2) +\n  geom_point(color = cores_indicadores[\"destaque\"], size = 2) +\n  scale_x_continuous(breaks = seq(2000, 2030, 5)) +\n  labs(\n    title = \"Queda consistente da mortalidade infantil no Brasil\",\n    subtitle = glue(\"De {fmt_br(mi_brasil$valor[mi_brasil$ano == 2000])} (2000) para {fmt_br(mi_brasil$valor[mi_brasil$ano == 2024])} (2024) por mil NV\"),\n    x = \"Ano\", y = \"MI (por 1.000 NV)\",\n    caption = fonte_dados(\"mi_brasil\")\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 3.3: Evolução da mortalidade infantil no Brasil — projeções IBGE\n\n\n\n\n\n\n3.4.1 Mortalidade Infantil por Região\n\n\nMostrar código R\n# Dados reais: IBGE — SIDRA 7362 por região\nmi_regiao &lt;- carregar_dados(\"mi_regiao\") |&gt;\n  filter(ano %in% c(2000, 2010, 2020))\n\nggplot(mi_regiao, aes(x = factor(ano), y = valor, fill = regiao)) +\n  geom_col(position = \"dodge\", width = 0.7) +\n  geom_text(aes(label = fmt_br(valor)), position = position_dodge(0.7),\n            vjust = -0.5, size = 2.8) +\n  scale_fill_manual(values = cores_regioes) +\n  labs(\n    title = \"Persistência das desigualdades regionais na MI\",\n    subtitle = \"Norte e Nordeste mantêm taxas acima do dobro do Sul\",\n    x = \"Ano\", y = \"MI (por 1.000 NV)\", fill = \"Região\",\n    caption = fonte_dados(\"mi_regiao\")\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 3.4: Mortalidade Infantil por Grande Região — projeções IBGE",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indicadores de Mortalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-mortalidade.html#esperança-de-vida-ao-nascer",
+    "href": "chapters/03-mortalidade.html#esperança-de-vida-ao-nascer",
+    "title": "3  Indicadores de Mortalidade",
+    "section": "3.5 Esperança de Vida ao Nascer",
+    "text": "3.5 Esperança de Vida ao Nascer\n\n\nMostrar código R\n# Dados reais: IBGE — SIDRA 7362\nev_brasil &lt;- carregar_dados(\"ev_brasil\") |&gt;\n  filter(ano &gt;= 2000, ano &lt;= 2040)\n\nev_long &lt;- ev_brasil |&gt;\n  pivot_longer(c(total, masculino, feminino), names_to = \"sexo\", values_to = \"ev\") |&gt;\n  mutate(sexo = case_match(sexo,\n    \"total\" ~ \"Total\",\n    \"masculino\" ~ \"Masculino\",\n    \"feminino\" ~ \"Feminino\"\n  ))\n\nggplot(ev_long, aes(x = ano, y = ev, color = sexo)) +\n  geom_line(linewidth = 1) +\n  geom_point(size = 1.5) +\n  scale_color_manual(values = c(\"Total\" = \"#333\", \"Masculino\" = \"#2c7fb8\", \"Feminino\" = \"#e7298a\")) +\n  scale_x_continuous(breaks = seq(2000, 2040, 5)) +\n  labs(\n    title = \"Esperança de vida ao nascer: mulheres vivem ~7 anos a mais\",\n    subtitle = \"Tendência de aumento para ambos os sexos, com diferença persistente\",\n    x = \"Ano\", y = \"Esperança de vida (anos)\", color = \"Sexo\",\n    caption = fonte_dados(\"ev_brasil\")\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 3.5: Esperança de vida ao nascer por sexo — projeções IBGE",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indicadores de Mortalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-mortalidade.html#mortalidade-proporcional",
+    "href": "chapters/03-mortalidade.html#mortalidade-proporcional",
+    "title": "3  Indicadores de Mortalidade",
+    "section": "3.6 Mortalidade Proporcional",
+    "text": "3.6 Mortalidade Proporcional\nIndica a participação percentual de uma causa no total de óbitos.\n\nMP (%) = (Óbitos por causa X / Total de óbitos) × 100\n\n\n\nMostrar código R\n# Valores aproximados baseados em SIM/DATASUS — TabNet &gt; Mortalidade 2022\n# Consulte http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10uf.def para dados exatos\nmp_brasil &lt;- tibble::tribble(\n  ~causa, ~proporcao,\n  \"Doenças do aparelho circulatório\",   26.6,\n  \"Neoplasias (cânceres)\",              17.4,\n  \"Doenças do aparelho respiratório\",   11.8,\n  \"Causas externas\",                    10.8,\n  \"Doenças endócrinas/metabólicas\",      7.6,\n  \"Doenças do aparelho digestivo\",       5.6,\n  \"Doenças infecciosas e parasitárias\",  4.1,\n  \"Outras causas\",                      16.1\n)\n\nggplot(mp_brasil, aes(x = reorder(causa, proporcao), y = proporcao)) +\n  geom_col(fill = cores_indicadores[\"destaque\"], width = 0.7) +\n  geom_text(aes(label = paste0(fmt_br(proporcao), \"%\")), hjust = -0.1, size = 3.5) +\n  coord_flip() +\n  scale_y_continuous(limits = c(0, 32)) +\n  labs(\n    title = \"Perfil de mortalidade do Brasil em 2022\",\n    subtitle = \"DCNT dominam o perfil de mortalidade\",\n    x = NULL, y = \"Proporção (%)\",\n    caption = \"Fonte: SIM/DATASUS — TabNet, Mortalidade por capítulo CID-10, 2022 (valores aproximados)\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 3.6: Mortalidade proporcional por grupo de causas — Brasil (2022)\n\n\n\n\n\n\n\n\n\n\n\nAvisoArmadilha interpretativa\n\n\n\nUma queda na proporção de óbitos por doença infecciosa pode indicar tanto melhora do controle da infecção quanto aumento da mortalidade por doenças crônicas — sem alterar o risco absoluto.",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indicadores de Mortalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-mortalidade.html#letalidade-cfr-e-ifr",
+    "href": "chapters/03-mortalidade.html#letalidade-cfr-e-ifr",
+    "title": "3  Indicadores de Mortalidade",
+    "section": "3.7 Letalidade: CFR e IFR",
+    "text": "3.7 Letalidade: CFR e IFR\n\n\nMostrar código R\ncfr_ifr &lt;- tibble::tribble(\n  ~Medida, ~Fórmula, ~`Denominador`,\n  \"CFR (Case Fatality Rate)\",      \"Óbitos / Casos confirmados × 100\", \"Casos diagnosticados\",\n  \"IFR (Infection Fatality Rate)\", \"Óbitos / Casos estimados × 100\",   \"Inclui não diagnosticados\"\n)\n\ntabela_indicador(cfr_ifr)\n\n\n\n\nTabela 3.3: Comparação entre CFR e IFR\n\n\n\n\n\n\nMedida\nFórmula\nDenominador\n\n\n\n\nCFR (Case Fatality Rate)\nÓbitos / Casos confirmados × 100\nCasos diagnosticados\n\n\nIFR (Infection Fatality Rate)\nÓbitos / Casos estimados × 100\nInclui não diagnosticados",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indicadores de Mortalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-mortalidade.html#daly-disability-adjusted-life-year",
+    "href": "chapters/03-mortalidade.html#daly-disability-adjusted-life-year",
+    "title": "3  Indicadores de Mortalidade",
+    "section": "3.8 DALY — Disability-Adjusted Life Year",
+    "text": "3.8 DALY — Disability-Adjusted Life Year\nO DALY captura mortalidade prematura e morbidade. Amplamente utilizado pela OMS (World Health Organization, 2022).\n\nDALY = YLL + YLD\n\nYLL (Years of Life Lost): anos perdidos por morte prematura\nYLD (Years Lived with Disability): anos vividos com incapacidade\n\n\n\n\nMostrar código R\n# Valores ilustrativos baseados em GBD 2019 — IHME (https://vizhub.healthdata.org/gbd-compare/)\n# Ordem de magnitude aproximada — consulte o GBD Results Tool para dados exatos\ndaly_brasil &lt;- tibble::tribble(\n  ~causa, ~daly_mil, ~tipo,\n  \"Doenças cardiovasculares\",    12500, \"DCNT\",\n  \"Violência interpessoal\",       7800, \"Causas externas\",\n  \"Dor lombar/cervical\",          6200, \"DCNT\",\n  \"Transtornos depressivos\",      5100, \"Saúde mental\",\n  \"Diabetes mellitus\",            4800, \"DCNT\",\n  \"Acidentes de trânsito\",        4200, \"Causas externas\",\n  \"DPOC\",                         3800, \"DCNT\",\n  \"Neonatal\",                     3500, \"Materno-infantil\",\n  \"Neoplasias (cânceres)\",        3200, \"DCNT\",\n  \"Ansiedade\",                    2800, \"Saúde mental\"\n)\n\nggplot(daly_brasil, aes(x = reorder(causa, daly_mil), y = daly_mil / 1000, fill = tipo)) +\n  geom_col(width = 0.7) +\n  coord_flip() +\n  scale_fill_manual(values = c(\n    \"DCNT\" = \"#2c7fb8\", \"Causas externas\" = \"#d95f02\",\n    \"Saúde mental\" = \"#7570b3\", \"Materno-infantil\" = \"#1b9e77\"\n  )) +\n  labs(\n    title = \"Carga de doença no Brasil (DALYs)\",\n    subtitle = \"DCNT e violência dominam; saúde mental é subestimada nas políticas\",\n    x = NULL, y = \"DALYs (milhões)\", fill = \"Grupo\",\n    caption = \"Fonte: Baseado em GBD 2019 — IHME (valores ilustrativos aproximados)\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 3.7: Principais causas de DALYs no Brasil (GBD 2019)",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indicadores de Mortalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/03-mortalidade.html#declaração-de-óbito-e-qualidade-dos-dados",
+    "href": "chapters/03-mortalidade.html#declaração-de-óbito-e-qualidade-dos-dados",
+    "title": "3  Indicadores de Mortalidade",
+    "section": "3.9 Declaração de Óbito e Qualidade dos Dados",
+    "text": "3.9 Declaração de Óbito e Qualidade dos Dados\nA DO é o documento legal e epidemiológico que registra cada morte no Brasil. Problemas:\n\nCausas mal definidas: “parada cardiorrespiratória” como causa básica é clinicamente incorreto\nSubregistro: até 20-30% dos óbitos em regiões mais pobres não são registrados\nErros de preenchimento: campos como raça/cor e escolaridade ficam em branco\n\n\n\n\n\n\n\nImportanteResponsabilidade médica\n\n\n\nA DO possui campo específico para raça/cor — seu preenchimento correto é obrigação ética e epidemiológica do médico.\n\n\n\n\n\n\n\n\nGORDIS, Leon. Epidemiologia. 5. ed. Rio de Janeiro: Thieme Revinter, 2017.\n\n\nROUQUAYROL, Maria Zélia; GURGEL, Marcelo. Epidemiologia & Saúde. 8. ed. Rio de Janeiro: MedBook, 2017.\n\n\nWORLD HEALTH ORGANIZATION. Health Statistics and Information Systems: Metrics — Disability-Adjusted Life Year (DALY). GenevaWHO, 2022.",
+    "crumbs": [
+      "Fundamentos",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Indicadores de Mortalidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-morbidade.html",
+    "href": "chapters/04-morbidade.html",
+    "title": "4  Indicadores de Morbidade",
+    "section": "",
+    "text": "4.1 Incidência e Prevalência\nOs indicadores de morbidade medem a frequência de doenças em uma população. Diferentemente dos indicadores de mortalidade, eles capturam o adoecimento — incluindo doenças que raramente matam, mas causam grande sofrimento e incapacidade (Medronho, 2009).\nEsses são os dois indicadores mais fundamentais da epidemiologia descritiva.",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indicadores de Morbidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-morbidade.html#incidência-e-prevalência",
+    "href": "chapters/04-morbidade.html#incidência-e-prevalência",
+    "title": "4  Indicadores de Morbidade",
+    "section": "",
+    "text": "4.1.1 Taxa de Incidência\nMede a velocidade de ocorrência de novos casos em uma população em risco.\n\nTaxa de Incidência = Casos novos no período / Pessoa-tempo em risco\n\n\n\n4.1.2 Prevalência\nMede a proporção de casos existentes (novos + antigos) em um ponto ou período no tempo.\n\nPrevalência = Casos existentes / População total no momento\n\n\n\nMostrar código R\n# Diagrama conceitual como gráfico\nconceito &lt;- tibble::tribble(\n  ~Medida, ~`O que mede`, ~`Tipo`, ~`Utilidade principal`,\n  \"Incidência\", \"Casos NOVOS por tempo\", \"Fluxo (dinâmica)\", \"Avaliar risco, etiologia\",\n  \"Prevalência\", \"Casos EXISTENTES no momento\", \"Estoque (estática)\", \"Planejar serviços, recursos\"\n)\n\ntabela_indicador(conceito, caption = \"Incidência vs. Prevalência\")\n\n\n\n\n\n\nIncidência vs. Prevalência\n\n\n\n\nMedida\n\n\nO que mede\n\n\nTipo\n\n\nUtilidade principal\n\n\n\n\n\n\nIncidência\n\n\nCasos NOVOS por tempo\n\n\nFluxo (dinâmica)\n\n\nAvaliar risco, etiologia\n\n\n\n\nPrevalência\n\n\nCasos EXISTENTES no momento\n\n\nEstoque (estática)\n\n\nPlanejar serviços, recursos\n\n\n\n\n\n\nFigura 4.1: Relação entre incidência, prevalência, cura e mortalidade\n\n\n\n\n\n\n\n\n\n\nNotaRelação entre incidência e prevalência\n\n\n\nPrevalência ≈ Incidência × Duração da doença\n\nDoenças de longa duração (diabetes, HIV com tratamento) → alta prevalência mesmo com incidência moderada\nDoenças de curta duração (gripe) ou muito letais → prevalência baixa",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indicadores de Morbidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-morbidade.html#dengue-no-brasil-um-caso-de-incidência-epidêmica",
+    "href": "chapters/04-morbidade.html#dengue-no-brasil-um-caso-de-incidência-epidêmica",
+    "title": "4  Indicadores de Morbidade",
+    "section": "4.2 Dengue no Brasil: um caso de incidência epidêmica",
+    "text": "4.2 Dengue no Brasil: um caso de incidência epidêmica\n\n\nMostrar código R\n# Dados oficiais: SINAN/SVS/Ministério da Saúde — Série histórica de casos prováveis\n# Fontes: Boletins Epidemiológicos SVS e Agência Brasil (consolidação final 2024)\n# Casos em milhares; população IBGE projeções; incidência calculada\ndengue &lt;- tibble::tribble(\n  ~ano, ~casos_mil, ~pop_milhoes, ~incidencia,\n  2010,  1012,  190.7,  530.6,\n  2011,   739,  192.4,  384.1,\n  2012,   590,  194.0,  304.1,\n  2013,  1455,  195.5,  744.2,\n  2014,   589,  197.0,  299.0,\n  2015,  1689,  198.4,  851.3,\n  2016,  1484,  199.8,  742.7,\n  2017,   253,  201.0,  125.9,\n  2018,   216,  202.2,  106.8,\n  2019,  1545,  203.2,  760.3,\n  2020,   988,  204.1,  484.1,\n  2021,   544,  204.9,  265.5,\n  2022,  1451,  205.5,  706.1,\n  2023,  1659,  206.0,  805.3,\n  2024,  6485,  206.5, 3140.9\n)\n\nggplot(dengue, aes(x = ano, y = incidencia)) +\n  geom_col(fill = ifelse(dengue$incidencia &gt; 700, cores_indicadores[\"perigo\"],\n                          cores_indicadores[\"destaque\"]),\n           alpha = 0.8, width = 0.8) +\n  scale_x_continuous(breaks = dengue$ano) +\n  scale_y_continuous(labels = label_number(big.mark = \".\")) +\n  labs(\n    title = \"Padrão epidêmico da dengue no Brasil\",\n    subtitle = \"Grandes surtos cíclicos — 2024 bateu recorde com &gt;6,4 milhões de casos\",\n    x = \"Ano\", y = \"Incidência (por 100 mil hab.)\",\n    caption = \"Fonte: SINAN/SVS/Ministério da Saúde (2024 = dados preliminares)\"\n  ) +\n  tema_indicadores() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n\n\n\n\n\n\n\nFigura 4.2: Taxa de incidência de dengue no Brasil (2010–2024)",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indicadores de Morbidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-morbidade.html#prevalência-de-doenças-crônicas",
+    "href": "chapters/04-morbidade.html#prevalência-de-doenças-crônicas",
+    "title": "4  Indicadores de Morbidade",
+    "section": "4.3 Prevalência de Doenças Crônicas",
+    "text": "4.3 Prevalência de Doenças Crônicas\n\n\nMostrar código R\n# Dados reais da PNS 2019 (IBGE) e Vigitel 2023 (SVS/MS)\n# PNS 2019: hipertensão 23,9%, diabetes 7,7%, depressão 10,2%, asma 5,3%\n# Vigitel 2023: obesidade 24,3%\n# DRC: PNS 2019 reportou 1,4% (autodeclaração de diagnóstico médico)\ndcnt &lt;- tibble::tribble(\n  ~doenca, ~prevalencia, ~fonte,\n  \"Hipertensão arterial\",  23.9, \"PNS 2019\",\n  \"Obesidade (IMC ≥ 30)\",  24.3, \"Vigitel 2023\",\n  \"Depressão\",             10.2, \"PNS 2019\",\n  \"Diabetes mellitus\",      7.7, \"PNS 2019\",\n  \"Asma\",                   5.3, \"PNS 2019\",\n  \"Doença renal crônica\",   1.4, \"PNS 2019\"\n)\n\nggplot(dcnt, aes(x = reorder(doenca, prevalencia), y = prevalencia)) +\n  geom_col(fill = cores_indicadores[\"destaque\"], width = 0.7) +\n  geom_text(aes(label = paste0(fmt_br(prevalencia), \"%\")), hjust = -0.1, size = 3.5) +\n  coord_flip() +\n  scale_y_continuous(limits = c(0, 32)) +\n  labs(\n    title = \"Doenças crônicas afetam 1 em cada 4 adultos brasileiros\",\n    subtitle = \"Hipertensão e obesidade lideram\",\n    x = NULL, y = \"Prevalência (%)\",\n    caption = \"Fonte: PNS 2019 / Vigitel 2023 — IBGE / SVS\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 4.3: Prevalência estimada de DCNT selecionadas — Brasil adulto",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indicadores de Morbidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/04-morbidade.html#notificação-compulsória-e-o-sinan",
+    "href": "chapters/04-morbidade.html#notificação-compulsória-e-o-sinan",
+    "title": "4  Indicadores de Morbidade",
+    "section": "4.4 Notificação Compulsória e o SINAN",
+    "text": "4.4 Notificação Compulsória e o SINAN\nO Sistema de Informação de Agravos de Notificação (SINAN) é a principal fonte de dados sobre doenças de notificação compulsória no Brasil. A lista de doenças é atualizada periodicamente pelo Ministério da Saúde.\n\n\nMostrar código R\nnotif &lt;- tibble::tribble(\n  ~Doença, ~Periodicidade, ~Importância,\n  \"Dengue (óbito)\",     \"Imediata (24h)\",  \"Monitoramento de surtos\",\n  \"COVID-19\",           \"Imediata (24h)\",  \"Vigilância epidemiológica\",\n  \"Meningite\",          \"Imediata (24h)\",  \"Risco de surto\",\n  \"Sarampo\",            \"Imediata (24h)\",  \"Doença eliminada — vigilância ativa\",\n  \"Tuberculose\",        \"Semanal\",         \"Endemia nacional\",\n  \"Sífilis congênita\",  \"Semanal\",         \"Indicador sentinela de pré-natal\",\n  \"Hanseníase\",         \"Semanal\",         \"Endemia em eliminação\"\n)\n\ntabela_indicador(notif)\n\n\n\n\nTabela 4.1: Exemplos de doenças de notificação compulsória imediata\n\n\n\n\n\n\nDoença\nPeriodicidade\nImportância\n\n\n\n\nDengue (óbito)\nImediata (24h)\nMonitoramento de surtos\n\n\nCOVID-19\nImediata (24h)\nVigilância epidemiológica\n\n\nMeningite\nImediata (24h)\nRisco de surto\n\n\nSarampo\nImediata (24h)\nDoença eliminada — vigilância ativa\n\n\nTuberculose\nSemanal\nEndemia nacional\n\n\nSífilis congênita\nSemanal\nIndicador sentinela de pré-natal\n\n\nHanseníase\nSemanal\nEndemia em eliminação\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAvisoViés de notificação\n\n\n\nDoenças que afetam populações vulneráveis ou estigmatizadas — como tuberculose, HIV/AIDS e transtornos mentais — tendem a ser subnotificadas por barreiras de acesso e discriminação nos serviços de saúde. Isso produz uma subestimação sistemática do problema nos grupos que já são menos visíveis nos sistemas de informação.\n\n\n\n\n\n\n\n\nMEDRONHO, Roberto A. Epidemiologia. 2. ed. São Paulo: Atheneu, 2009.",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indicadores de Morbidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-cobertura-vacinal.html",
+    "href": "chapters/05-cobertura-vacinal.html",
+    "title": "5  Cobertura Vacinal",
+    "section": "",
+    "text": "5.1 Metas de cobertura e imunidade coletiva\nA cobertura vacinal é um indicador de proteção coletiva que mede a proporção da população-alvo que recebeu determinada vacina em um período. É fundamental para avaliar o desempenho do Programa Nacional de Imunizações (PNI) e o risco de ressurgimento de doenças imunopreveníveis (Brasil. Ministério da Saúde, 2024).\nCada vacina possui uma meta específica de cobertura, que depende da transmissibilidade do agente (R₀) e da eficácia da vacina.\nMostrar código R\nmetas &lt;- tibble::tribble(\n  ~Vacina, ~`Meta (%)`, ~`Doença prevenida`, ~`R₀ aproximado`,\n  \"BCG\",                     90, \"Tuberculose (formas graves)\",   \"2–5\",\n  \"Poliomielite (VIP/VOP)\",  95, \"Poliomielite\",                 \"5–7\",\n  \"Tríplice viral (SCR)\",    95, \"Sarampo, caxumba, rubéola\",    \"12–18\",\n  \"Pentavalente (DTP-Hib-HB)\", 95, \"Difteria, tétano, coqueluche, Hib, Hepatite B\", \"5–17\",\n  \"Febre amarela\",           95, \"Febre amarela\",                \"4–7\",\n  \"COVID-19 (esquema primário)\", 90, \"COVID-19\",                 \"3–8\",\n  \"HPV\",                     80, \"HPV (câncer cervical)\",        \"—\",\n  \"Influenza\",               90, \"Gripe (grupos prioritários)\",  \"1–2\"\n)\n\ntabela_indicador(metas)\n\n\n\n\nTabela 5.1: Metas de cobertura vacinal — PNI/Brasil\n\n\n\n\n\n\nVacina\nMeta (%)\nDoença prevenida\nR₀ aproximado\n\n\n\n\nBCG\n90\nTuberculose (formas graves)\n2–5\n\n\nPoliomielite (VIP/VOP)\n95\nPoliomielite\n5–7\n\n\nTríplice viral (SCR)\n95\nSarampo, caxumba, rubéola\n12–18\n\n\nPentavalente (DTP-Hib-HB)\n95\nDifteria, tétano, coqueluche, Hib, Hepatite B\n5–17\n\n\nFebre amarela\n95\nFebre amarela\n4–7\n\n\nCOVID-19 (esquema primário)\n90\nCOVID-19\n3–8\n\n\nHPV\n80\nHPV (câncer cervical)\n—\n\n\nInfluenza\n90\nGripe (grupos prioritários)\n1–2",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cobertura Vacinal</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-cobertura-vacinal.html#queda-da-cobertura-vacinal-no-brasil",
+    "href": "chapters/05-cobertura-vacinal.html#queda-da-cobertura-vacinal-no-brasil",
+    "title": "5  Cobertura Vacinal",
+    "section": "5.2 Queda da cobertura vacinal no Brasil",
+    "text": "5.2 Queda da cobertura vacinal no Brasil\nO Brasil, que foi referência mundial em imunização, vem enfrentando uma queda preocupante nas coberturas desde 2016.\n\n\nMostrar código R\n# Valores aproximados baseados em SI-PNI/DATASUS — consulte TabNet para dados exatos\ncob_vacinal &lt;- tibble::tribble(\n  ~ano, ~triplice_viral, ~polio, ~pentavalente,\n  2010, 99.9, 100.0, 98.3,\n  2012, 99.5,  96.5, 93.8,\n  2014, 97.1, 96.8, 94.9,\n  2016, 95.4, 84.4, 89.3,\n  2017, 83.8, 84.7, 80.5,\n  2018, 92.6, 89.5, 87.5,\n  2019, 93.1, 84.2, 80.0,\n  2020, 81.6, 76.1, 76.2,\n  2021, 80.7, 77.2, 75.1,\n  2022, 83.0, 77.2, 80.8,\n  2023, 89.7, 84.6, 86.0\n)\n\ncob_long &lt;- cob_vacinal |&gt;\n  pivot_longer(-ano, names_to = \"vacina\", values_to = \"cobertura\") |&gt;\n  mutate(vacina = case_match(vacina,\n    \"triplice_viral\" ~ \"Tríplice Viral\",\n    \"polio\" ~ \"Poliomielite\",\n    \"pentavalente\" ~ \"Pentavalente\"\n  ))\n\nggplot(cob_long, aes(x = ano, y = cobertura, color = vacina)) +\n  geom_line(linewidth = 1) +\n  geom_point(size = 2) +\n  geom_hline(yintercept = 95, linetype = \"dashed\", color = \"#333\", linewidth = 0.5) +\n  annotate(\"text\", x = 2022, y = 96.5, label = \"Meta: 95%\",\n           fontface = \"italic\", size = 3, color = \"#333\") +\n  scale_color_manual(values = c(\n    \"Tríplice Viral\" = \"#2c7fb8\",\n    \"Poliomielite\" = \"#d95f02\",\n    \"Pentavalente\" = \"#1b9e77\"\n  )) +\n  scale_y_continuous(limits = c(70, 105), breaks = seq(70, 100, 5)) +\n  labs(\n    title = \"Queda da cobertura vacinal no Brasil (2010–2023)\",\n    subtitle = \"Nenhuma das três vacinas atingiu a meta de 95% nos últimos 5 anos\",\n    x = \"Ano\", y = \"Cobertura (%)\", color = \"Vacina\",\n    caption = \"Fonte: SI-PNI / DATASUS (valores aproximados)\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 5.1: Evolução da cobertura vacinal de vacinas selecionadas — Brasil\n\n\n\n\n\n\n\n\n\n\n\nImportanteConsequências da queda\n\n\n\n\nSarampo: surtos em 2018-2019 após anos sem transmissão endêmica\nPoliomielite: risco de reintrodução em municípios com cobertura &lt; 80%\nCoqueluche: aumento de casos em lactentes jovens",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cobertura Vacinal</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-cobertura-vacinal.html#cobertura-vacinal-por-região",
+    "href": "chapters/05-cobertura-vacinal.html#cobertura-vacinal-por-região",
+    "title": "5  Cobertura Vacinal",
+    "section": "5.3 Cobertura vacinal por região",
+    "text": "5.3 Cobertura vacinal por região\n\n\nMostrar código R\n# Valores aproximados baseados em SI-PNI/DATASUS — consulte TabNet para dados exatos\ncob_regiao &lt;- tibble::tribble(\n  ~regiao, ~cobertura,\n  \"Sul\",          93.5,\n  \"Sudeste\",      91.2,\n  \"Centro-Oeste\", 89.8,\n  \"Nordeste\",     87.3,\n  \"Norte\",        82.1\n)\n\nggplot(cob_regiao, aes(x = reorder(regiao, cobertura), y = cobertura, fill = regiao)) +\n  geom_col(width = 0.6) +\n  geom_hline(yintercept = 95, linetype = \"dashed\", color = \"#333\") +\n  geom_text(aes(label = paste0(fmt_br(cobertura), \"%\")), hjust = -0.1, size = 4) +\n  coord_flip() +\n  scale_fill_manual(values = cores_regioes) +\n  scale_y_continuous(limits = c(0, 105)) +\n  labs(\n    title = \"Desigualdade regional na cobertura vacinal\",\n    subtitle = \"Nenhuma região atingiu a meta de 95% para Tríplice Viral em 2023\",\n    x = NULL, y = \"Cobertura (%)\",\n    caption = \"Fonte: SI-PNI / DATASUS (dados aproximados)\"\n  ) +\n  tema_indicadores() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nFigura 5.2: Cobertura da Tríplice Viral (D1, 1 ano) por região — 2023",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cobertura Vacinal</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/05-cobertura-vacinal.html#fatores-associados-à-queda",
+    "href": "chapters/05-cobertura-vacinal.html#fatores-associados-à-queda",
+    "title": "5  Cobertura Vacinal",
+    "section": "5.4 Fatores associados à queda",
+    "text": "5.4 Fatores associados à queda\n\nHesitação vacinal e desinformação em redes sociais\nDificuldades logísticas — horários limitados das UBS, falta de estoque\nPercepção de risco reduzida — sucesso das vacinas tornou as doenças “invisíveis”\nPandemia de COVID-19 — desorganização dos serviços de rotina\nMudanças no sistema de registro — migração do SI-PNI para novo sistema\n\n\n\n\n\n\n\nBRASIL. MINISTÉRIO DA SAÚDE. Programa Nacional de Imunizações — Coberturas Vacinais. SI-PNI / DATASUS, 2024. Disponível em: http://tabnet.datasus.gov.br/cgi/dhdat.exe?bd_pni/cpnibr.def.",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cobertura Vacinal</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-padronizacao.html",
+    "href": "chapters/06-padronizacao.html",
+    "title": "6  Padronização de Indicadores",
+    "section": "",
+    "text": "6.1 O problema da estrutura etária\nA padronização é a técnica epidemiológica utilizada para eliminar o efeito de variáveis de confusão — especialmente a estrutura etária — ao comparar taxas entre populações diferentes. Sem padronização, comparações diretas de taxas brutas podem ser completamente enganosas (Gordis, 2017).\nMostrar código R\n# Exemplo didático: duas cidades\ncidades &lt;- tibble::tribble(\n  ~faixa_etaria, ~pop_A, ~obitos_A, ~taxa_A, ~pop_B, ~obitos_B, ~taxa_B,\n  \"0–14 anos\",    5000,    5,      1.0,    1500,    2,      1.3,\n  \"15–49 anos\",   3500,    7,      2.0,    2000,    4,      2.0,\n  \"50–64 anos\",    800,    8,     10.0,    3000,   30,     10.0,\n  \"65+ anos\",      700,   14,     20.0,    3500,   70,     20.0\n)\n\n# TBM calculada\ntbm_a &lt;- sum(cidades$obitos_A) / sum(cidades$pop_A) * 1000  # ~3.4\ntbm_b &lt;- sum(cidades$obitos_B) / sum(cidades$pop_B) * 1000  # ~10.6\n\ntab_display &lt;- cidades |&gt;\n  mutate(\n    `Taxa A (‰)` = fmt_br(taxa_A),\n    `Taxa B (‰)` = fmt_br(taxa_B)\n  ) |&gt;\n  select(faixa_etaria, pop_A, obitos_A, `Taxa A (‰)`, pop_B, obitos_B, `Taxa B (‰)`)\n\nnames(tab_display) &lt;- c(\"Faixa etária\", \"Pop A\", \"Óbitos A\", \"Taxa A (‰)\",\n                         \"Pop B\", \"Óbitos B\", \"Taxa B (‰)\")\n\ntabela_indicador(tab_display, caption = glue(\n  \"Cidade A: TBM = {fmt_br(tbm_a)}‰ | Cidade B: TBM = {fmt_br(tbm_b)}‰ — mas as taxas por faixa etária são praticamente iguais!\"\n))\n\n\n\n\n\n\nCidade A: TBM = 3,4‰ | Cidade B: TBM = 10,6‰ — mas as taxas por faixa etária são praticamente iguais!\n\n\n\n\nFaixa etária\n\n\nPop A\n\n\nÓbitos A\n\n\nTaxa A (‰)\n\n\nPop B\n\n\nÓbitos B\n\n\nTaxa B (‰)\n\n\n\n\n\n\n0–14 anos\n\n\n5000\n\n\n5\n\n\n1,0\n\n\n1500\n\n\n2\n\n\n1,3\n\n\n\n\n15–49 anos\n\n\n3500\n\n\n7\n\n\n2,0\n\n\n2000\n\n\n4\n\n\n2,0\n\n\n\n\n50–64 anos\n\n\n800\n\n\n8\n\n\n10,0\n\n\n3000\n\n\n30\n\n\n10,0\n\n\n\n\n65+ anos\n\n\n700\n\n\n14\n\n\n20,0\n\n\n3500\n\n\n70\n\n\n20,0\n\n\n\n\n\n\nFigura 6.1: Por que taxas brutas enganam: o efeito da estrutura etária",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Padronização de Indicadores</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-padronizacao.html#o-problema-da-estrutura-etária",
+    "href": "chapters/06-padronizacao.html#o-problema-da-estrutura-etária",
+    "title": "6  Padronização de Indicadores",
+    "section": "",
+    "text": "DicaConclusão do exemplo\n\n\n\nA Cidade A parece muito mais “saudável” (TBM = 3,4‰ vs. 10,6‰), mas isso ocorre porque é uma cidade jovem. As taxas por faixa etária são praticamente idênticas! A diferença observada é um artefato da composição etária.",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Padronização de Indicadores</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-padronizacao.html#padronização-direta",
+    "href": "chapters/06-padronizacao.html#padronização-direta",
+    "title": "6  Padronização de Indicadores",
+    "section": "6.2 Padronização Direta",
+    "text": "6.2 Padronização Direta\nAplica as taxas específicas por faixa etária da população estudada a uma população-padrão (referência).\n\n6.2.1 Passo a passo\n\nCalcular as taxas específicas por faixa etária em cada população\nEscolher uma população-padrão (ex.: população brasileira, população OMS)\nMultiplicar cada taxa pela população-padrão da faixa correspondente\nSomar os óbitos esperados → dividir pela população-padrão total\n\n\nTaxa Padronizada = Σ (Taxa específica_i × Pop-padrão_i) / Pop-padrão total\n\n\n\nMostrar código R\n# Usando população-padrão hipotética\npop_padrao &lt;- c(3000, 3000, 2500, 1500)  # distribuição padrão\ntaxas_A &lt;- cidades$taxa_A / 1000\ntaxas_B &lt;- cidades$taxa_B / 1000\n\nesperados_A &lt;- taxas_A * pop_padrao\nesperados_B &lt;- taxas_B * pop_padrao\n\ntaxa_pad_A &lt;- sum(esperados_A) / sum(pop_padrao) * 1000\ntaxa_pad_B &lt;- sum(esperados_B) / sum(pop_padrao) * 1000\n\npad_result &lt;- tibble(\n  Cidade = c(\"A\", \"B\"),\n  `TBM bruta (‰)` = c(fmt_br(tbm_a), fmt_br(tbm_b)),\n  `Taxa padronizada (‰)` = c(fmt_br(taxa_pad_A), fmt_br(taxa_pad_B)),\n  Interpretação = c(\"Antes parecia melhor\", \"Antes parecia pior\")\n)\n\ntabela_indicador(pad_result, caption = \"Após padronização, as taxas se equiparam\")\n\n\n\n\n\n\nApós padronização, as taxas se equiparam\n\n\n\n\nCidade\n\n\nTBM bruta (‰)\n\n\nTaxa padronizada (‰)\n\n\nInterpretação\n\n\n\n\n\n\nA\n\n\n3,4\n\n\n6,4\n\n\nAntes parecia melhor\n\n\n\n\nB\n\n\n10,6\n\n\n6,5\n\n\nAntes parecia pior\n\n\n\n\n\n\nFigura 6.2: Exemplo prático de padronização direta\n\n\n\n\n\n\n6.2.2 Aplicação: natalidade por região do Brasil\n\n\nMostrar código R\n# Valores aproximados baseados em IBGE/DATASUS e OPAS, 2008\n# Servem para demonstrar o conceito de padronização — consulte fontes originais para dados exatos\ntbn_pad &lt;- tibble::tribble(\n  ~regiao, ~bruta, ~padronizada,\n  \"Norte\",        25.5, 22.1,\n  \"Nordeste\",     22.8, 21.4,\n  \"Sudeste\",      16.2, 18.3,\n  \"Sul\",          15.4, 17.8,\n  \"Centro-Oeste\", 19.8, 19.2\n)\n\ntbn_pad_long &lt;- tbn_pad |&gt;\n  pivot_longer(-regiao, names_to = \"tipo\", values_to = \"taxa\") |&gt;\n  mutate(tipo = ifelse(tipo == \"bruta\", \"Taxa Bruta\", \"Taxa Padronizada\"))\n\nggplot(tbn_pad_long, aes(x = regiao, y = taxa, fill = tipo)) +\n  geom_col(position = \"dodge\", width = 0.7) +\n  geom_text(aes(label = fmt_br(taxa)), position = position_dodge(0.7),\n            vjust = -0.5, size = 3) +\n  scale_fill_manual(values = c(\"Taxa Bruta\" = cores_indicadores[\"alerta\"],\n                                \"Taxa Padronizada\" = cores_indicadores[\"destaque\"])) +\n  scale_y_continuous(limits = c(0, 30)) +\n  labs(\n    title = \"Padronização reduz diferenças regionais de natalidade\",\n    subtitle = \"Sudeste e Sul 'sobem' após padronização; Norte e Nordeste 'descem'\",\n    x = NULL, y = \"TBN (por 1.000 hab.)\", fill = NULL,\n    caption = \"Fonte: IBGE/DATASUS; OPAS, 2008 (valores aproximados)\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 6.3: TBN bruta vs. padronizada por região — Brasil 2004",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Padronização de Indicadores</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/06-padronizacao.html#padronização-indireta-smr",
+    "href": "chapters/06-padronizacao.html#padronização-indireta-smr",
+    "title": "6  Padronização de Indicadores",
+    "section": "6.3 Padronização Indireta — SMR",
+    "text": "6.3 Padronização Indireta — SMR\nUsada quando não se conhecem as taxas específicas da população estudada, mas apenas o total de óbitos observados.\n\nSMR = (Óbitos Observados / Óbitos Esperados) × 100\n\n\n\nMostrar código R\nsmr_interp &lt;- tibble::tribble(\n  ~SMR, ~Interpretação, ~Exemplo,\n  \"&lt; 100\", \"Mortalidade menor que a esperada\", \"SMR = 80 → 20% menos óbitos que o esperado\",\n  \"= 100\", \"Mortalidade igual à esperada\",     \"Sem diferença em relação à referência\",\n  \"&gt; 100\", \"Mortalidade maior que a esperada\",  \"SMR = 145 → 45% mais óbitos que o esperado\"\n)\n\ntabela_indicador(smr_interp)\n\n\n\n\nTabela 6.1: Interpretação do SMR (Standardized Mortality Ratio)\n\n\n\n\n\n\nSMR\nInterpretação\nExemplo\n\n\n\n\n&lt; 100\nMortalidade menor que a esperada\nSMR = 80 → 20% menos óbitos que o esperado\n\n\n= 100\nMortalidade igual à esperada\nSem diferença em relação à referência\n\n\n&gt; 100\nMortalidade maior que a esperada\nSMR = 145 → 45% mais óbitos que o esperado\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotaExemplo prático\n\n\n\nTrabalhadores rurais expostos a agrotóxicos com SMR = 145 para câncer de pulmão indicam mortalidade por câncer 45% superior à da população geral, sugerindo risco ocupacional.\n\n\n\n\n\n\n\n\nGORDIS, Leon. Epidemiologia. 5. ed. Rio de Janeiro: Thieme Revinter, 2017.",
+    "crumbs": [
+      "Indicadores Avançados",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Padronização de Indicadores</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07-transicao-epidemiologica.html",
+    "href": "chapters/07-transicao-epidemiologica.html",
+    "title": "7  Transição Epidemiológica e Demográfica",
+    "section": "",
+    "text": "7.1 As fases da transição epidemiológica\nA teoria da transição epidemiológica, proposta por Abdel Omran em 1971, descreve a mudança nos padrões de morbimortalidade das populações à medida que se desenvolvem socioeconomicamente (Omran, 1971). No Brasil, essa transição apresenta características peculiares — é incompleta, desigual e polarizada (Andrade Schramm et al., 2004).\nMostrar código R\nfases &lt;- tibble::tribble(\n  ~Fase, ~Denominação, ~`Padrão predominante`, ~`Expectativa de vida`,\n  \"1ª\", \"Era das pestilências e fome\",     \"Doenças infecciosas, fome, epidemias\",         \"20–40 anos\",\n  \"2ª\", \"Era das pandemias regressivas\",    \"Declínio das infecções, início das crônicas\",  \"40–50 anos\",\n  \"3ª\", \"Era das doenças degenerativas\",    \"DCNT, doenças cardiovasculares, câncer\",       \"50–75+ anos\",\n  \"4ª\", \"Era da medicina tecnológica*\",     \"Doenças crônicas tratáveis, envelhecimento\",   \"75+ anos\"\n)\n\ntabela_indicador(fases)\n\n\n\n\nTabela 7.1: Fases clássicas da transição epidemiológica (Omran, 1971)\n\n\n\n\n\n\nFase\nDenominação\nPadrão predominante\nExpectativa de vida\n\n\n\n\n1ª\nEra das pestilências e fome\nDoenças infecciosas, fome, epidemias\n20–40 anos\n\n\n2ª\nEra das pandemias regressivas\nDeclínio das infecções, início das crônicas\n40–50 anos\n\n\n3ª\nEra das doenças degenerativas\nDCNT, doenças cardiovasculares, câncer\n50–75+ anos\n\n\n4ª\nEra da medicina tecnológica*\nDoenças crônicas tratáveis, envelhecimento\n75+ anos\n*A 4ª fase foi proposta posteriormente por outros autores.",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Transição Epidemiológica e Demográfica</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07-transicao-epidemiologica.html#transição-no-brasil-o-modelo-polarizado",
+    "href": "chapters/07-transicao-epidemiologica.html#transição-no-brasil-o-modelo-polarizado",
+    "title": "7  Transição Epidemiológica e Demográfica",
+    "section": "7.2 Transição no Brasil: o modelo polarizado",
+    "text": "7.2 Transição no Brasil: o modelo polarizado\nO Brasil não seguiu o modelo linear europeu. A transição brasileira é caracterizada por:\n\nSuperposição de etapas: doenças infecciosas coexistem com crônicas\nContratransição: ressurgimento de doenças como dengue, tuberculose, malária\nPolarização: padrões diferentes entre regiões e classes sociais\nMorbimortalidade por causas externas: violência como “nova epidemia”\n\n\n\nMostrar código R\n# Valores aproximados baseados em SIM/DATASUS e Rouquayrol & Gurgel, 2017\n# Ordens de grandeza para ilustrar a transição — consulte fontes originais para dados exatos\nmp_historica &lt;- tibble::tribble(\n  ~periodo, ~infecciosas, ~cardiovasculares, ~neoplasias, ~externas, ~outras,\n  \"1930\",      46,         12,                3,           3,         36,\n  \"1950\",      36,         15,                5,           4,         40,\n  \"1970\",      16,         25,                8,           8,         43,\n  \"1990\",       6,         34,               12,          13,         35,\n  \"2000\",       5,         32,               14,          13,         36,\n  \"2010\",       4,         29,               16,          13,         38,\n  \"2020\",       4,         27,               17,          10,         42\n)\n\nmp_long &lt;- mp_historica |&gt;\n  pivot_longer(-periodo, names_to = \"causa\", values_to = \"proporcao\") |&gt;\n  mutate(causa = case_match(causa,\n    \"infecciosas\" ~ \"Infecciosas e parasitárias\",\n    \"cardiovasculares\" ~ \"Cardiovasculares\",\n    \"neoplasias\" ~ \"Neoplasias\",\n    \"externas\" ~ \"Causas externas\",\n    \"outras\" ~ \"Outras causas\"\n  )) |&gt;\n  mutate(causa = factor(causa, levels = c(\n    \"Infecciosas e parasitárias\", \"Cardiovasculares\",\n    \"Neoplasias\", \"Causas externas\", \"Outras causas\"\n  )))\n\nggplot(mp_long, aes(x = periodo, y = proporcao, fill = causa, group = causa)) +\n  geom_area(alpha = 0.8) +\n  scale_fill_manual(values = c(\n    \"Infecciosas e parasitárias\" = \"#1b9e77\",\n    \"Cardiovasculares\" = \"#d95f02\",\n    \"Neoplasias\" = \"#7570b3\",\n    \"Causas externas\" = \"#e7298a\",\n    \"Outras causas\" = \"#cccccc\"\n  )) +\n  labs(\n    title = \"Transição epidemiológica brasileira (1930–2020)\",\n    subtitle = \"Queda das infecciosas, ascensão das DCNT e das causas externas\",\n    x = \"Período\", y = \"Mortalidade proporcional (%)\", fill = \"Grupo de causas\",\n    caption = \"Fonte: SIM/DATASUS; Rouquayrol & Gurgel, 2017 (valores aproximados)\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 7.1: Mudança no perfil de mortalidade proporcional — Brasil (1930–2020)",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Transição Epidemiológica e Demográfica</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07-transicao-epidemiologica.html#transição-demográfica",
+    "href": "chapters/07-transicao-epidemiologica.html#transição-demográfica",
+    "title": "7  Transição Epidemiológica e Demográfica",
+    "section": "7.3 Transição demográfica",
+    "text": "7.3 Transição demográfica\nA transição demográfica acompanha a epidemiológica: redução da mortalidade → redução da natalidade → envelhecimento populacional.\n\n\nMostrar código R\n# Dados reais: IBGE — SIDRA 7358 — Projeções por grupo de idade e sexo\npiramide_raw &lt;- carregar_dados(\"piramide_brasil\") |&gt;\n  filter(ano %in% c(2000, 2030))\n\n# Calcular proporção em relação ao total de cada ano\npiramide_pct &lt;- piramide_raw |&gt;\n  group_by(ano) |&gt;\n  mutate(total = sum(valor)) |&gt;\n  ungroup() |&gt;\n  mutate(\n    pct = valor / total * 100,\n    pct = ifelse(sexo == \"Homens\", -pct, pct)\n  ) |&gt;\n  mutate(sexo = ifelse(sexo == \"Homens\", \"Masculino\", \"Feminino\"))\n\nggplot(piramide_pct, aes(x = faixa, y = pct, fill = sexo)) +\n  geom_col(width = 0.7) +\n  coord_flip() +\n  facet_wrap(~ano) +\n  scale_fill_manual(values = c(\"Masculino\" = \"#2c7fb8\", \"Feminino\" = \"#e7298a\")) +\n  scale_y_continuous(labels = function(x) paste0(abs(round(x, 1)), \"%\")) +\n  labs(\n    title = \"Envelhecimento populacional brasileiro\",\n    subtitle = \"Base larga em 2000 → topo expandido em 2030\",\n    x = \"Faixa etária\", y = \"Proporção da população (%)\", fill = \"Sexo\",\n    caption = fonte_dados(\"piramide_brasil\")\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 7.2: Mudança na estrutura etária brasileira (2000 vs. 2030 projetado)",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Transição Epidemiológica e Demográfica</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/07-transicao-epidemiologica.html#implicações-para-o-sistema-de-saúde",
+    "href": "chapters/07-transicao-epidemiologica.html#implicações-para-o-sistema-de-saúde",
+    "title": "7  Transição Epidemiológica e Demográfica",
+    "section": "7.4 Implicações para o sistema de saúde",
+    "text": "7.4 Implicações para o sistema de saúde\nO envelhecimento populacional gera o que se chama de tripla carga de doença:\n\n\n\n\n\n\n\n\nCarga\nExemplos\nTendência\n\n\n\n\nInfecciosas persistentes\nDengue, tuberculose, HIV\nEstável/ressurgente\n\n\nDCNT em ascensão\nDiabetes, hipertensão, câncer\nCrescente\n\n\nCausas externas\nViolência, acidentes de trânsito\nAlta (especialmente jovens negros)\n\n\n\n\n\n\n\n\n\nNotaDesafio brasileiro\n\n\n\nO Brasil precisa lidar simultaneamente com doenças da pobreza (infecciosas, desnutrição) e doenças da afluência (obesidade, DCNT) — reflexo da profunda desigualdade social do país.\n\n\n\n\n\n\n\n\nANDRADE SCHRAMM, Joyce Mendes de et al. Transição epidemiológica e o estudo de carga de doença no Brasil. Ciência & Saúde Coletiva, [s. l.], vol. 9, nº 4, p. 897–908, 2004.\n\n\nOMRAN, Abdel R. The Epidemiologic Transition: A Theory of the Epidemiology of Population Change. The Milbank Memorial Fund Quarterly, [s. l.], vol. 49, nº 4, p. 509–538, 1971.",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Transição Epidemiológica e Demográfica</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/08-atencao-primaria.html",
+    "href": "chapters/08-atencao-primaria.html",
+    "title": "8  Indicadores da Atenção Primária à Saúde",
+    "section": "",
+    "text": "8.1 Cobertura da Estratégia Saúde da Família\nA Atenção Primária à Saúde (APS), operacionalizada no Brasil principalmente pela Estratégia Saúde da Família (ESF), é a porta de entrada preferencial do SUS. Seus indicadores refletem a capacidade do sistema de prevenir doenças, promover saúde e coordenar o cuidado (Brasil. Ministério da Saúde, 2024).\nMostrar código R\n# Valores aproximados baseados em e-Gestor AB / Ministério da Saúde\n# Consulte https://egestorab.saude.gov.br/ para dados exatos\nesf &lt;- tibble::tribble(\n  ~ano, ~cobertura,\n  2008, 49.5,\n  2010, 52.2,\n  2012, 54.8,\n  2014, 56.4,\n  2016, 63.0,\n  2018, 64.2,\n  2020, 65.8,\n  2022, 66.5,\n  2023, 67.8\n)\n\nggplot(esf, aes(x = ano, y = cobertura)) +\n  geom_area(fill = cores_indicadores[\"sucesso\"], alpha = 0.15) +\n  geom_line(color = cores_indicadores[\"sucesso\"], linewidth = 1.2) +\n  geom_point(color = cores_indicadores[\"sucesso\"], size = 2.5) +\n  geom_text(aes(label = paste0(fmt_br(cobertura), \"%\")), vjust = -1, size = 3) +\n  scale_y_continuous(limits = c(0, 80)) +\n  labs(\n    title = \"Cobertura da Estratégia Saúde da Família\",\n    subtitle = \"Cerca de 2/3 da população brasileira coberta pela ESF\",\n    x = \"Ano\", y = \"Cobertura (%)\",\n    caption = \"Fonte: e-Gestor AB / Ministério da Saúde (valores aproximados)\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 8.1: Evolução da cobertura da ESF no Brasil (2008–2023)",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Indicadores da Atenção Primária à Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/08-atencao-primaria.html#indicadores-do-previne-brasil",
+    "href": "chapters/08-atencao-primaria.html#indicadores-do-previne-brasil",
+    "title": "8  Indicadores da Atenção Primária à Saúde",
+    "section": "8.2 Indicadores do Previne Brasil",
+    "text": "8.2 Indicadores do Previne Brasil\nO programa Previne Brasil (2020) estabeleceu indicadores de pagamento por desempenho para a APS. Os sete indicadores estratégicos são:\n\n\nMostrar código R\nprevine &lt;- tibble::tribble(\n  ~`Indicador`, ~`O que mede`, ~`Meta`,\n  \"Pré-natal (6+ consultas)\",  \"Gestantes com ≥6 consultas de pré-natal\", \"≥ 60%\",\n  \"Sífilis na gestação\",       \"Gestantes testadas para sífilis\",          \"≥ 60%\",\n  \"Gestantes HIV\",             \"Gestantes testadas para HIV\",              \"≥ 60%\",\n  \"Citopatológico (25-64a)\",   \"Mulheres com Papanicolaou em dia\",        \"≥ 40%\",\n  \"Pressão arterial\",          \"Hipertensos com PA aferida no semestre\",   \"≥ 50%\",\n  \"Hemoglobina glicada\",       \"Diabéticos com HbA1c no semestre\",         \"≥ 50%\",\n  \"Vacinação (&lt; 1 ano)\",       \"Crianças com vacinas em dia\",             \"≥ 95%\"\n)\n\ntabela_indicador(previne)\n\n\n\n\nTabela 8.1: Indicadores do Previne Brasil\n\n\n\n\n\n\nIndicador\nO que mede\nMeta\n\n\n\n\nPré-natal (6+ consultas)\nGestantes com ≥6 consultas de pré-natal\n≥ 60%\n\n\nSífilis na gestação\nGestantes testadas para sífilis\n≥ 60%\n\n\nGestantes HIV\nGestantes testadas para HIV\n≥ 60%\n\n\nCitopatológico (25-64a)\nMulheres com Papanicolaou em dia\n≥ 40%\n\n\nPressão arterial\nHipertensos com PA aferida no semestre\n≥ 50%\n\n\nHemoglobina glicada\nDiabéticos com HbA1c no semestre\n≥ 50%\n\n\nVacinação (&lt; 1 ano)\nCrianças com vacinas em dia\n≥ 95%",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Indicadores da Atenção Primária à Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/08-atencao-primaria.html#internações-por-condições-sensíveis-à-atenção-primária-icsap",
+    "href": "chapters/08-atencao-primaria.html#internações-por-condições-sensíveis-à-atenção-primária-icsap",
+    "title": "8  Indicadores da Atenção Primária à Saúde",
+    "section": "8.3 Internações por Condições Sensíveis à Atenção Primária (ICSAP)",
+    "text": "8.3 Internações por Condições Sensíveis à Atenção Primária (ICSAP)\nAs ICSAP são internações hospitalares que poderiam ser evitadas por uma APS efetiva. São consideradas um indicador indireto da resolutividade da atenção primária.\n\n\nMostrar código R\n# Valores aproximados baseados em SIH/DATASUS — consulte TabNet para dados exatos\nicsap &lt;- tibble::tribble(\n  ~regiao, ~`2010`, ~`2015`, ~`2020`,\n  \"Norte\",        32.5, 30.0, 27.5,\n  \"Nordeste\",     30.0, 27.5, 25.0,\n  \"Sudeste\",      24.0, 21.0, 18.5,\n  \"Sul\",          28.5, 25.0, 22.0,\n  \"Centro-Oeste\", 26.5, 23.5, 20.5\n)\n\nicsap_long &lt;- icsap |&gt;\n  pivot_longer(-regiao, names_to = \"ano\", values_to = \"prop\") |&gt;\n  mutate(ano = as.numeric(ano))\n\nggplot(icsap_long, aes(x = ano, y = prop, color = regiao, group = regiao)) +\n  geom_line(linewidth = 1) +\n  geom_point(size = 2.5) +\n  scale_color_manual(values = cores_regioes) +\n  labs(\n    title = \"Queda das ICSAP em todas as regiões\",\n    subtitle = \"Internações evitáveis diminuem com a expansão da ESF\",\n    x = \"Ano\", y = \"ICSAP (% das internações SUS)\", color = \"Região\",\n    caption = \"Fonte: SIH/DATASUS (valores aproximados)\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 8.2: Proporção de ICSAP entre internações SUS por região — Brasil\n\n\n\n\n\n\n\n\n\n\n\nDicaInterpretação\n\n\n\nA redução das ICSAP ao longo dos anos sugere que a expansão da ESF tem contribuído para maior resolutividade na atenção primária, reduzindo internações que poderiam ser evitadas com prevenção e manejo adequado de doenças crônicas.",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Indicadores da Atenção Primária à Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/08-atencao-primaria.html#indicadores-de-processo-na-aps",
+    "href": "chapters/08-atencao-primaria.html#indicadores-de-processo-na-aps",
+    "title": "8  Indicadores da Atenção Primária à Saúde",
+    "section": "8.4 Indicadores de processo na APS",
+    "text": "8.4 Indicadores de processo na APS\n\n\nMostrar código R\n# Valores aproximados baseados em SINASC/DATASUS — consulte TabNet para dados exatos\nprenatal &lt;- tibble::tribble(\n  ~regiao, ~prop,\n  \"Sul\",          80.2,\n  \"Sudeste\",      78.5,\n  \"Centro-Oeste\", 72.0,\n  \"Nordeste\",     55.0,\n  \"Norte\",        42.5\n)\n\nggplot(prenatal, aes(x = reorder(regiao, prop), y = prop, fill = regiao)) +\n  geom_col(width = 0.6) +\n  geom_text(aes(label = paste0(fmt_br(prop), \"%\")), hjust = -0.1, size = 4) +\n  coord_flip() +\n  scale_fill_manual(values = cores_regioes) +\n  scale_y_continuous(limits = c(0, 95)) +\n  labs(\n    title = \"Desigualdade regional no acesso ao pré-natal\",\n    subtitle = \"Norte e Nordeste com proporções muito abaixo do Sul e Sudeste\",\n    x = NULL, y = \"Gestantes com 7+ consultas (%)\",\n    caption = \"Fonte: SINASC/DATASUS (valores aproximados)\"\n  ) +\n  tema_indicadores() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nFigura 8.3: Proporção de gestantes com 7+ consultas de pré-natal por região\n\n\n\n\n\n\n\n\n\n\n\nBRASIL. MINISTÉRIO DA SAÚDE. E-Gestor Atenção Básica — Cobertura da Atenção Primária. e-Gestor AB, 2024. Disponível em: https://egestorab.saude.gov.br.",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Indicadores da Atenção Primária à Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-desigualdades-raca.html",
+    "href": "chapters/09-desigualdades-raca.html",
+    "title": "9  Desigualdades em Saúde por Cor e Raça",
+    "section": "",
+    "text": "9.1 Mortalidade Materna por Raça/Cor\nO Brasil é o segundo país com maior população negra do mundo. Segundo o IBGE/PNAD 2019, negros (pretos + pardos) representam 55% da população brasileira. As desigualdades em saúde segundo raça/cor são sistemáticas, persistentes e têm raízes no racismo estrutural (Chor, 2013; Instituto Brasileiro de Geografia e Estatística, 2020).\nA mortalidade materna é um dos indicadores que melhor revelam as desigualdades raciais em saúde.\nMostrar código R\n# Valores aproximados baseados em SVS/MS — DATASUS, SIM\n# Consulte o Painel de Mortalidade Materna para dados exatos\nrmm &lt;- tibble::tribble(\n  ~raca_cor, ~rmm, ~razao,\n  \"Branca\",   51,  1.0,\n  \"Parda\",    89,  1.7,\n  \"Preta\",   134,  2.6,\n  \"Indígena\", 185, 3.6\n)\n\nggplot(rmm, aes(x = reorder(raca_cor, rmm), y = rmm,\n                fill = raca_cor)) +\n  geom_col(width = 0.6) +\n  geom_text(aes(label = paste0(rmm, \"\\n(\", razao, \"×)\")),\n            vjust = -0.3, size = 3.5, fontface = \"bold\") +\n  geom_hline(yintercept = 70, linetype = \"dashed\", color = \"#333\") +\n  annotate(\"text\", x = 0.7, y = 78, label = \"Meta ODS: 70\",\n           fontface = \"italic\", size = 3) +\n  scale_fill_manual(values = c(\n    \"Branca\" = cores_indicadores[\"branca\"],\n    \"Parda\" = cores_indicadores[\"parda\"],\n    \"Preta\" = cores_indicadores[\"preta\"],\n    \"Indígena\" = cores_indicadores[\"indigena\"]\n  )) +\n  scale_y_continuous(limits = c(0, 220)) +\n  labs(\n    title = \"Mulheres negras e indígenas morrem mais por causas maternas\",\n    subtitle = \"RMM por 100.000 nascidos vivos — razão em relação à mulher branca entre parênteses\",\n    x = NULL, y = \"RMM (por 100.000 NV)\",\n    caption = \"Fonte: SVS/MS — DATASUS, SIM (valores aproximados)\"\n  ) +\n  tema_indicadores() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nFigura 9.1: Razão de Mortalidade Materna (RMM) por raça/cor — Brasil\nAs causas dessa desigualdade são multifatoriais:",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Desigualdades em Saúde por Cor e Raça</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-desigualdades-raca.html#mortalidade-materna-por-raçacor",
+    "href": "chapters/09-desigualdades-raca.html#mortalidade-materna-por-raçacor",
+    "title": "9  Desigualdades em Saúde por Cor e Raça",
+    "section": "",
+    "text": "Menor acesso e menor qualidade do pré-natal\nDiscriminação institucional nos serviços de saúde\nMaior exposição a determinantes sociais adversos\nRacismo estrutural que atravessa todas as dimensões da vida social",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Desigualdades em Saúde por Cor e Raça</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-desigualdades-raca.html#mortalidade-infantil-por-raçacor",
+    "href": "chapters/09-desigualdades-raca.html#mortalidade-infantil-por-raçacor",
+    "title": "9  Desigualdades em Saúde por Cor e Raça",
+    "section": "9.2 Mortalidade Infantil por Raça/Cor",
+    "text": "9.2 Mortalidade Infantil por Raça/Cor\n\n\nMostrar código R\n# Valores aproximados baseados em SVS/MS — DATASUS, SIM/SINASC\n# Consulte TabNet para dados exatos por raça/cor\nmi_raca &lt;- tibble::tribble(\n  ~raca_cor, ~mi, ~razao,\n  \"Branca\",    9.0, 1.0,\n  \"Parda\",    14.2, 1.6,\n  \"Preta\",    17.0, 1.9,\n  \"Indígena\", 28.5, 3.2\n)\n\nggplot(mi_raca, aes(x = reorder(raca_cor, mi), y = mi, fill = raca_cor)) +\n  geom_col(width = 0.6) +\n  geom_text(aes(label = paste0(fmt_br(mi), \"\\n(\", razao, \"×)\")),\n            vjust = -0.3, size = 3.5, fontface = \"bold\") +\n  scale_fill_manual(values = c(\n    \"Branca\" = cores_indicadores[\"branca\"],\n    \"Parda\" = cores_indicadores[\"parda\"],\n    \"Preta\" = cores_indicadores[\"preta\"],\n    \"Indígena\" = cores_indicadores[\"indigena\"]\n  )) +\n  scale_y_continuous(limits = c(0, 35)) +\n  labs(\n    title = \"Mortalidade infantil: crianças indígenas morrem 3× mais\",\n    subtitle = \"MI por 1.000 NV — razão em relação à criança branca entre parênteses\",\n    x = NULL, y = \"MI (por 1.000 NV)\",\n    caption = \"Fonte: SVS/MS — DATASUS, SIM/SINASC (valores aproximados)\"\n  ) +\n  tema_indicadores() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nFigura 9.2: Mortalidade infantil por raça/cor — Brasil\n\n\n\n\n\n\n\n\n\n\n\nImportanteEfeito independente da raça/cor\n\n\n\nEstudos mostram que, mesmo após controle de variáveis socioeconômicas, persiste um efeito independente da raça/cor sobre a mortalidade infantil, indicando que o racismo age além da mediação econômica (Cardoso; Santos; Jr., 2005).",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Desigualdades em Saúde por Cor e Raça</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-desigualdades-raca.html#homicídios-a-cor-da-violência",
+    "href": "chapters/09-desigualdades-raca.html#homicídios-a-cor-da-violência",
+    "title": "9  Desigualdades em Saúde por Cor e Raça",
+    "section": "9.3 Homicídios — A Cor da Violência",
+    "text": "9.3 Homicídios — A Cor da Violência\nAs causas externas revelam a face mais dramática das desigualdades raciais em saúde no Brasil (Instituto de Pesquisa Econômica Aplicada, 2023).\n\n\nMostrar código R\n# Dados reais: Atlas da Violência 2023 (IPEA/FBSP), referentes a 2021\n# Taxa por 100 mil hab.: negros 31,0; não negros 10,8\n# Proporção: negros 79% das vítimas\nhomic &lt;- tibble::tribble(\n  ~grupo, ~taxa, ~pct_vitimas,\n  \"Não negros\",                10.8, 21,\n  \"Negros (pretos + pardos)\",  31.0, 79\n)\n\np_taxa &lt;- ggplot(homic, aes(x = grupo, y = taxa, fill = grupo)) +\n  geom_col(width = 0.5) +\n  geom_text(aes(label = fmt_br(taxa)), vjust = -0.5, size = 4, fontface = \"bold\") +\n  scale_fill_manual(values = c(\"Não negros\" = \"#4575b4\", \"Negros (pretos + pardos)\" = \"#d73027\")) +\n  scale_y_continuous(limits = c(0, 40)) +\n  labs(title = \"Taxa de homicídios\\n(por 100 mil hab.)\", x = NULL, y = NULL) +\n  tema_indicadores(base_size = 10) +\n  theme(legend.position = \"none\")\n\np_prop &lt;- ggplot(homic, aes(x = \"\", y = pct_vitimas, fill = grupo)) +\n  geom_col(width = 0.6) +\n  geom_text(aes(label = paste0(pct_vitimas, \"%\")),\n            position = position_stack(vjust = 0.5), color = \"white\", size = 5, fontface = \"bold\") +\n  coord_flip() +\n  scale_fill_manual(values = c(\"Não negros\" = \"#4575b4\", \"Negros (pretos + pardos)\" = \"#d73027\")) +\n  labs(title = \"Proporção das vítimas\", x = NULL, y = NULL, fill = NULL) +\n  tema_indicadores(base_size = 10) +\n  theme(axis.text = element_blank(), panel.grid = element_blank())\n\np_taxa / p_prop +\n  plot_annotation(\n    title = \"Negros morrem por homicídio 2,9× mais que não negros\",\n    subtitle = \"79% das vítimas de homicídio no Brasil são negras (dados de 2021)\",\n    caption = \"Fonte: Atlas da Violência 2023 — IPEA/FBSP (dados referentes a 2021)\"\n  )\n\n\n\n\n\n\n\n\nFigura 9.3: Taxa de homicídios por raça/cor — Brasil\n\n\n\n\n\n\nJovens negros (15-29 anos) constituem o grupo mais vulnerável\nA diferença persiste mesmo após controle de renda e escolaridade",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Desigualdades em Saúde por Cor e Raça</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/09-desigualdades-raca.html#fontes-de-dados-sobre-saúde-e-raçacor",
+    "href": "chapters/09-desigualdades-raca.html#fontes-de-dados-sobre-saúde-e-raçacor",
+    "title": "9  Desigualdades em Saúde por Cor e Raça",
+    "section": "9.4 Fontes de dados sobre saúde e raça/cor",
+    "text": "9.4 Fontes de dados sobre saúde e raça/cor\n\n\nMostrar código R\nfontes_raca &lt;- tibble::tribble(\n  ~`Sistema/Base`, ~Cobertura, ~`Uso principal`,\n  \"DATASUS / SIM\",        \"Nacional\", \"Mortalidade por raça/cor, causa e município\",\n  \"SINASC\",               \"Nacional\", \"Natalidade por raça/cor da mãe\",\n  \"PNAD Contínua / IBGE\", \"Nacional\", \"Dados socioeconômicos e autodeclaração racial\",\n  \"Atlas da Violência / IPEA\", \"Nacional\", \"Homicídios e segurança com recorte racial\",\n  \"Painel de Mortalidade Materna\", \"Nacional\", \"Dados em tempo real por raça/cor\"\n)\n\ntabela_indicador(fontes_raca)\n\n\n\n\nTabela 9.1: Principais bases de dados sobre saúde e raça/cor no Brasil\n\n\n\n\n\n\nSistema/Base\nCobertura\nUso principal\n\n\n\n\nDATASUS / SIM\nNacional\nMortalidade por raça/cor, causa e município\n\n\nSINASC\nNacional\nNatalidade por raça/cor da mãe\n\n\nPNAD Contínua / IBGE\nNacional\nDados socioeconômicos e autodeclaração racial\n\n\nAtlas da Violência / IPEA\nNacional\nHomicídios e segurança com recorte racial\n\n\nPainel de Mortalidade Materna\nNacional\nDados em tempo real por raça/cor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDicaEquidade ≠ Igualdade\n\n\n\nIgualdade distribui recursos de forma uniforme. Equidade distribui segundo a necessidade — dando mais a quem mais precisa. As desigualdades raciais em saúde não são biológicas nem naturais: são produtos de injustiça histórica e estrutural. O papel do médico começa pelo preenchimento correto da Declaração de Óbito.\n\n\n\n\n\n\n\n\nCARDOSO, Andrey Moreira; SANTOS, Ricardo Ventura; JR., Carlos E. A. Coimbra. Mortalidade infantil segundo raça/cor no Brasil: o que dizem os sistemas nacionais de informação? Cadernos de Saúde Pública, [s. l.], vol. 21, nº 5, p. 1602–1608, 2005.\n\n\nCHOR, Dóra. Desigualdades em saúde no Brasil: é preciso ter raça. Cadernos de Saúde Pública, [s. l.], vol. 29, nº 7, p. 1272–1275, 2013.\n\n\nINSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA. Pesquisa Nacional por Amostra de Domicílios Contínua — PNAD Contínua 2019. Rio de Janeiro: IBGE, 2020.\n\n\nINSTITUTO DE PESQUISA ECONÔMICA APLICADA. Atlas da Violência 2023. Brasília: IPEA; FBSP, 2023.",
+    "crumbs": [
+      "Contexto Brasileiro",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Desigualdades em Saúde por Cor e Raça</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-limitacoes.html",
+    "href": "chapters/10-limitacoes.html",
+    "title": "10  Limitações dos Indicadores de Saúde",
+    "section": "",
+    "text": "10.1 Qualidade do dado: subregistro e erros\nIndicadores são simplificações da realidade. Toda medida carrega imprecisões, contextos ignorados e riscos de interpretação equivocada. Conhecer as limitações dos indicadores é parte fundamental da formação do profissional de saúde crítico e responsável (Rouquayrol; Gurgel, 2017).",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Limitações dos Indicadores de Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-limitacoes.html#qualidade-do-dado-subregistro-e-erros",
+    "href": "chapters/10-limitacoes.html#qualidade-do-dado-subregistro-e-erros",
+    "title": "10  Limitações dos Indicadores de Saúde",
+    "section": "",
+    "text": "ImportantePrincípio fundamental\n\n\n\nUm indicador é tão bom quanto a qualidade dos dados que o compõem. Dados ruins produzem indicadores ruins — independentemente da sofisticação do método.\n\n\n\n10.1.1 Subregistro de óbitos\nRegiões remotas ou com baixa cobertura de saúde sub-notificam mortes. A mortalidade real pode ser subestimada em até 40% em alguns municípios brasileiros, especialmente em comunidades indígenas, quilombolas e zonas rurais do Norte e Nordeste.\n\n\nMostrar código R\n# Valores aproximados baseados em estimativas de Busca Ativa / SVS\n# Consulte relatórios do MS/SVS para dados exatos\nsubreg &lt;- tibble::tribble(\n  ~regiao, ~subregistro,\n  \"Norte\",        25.0,\n  \"Nordeste\",     18.0,\n  \"Centro-Oeste\",  8.0,\n  \"Sudeste\",       3.5,\n  \"Sul\",           2.5\n)\n\nggplot(subreg, aes(x = reorder(regiao, subregistro), y = subregistro, fill = regiao)) +\n  geom_col(width = 0.6) +\n  geom_text(aes(label = paste0(fmt_br(subregistro), \"%\")), hjust = -0.2, size = 4) +\n  coord_flip() +\n  scale_fill_manual(values = cores_regioes) +\n  scale_y_continuous(limits = c(0, 32)) +\n  labs(\n    title = \"Subregistro de óbitos: problema concentrado no Norte e Nordeste\",\n    subtitle = \"Estimativas de subregistro do SIM por região\",\n    x = NULL, y = \"Subregistro estimado (%)\",\n    caption = \"Fonte: Estimativas baseadas em Busca Ativa / SVS (valores aproximados)\"\n  ) +\n  tema_indicadores() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nFigura 10.1: Estimativa de subregistro de óbitos por região — Brasil\n\n\n\n\n\n\n\n10.1.2 Declaração de Óbito mal preenchida\nO preenchimento inadequado da DO é um problema epidemiológico grave:\n\n“Parada cardiorrespiratória” como causa básica é clinicamente incorreto — toda morte resulta em parada cardiorrespiratória\nO médico deve identificar e registrar a causa primária da morte\nCampos como raça/cor, escolaridade e ocupação frequentemente ficam em branco",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Limitações dos Indicadores de Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-limitacoes.html#comparabilidade-entre-populações",
+    "href": "chapters/10-limitacoes.html#comparabilidade-entre-populações",
+    "title": "10  Limitações dos Indicadores de Saúde",
+    "section": "10.2 Comparabilidade entre populações",
+    "text": "10.2 Comparabilidade entre populações\nTaxas brutas não são diretamente comparáveis entre populações com estruturas etárias, sociais ou culturais distintas.\n\nDiferenças nas definições de caso entre países (ex.: critérios para morte materna)\nSistemas de informação heterogêneos (SIM, SINASC, SINAN) com critérios e coberturas diferentes\nVariações culturais na autopercepção de saúde\nSolução: padronização e harmonização metodológica (ver Capítulo 6)",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Limitações dos Indicadores de Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-limitacoes.html#falácia-ecológica",
+    "href": "chapters/10-limitacoes.html#falácia-ecológica",
+    "title": "10  Limitações dos Indicadores de Saúde",
+    "section": "10.3 Falácia ecológica",
+    "text": "10.3 Falácia ecológica\nA falácia ecológica ocorre quando se inferem características individuais a partir de dados agregados populacionais.\n\n\nMostrar código R\n# Dados hipotéticos de bairros de uma cidade\nfalacia &lt;- tibble::tribble(\n  ~bairro, ~renda_media, ~taxa_homicidio, ~gini,\n  \"Bairro A\",  2500,  45.0, 0.55,\n  \"Bairro B\",  4000,  32.0, 0.48,\n  \"Bairro C\",  6500,  18.0, 0.42,\n  \"Bairro D\",  9000,  12.0, 0.35,\n  \"Bairro E\", 15000,   5.0, 0.28,\n  \"Bairro F\", 12000,  28.0, 0.62\n)\n\nggplot(falacia, aes(x = renda_media, y = taxa_homicidio)) +\n  geom_point(aes(size = gini), color = cores_indicadores[\"perigo\"], alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE, color = cores_indicadores[\"destaque\"],\n              linetype = \"dashed\") +\n  geom_text(aes(label = bairro), vjust = -1, size = 3) +\n  scale_x_continuous(labels = label_dollar(prefix = \"R$ \", big.mark = \".\")) +\n  labs(\n    title = \"Cuidado com a falácia ecológica!\",\n    subtitle = \"A tendência geral esconde que o Bairro F tem alta renda E alta violência (desigualdade interna)\",\n    x = \"Renda média do bairro (R$)\", y = \"Taxa de homicídios (por 100 mil)\",\n    size = \"Índice de Gini\",\n    caption = \"Dados hipotéticos para fins ilustrativos\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 10.2: Ilustração da falácia ecológica\n\n\n\n\n\n\n\n\n\n\n\nAvisoLição\n\n\n\nUma região com alta renda per capita E alta taxa de homicídios pode ter extrema desigualdade interna. Indicadores ecológicos descrevem populações, não indivíduos.",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Limitações dos Indicadores de Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-limitacoes.html#correlação-não-é-causalidade",
+    "href": "chapters/10-limitacoes.html#correlação-não-é-causalidade",
+    "title": "10  Limitações dos Indicadores de Saúde",
+    "section": "10.4 Correlação não é causalidade",
+    "text": "10.4 Correlação não é causalidade\nA associação estatística entre dois indicadores não implica relação causal.\n\n\nMostrar código R\nespuria &lt;- tibble::tribble(\n  ~pais, ~tvs_por_100, ~mi,\n  \"País A\",   5,  85,\n  \"País B\",  15,  60,\n  \"País C\",  35,  35,\n  \"País D\",  55,  22,\n  \"País E\",  75,  12,\n  \"País F\",  90,   6\n)\n\nggplot(espuria, aes(x = tvs_por_100, y = mi)) +\n  geom_point(size = 4, color = cores_indicadores[\"destaque\"]) +\n  geom_smooth(method = \"lm\", se = TRUE, alpha = 0.15, color = cores_indicadores[\"alerta\"]) +\n  geom_text(aes(label = pais), vjust = -1, size = 3) +\n  labs(\n    title = \"Correlação ≠ Causalidade\",\n    subtitle = \"TVs não protegem crianças — ambos refletem desenvolvimento socioeconômico\",\n    x = \"Televisores por 100 domicílios\", y = \"Mortalidade Infantil (por 1.000 NV)\",\n    caption = \"Dados hipotéticos — variável de confusão: renda/desenvolvimento\"\n  ) +\n  tema_indicadores()\n\n\n\n\n\n\n\n\nFigura 10.3: Exemplo de correlação espúria: TVs e mortalidade infantil\n\n\n\n\n\nA explicação causal exige desenhos de estudo adequados (ensaios clínicos, coortes bem controlados) e análise criteriosa de variáveis de confusão.",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Limitações dos Indicadores de Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-limitacoes.html#defasagem-temporal",
+    "href": "chapters/10-limitacoes.html#defasagem-temporal",
+    "title": "10  Limitações dos Indicadores de Saúde",
+    "section": "10.5 Defasagem temporal",
+    "text": "10.5 Defasagem temporal\nHá sempre um intervalo entre o evento real e a consolidação dos dados:\n\nNo Brasil, óbitos podem levar meses para entrar no SIM com causa corretamente classificada\nDurante epidemias, dados em tempo real subestimam a magnitude do problema\nDados do “último ano disponível” frequentemente refletem a situação de 12 a 24 meses antes",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Limitações dos Indicadores de Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/10-limitacoes.html#uso-político-seletivo",
+    "href": "chapters/10-limitacoes.html#uso-político-seletivo",
+    "title": "10  Limitações dos Indicadores de Saúde",
+    "section": "10.6 Uso político seletivo",
+    "text": "10.6 Uso político seletivo\nGestores podem selecionar indicadores favoráveis e omitir os desfavoráveis. Melhorias aparentes podem resultar de:\n\nMudanças metodológicas\nAmpliação da cobertura do sistema de informação\nRedefinição dos critérios diagnósticos\n\n\n\n\n\n\n\nDicaProteção contra manipulação\n\n\n\n\nExigir séries históricas longas e múltiplos indicadores complementares\nQuestionar sempre: o que não está sendo medido? Quem está fora do denominador?\nPreferir fontes independentes com metodologia transparente e auditável\n\n\n\n\n\n\n\n\n\nROUQUAYROL, Maria Zélia; GURGEL, Marcelo. Epidemiologia & Saúde. 8. ed. Rio de Janeiro: MedBook, 2017.",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Limitações dos Indicadores de Saúde</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11-uso-responsavel.html",
+    "href": "chapters/11-uso-responsavel.html",
+    "title": "11  Como Usar Indicadores com Responsabilidade",
+    "section": "",
+    "text": "11.1 As cinco práticas essenciais\nDiante das limitações apresentadas, o uso responsável de indicadores de saúde requer uma postura crítica, metodologicamente informada e eticamente comprometida.\nMostrar código R\npraticas &lt;- tibble::tribble(\n  ~`#`, ~Prática, ~`Por que é importante`,\n  \"1\", \"Triangule fontes\",        \"Nunca baseie decisões em um único indicador. Use múltiplas fontes e indicadores complementares.\",\n  \"2\", \"Desagregue os dados\",     \"Questione o que está escondido na média. Analise por raça/cor, sexo, região, renda e faixa etária.\",\n  \"3\", \"Avalie a qualidade\",      \"Verifique: cobertura do sistema, taxa de incompletude, comparabilidade metodológica e período.\",\n  \"4\", \"Correlação ≠ Causalidade\", \"Indicadores descrevem padrões. Causalidade exige desenhos de estudo adequados e análise de confundidores.\",\n  \"5\", \"Considere a série histórica\", \"Um ponto isolado é pouco informativo. Tendências ao longo de anos revelam padrões mais confiáveis.\"\n)\n\ntabela_indicador(praticas)\n\n\n\n\nTabela 11.1: Cinco práticas para o uso responsável de indicadores\n\n\n\n\n\n\n#\nPrática\nPor que é importante\n\n\n\n\n1\nTriangule fontes\nNunca baseie decisões em um único indicador. Use múltiplas fontes e indicadores complementares.\n\n\n2\nDesagregue os dados\nQuestione o que está escondido na média. Analise por raça/cor, sexo, região, renda e faixa etária.\n\n\n3\nAvalie a qualidade\nVerifique: cobertura do sistema, taxa de incompletude, comparabilidade metodológica e período.\n\n\n4\nCorrelação ≠ Causalidade\nIndicadores descrevem padrões. Causalidade exige desenhos de estudo adequados e análise de confundidores.\n\n\n5\nConsidere a série histórica\nUm ponto isolado é pouco informativo. Tendências ao longo de anos revelam padrões mais confiáveis.",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Como Usar Indicadores com Responsabilidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11-uso-responsavel.html#checklist-para-análise-de-indicadores",
+    "href": "chapters/11-uso-responsavel.html#checklist-para-análise-de-indicadores",
+    "title": "11  Como Usar Indicadores com Responsabilidade",
+    "section": "11.2 Checklist para análise de indicadores",
+    "text": "11.2 Checklist para análise de indicadores\nAntes de interpretar qualquer indicador, pergunte-se:\n\n11.2.1 Sobre os dados\n\nQual é a fonte dos dados? É confiável e auditável?\nQual é o período de referência? Os dados são atuais?\nQual é a cobertura do sistema de informação? Há subregistro?\nComo os dados foram coletados? Há viés de seleção?\n\n\n\n11.2.2 Sobre o indicador\n\nO indicador é uma proporção, taxa, razão ou índice?\nO denominador é adequado? Quem está incluído e quem está excluído?\nA taxa é bruta ou padronizada? Faz sentido comparar diretamente?\nOs dados estão desagregados por sexo, idade, raça/cor, região?\n\n\n\n11.2.3 Sobre a interpretação\n\nEstou atribuindo causalidade a uma simples correlação?\nEstou cometendo falácia ecológica (inferindo indivíduos a partir de grupos)?\nA tendência é real ou resultado de mudança metodológica?\nQuem se beneficia desta interpretação? Quem é invisibilizado?",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Como Usar Indicadores com Responsabilidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11-uso-responsavel.html#indicadores-como-instrumentos-de-poder",
+    "href": "chapters/11-uso-responsavel.html#indicadores-como-instrumentos-de-poder",
+    "title": "11  Como Usar Indicadores com Responsabilidade",
+    "section": "11.3 Indicadores como instrumentos de poder",
+    "text": "11.3 Indicadores como instrumentos de poder\n\n\nMostrar código R\npoder &lt;- tibble::tribble(\n  ~Dimensão, ~Pergunta, ~Implicação,\n  \"Produção\",      \"Quem coleta os dados?\",        \"Comunidades sem UBS não geram dados — são invisíveis\",\n  \"Acesso\",        \"Quem pode usar os dados?\",      \"Dados abertos são condição para controle social\",\n  \"Interpretação\", \"Quem analisa e comunica?\",       \"A narrativa sobre os dados molda políticas públicas\",\n  \"Ação\",          \"Quem decide com base nos dados?\", \"Indicadores sem ação política não salvam vidas\"\n)\n\ntabela_indicador(poder, caption = \"Dados são instrumentos de poder\")\n\n\n\n\n\n\nDados são instrumentos de poder\n\n\n\n\nDimensão\n\n\nPergunta\n\n\nImplicação\n\n\n\n\n\n\nProdução\n\n\nQuem coleta os dados?\n\n\nComunidades sem UBS não geram dados — são invisíveis\n\n\n\n\nAcesso\n\n\nQuem pode usar os dados?\n\n\nDados abertos são condição para controle social\n\n\n\n\nInterpretação\n\n\nQuem analisa e comunica?\n\n\nA narrativa sobre os dados molda políticas públicas\n\n\n\n\nAção\n\n\nQuem decide com base nos dados?\n\n\nIndicadores sem ação política não salvam vidas\n\n\n\n\n\n\nFigura 11.1: Dimensões do poder nos dados em saúde\n\n\n\n\n\n\n\n\n\n\nImportanteReflexão final\n\n\n\nDados são instrumentos de poder. Quem os produz, quem os acessa e como são interpretados definem quais problemas entram na agenda pública de saúde e quais populações se tornam invisíveis.\nO profissional de saúde crítico é um agente fundamental na produção e no uso ético dos dados em saúde.",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Como Usar Indicadores com Responsabilidade</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/11-uso-responsavel.html#recursos-para-aprofundamento",
+    "href": "chapters/11-uso-responsavel.html#recursos-para-aprofundamento",
+    "title": "11  Como Usar Indicadores com Responsabilidade",
+    "section": "11.4 Recursos para aprofundamento",
+    "text": "11.4 Recursos para aprofundamento\n\n\n\nRecurso\nDescrição\nAcesso\n\n\n\n\nDATASUS TabNet\nTabulador de dados do SUS\ndatasus.saude.gov.br\n\n\nIBGE Sidra\nBanco de dados do IBGE\nsidra.ibge.gov.br\n\n\nAtlas da Violência\nDados sobre violência — IPEA\nipea.gov.br/atlasviolencia\n\n\nGBD Compare\nCarga de doença global — IHME\nvizhub.healthdata.org\n\n\ne-Gestor AB\nIndicadores da Atenção Básica\negestorab.saude.gov.br\n\n\nOpenDataSUS\nDados abertos do SUS\nopendatasus.saude.gov.br",
+    "crumbs": [
+      "Pensamento Crítico",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Como Usar Indicadores com Responsabilidade</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "Referências Bibliográficas",
+    "section": "",
+    "text": "ANDRADE SCHRAMM, Joyce Mendes de et al. Transição\nepidemiológica e o estudo de carga de doença no Brasil.\nCiência & Saúde Coletiva, [s. l.], vol. 9,\nnº 4, p. 897–908, 2004.\n\n\nBRASIL. MINISTÉRIO DA SAÚDE. E-Gestor Atenção Básica — Cobertura\nda Atenção Primária. e-Gestor AB, 2024a. Disponível em: https://egestorab.saude.gov.br.\n\n\n\nBRASIL. MINISTÉRIO DA SAÚDE. Programa Nacional de Imunizações —\nCoberturas Vacinais. SI-PNI / DATASUS, 2024b. Disponível em: http://tabnet.datasus.gov.br/cgi/dhdat.exe?bd_pni/cpnibr.def.\n\n\n\nCARDOSO, Andrey Moreira; SANTOS, Ricardo Ventura; JR., Carlos E. A.\nCoimbra. Mortalidade infantil segundo raça/cor no Brasil: o\nque dizem os sistemas nacionais de informação? Cadernos de Saúde\nPública, [s. l.], vol. 21, nº 5, p. 1602–1608, 2005.\n\n\nCHOR, Dóra. Desigualdades em\nsaúde no Brasil: é preciso ter raça. Cadernos\nde Saúde Pública, [s. l.], vol. 29, nº 7, p.\n1272–1275, 2013.\n\n\nGORDIS, Leon. Epidemiologia. 5. ed. Rio de Janeiro:\nThieme Revinter, 2017.\n\n\nINSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA. Pesquisa\nNacional por Amostra de Domicílios Contínua — PNAD Contínua\n2019. Rio de Janeiro: IBGE, 2020.\n\n\nINSTITUTO DE PESQUISA ECONÔMICA APLICADA. Atlas da Violência\n2023. Brasília: IPEA; FBSP, 2023.\n\n\nMEDRONHO, Roberto A. Epidemiologia. 2. ed. São Paulo:\nAtheneu, 2009.\n\n\nOMRAN, Abdel R. The Epidemiologic Transition: A Theory of the\nEpidemiology of Population Change. The Milbank Memorial Fund\nQuarterly, [s. l.], vol. 49, nº 4, p. 509–538, 1971.\n\n\nORGANIZAÇÃO PAN-AMERICANA DA SAÚDE. Indicadores Básicos para a\nSaúde no Brasil: Conceitos e Aplicações. Brasília: OPAS/OMS,\n2008.\n\n\nROUQUAYROL, Maria Zélia; GURGEL, Marcelo. Epidemiologia &\nSaúde. 8. ed. Rio de Janeiro: MedBook, 2017.\n\n\nWORLD HEALTH ORGANIZATION. Health Statistics and Information\nSystems: Metrics — Disability-Adjusted Life Year\n(DALY). GenevaWHO, 2022.",
+    "crumbs": [
+      "Referências Bibliográficas"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sobre este livro",
+    "section": "",
+    "text": "Autor\nProf. Henrique Alvarenga da Silva UNIPTAN (AFYA) Curso de Medicina Disciplina: Métodos Científicos em Medicina 2",
+    "crumbs": [
+      "Sobre este livro"
+    ]
+  },
+  {
+    "objectID": "about.html#sobre-o-material",
+    "href": "about.html#sobre-o-material",
+    "title": "Sobre este livro",
+    "section": "Sobre o material",
+    "text": "Sobre o material\nEste livreto digital foi desenvolvido como material didático de apoio para estudantes de graduação em Medicina e áreas da Saúde. O conteúdo aborda os principais indicadores de saúde utilizados na prática epidemiológica e em saúde pública, com ênfase no contexto brasileiro.\n\nDiferenciais deste material\n\nDados reais: gráficos construídos a partir de bases públicas brasileiras (DATASUS, IBGE, SINAN, SI-PNI)\nCódigo aberto: todo o código R é visível e reprodutível\nAnálise crítica: ênfase nas limitações, vieses e no uso ético dos indicadores\nEquidade: capítulo dedicado às desigualdades raciais em saúde",
+    "crumbs": [
+      "Sobre este livro"
+    ]
+  },
+  {
+    "objectID": "about.html#licença",
+    "href": "about.html#licença",
+    "title": "Sobre este livro",
+    "section": "Licença",
+    "text": "Licença\nEste material é disponibilizado sob licença Creative Commons BY-NC-SA 4.0. Você pode compartilhar e adaptar, desde que atribua crédito, não use para fins comerciais e distribua sob a mesma licença.",
+    "crumbs": [
+      "Sobre este livro"
+    ]
+  },
+  {
+    "objectID": "about.html#como-citar",
+    "href": "about.html#como-citar",
+    "title": "Sobre este livro",
+    "section": "Como citar",
+    "text": "Como citar\n\nSILVA, H. A. Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil. Material didático digital. UNIPTAN (AFYA), 2025. Disponível em: [URL do GitHub Pages].",
+    "crumbs": [
+      "Sobre este livro"
+    ]
+  },
+  {
+    "objectID": "about.html#ferramentas-utilizadas",
+    "href": "about.html#ferramentas-utilizadas",
+    "title": "Sobre este livro",
+    "section": "Ferramentas utilizadas",
+    "text": "Ferramentas utilizadas\nEste livro foi construído com:\n\nQuarto — sistema de publicação científica\nR — linguagem estatística\nggplot2 — visualização de dados\nDados públicos do DATASUS e IBGE",
+    "crumbs": [
+      "Sobre este livro"
+    ]
+  },
+  {
+    "objectID": "about.html#contato",
+    "href": "about.html#contato",
+    "title": "Sobre este livro",
+    "section": "Contato",
+    "text": "Contato\nPara sugestões, correções ou contribuições, abra uma issue no repositório GitHub do projeto.",
+    "crumbs": [
+      "Sobre este livro"
+    ]
+  }
+]

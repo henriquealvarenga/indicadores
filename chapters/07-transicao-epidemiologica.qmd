@@ -1,0 +1,146 @@
+# Transição Epidemiológica e Demográfica
+
+```{r}
+#| label: setup-07
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(glue)
+library(patchwork)
+```
+
+A teoria da transição epidemiológica, proposta por Abdel Omran em 1971, descreve a mudança nos **padrões de morbimortalidade** das populações à medida que se desenvolvem socioeconomicamente [@omran1971]. No Brasil, essa transição apresenta características peculiares — é **incompleta, desigual e polarizada** [@schramm2004].
+
+## As fases da transição epidemiológica
+
+```{r}
+#| label: tbl-fases-transicao
+#| tbl-cap: "Fases clássicas da transição epidemiológica (Omran, 1971)"
+
+fases <- tibble::tribble(
+  ~Fase, ~Denominação, ~`Padrão predominante`, ~`Expectativa de vida`,
+  "1ª", "Era das pestilências e fome",     "Doenças infecciosas, fome, epidemias",         "20–40 anos",
+  "2ª", "Era das pandemias regressivas",    "Declínio das infecções, início das crônicas",  "40–50 anos",
+  "3ª", "Era das doenças degenerativas",    "DCNT, doenças cardiovasculares, câncer",       "50–75+ anos",
+  "4ª", "Era da medicina tecnológica*",     "Doenças crônicas tratáveis, envelhecimento",   "75+ anos"
+)
+
+tabela_indicador(fases)
+```
+
+*A 4ª fase foi proposta posteriormente por outros autores.
+
+## Transição no Brasil: o modelo polarizado
+
+O Brasil não seguiu o modelo linear europeu. A transição brasileira é caracterizada por:
+
+1. **Superposição de etapas**: doenças infecciosas coexistem com crônicas
+2. **Contratransição**: ressurgimento de doenças como dengue, tuberculose, malária
+3. **Polarização**: padrões diferentes entre regiões e classes sociais
+4. **Morbimortalidade por causas externas**: violência como "nova epidemia"
+
+```{r}
+#| label: fig-transicao-mp
+#| fig-cap: "Mudança no perfil de mortalidade proporcional — Brasil (1930–2020)"
+
+# Valores aproximados baseados em SIM/DATASUS e Rouquayrol & Gurgel, 2017
+# Ordens de grandeza para ilustrar a transição — consulte fontes originais para dados exatos
+mp_historica <- tibble::tribble(
+  ~periodo, ~infecciosas, ~cardiovasculares, ~neoplasias, ~externas, ~outras,
+  "1930",      46,         12,                3,           3,         36,
+  "1950",      36,         15,                5,           4,         40,
+  "1970",      16,         25,                8,           8,         43,
+  "1990",       6,         34,               12,          13,         35,
+  "2000",       5,         32,               14,          13,         36,
+  "2010",       4,         29,               16,          13,         38,
+  "2020",       4,         27,               17,          10,         42
+)
+
+mp_long <- mp_historica |>
+  pivot_longer(-periodo, names_to = "causa", values_to = "proporcao") |>
+  mutate(causa = case_match(causa,
+    "infecciosas" ~ "Infecciosas e parasitárias",
+    "cardiovasculares" ~ "Cardiovasculares",
+    "neoplasias" ~ "Neoplasias",
+    "externas" ~ "Causas externas",
+    "outras" ~ "Outras causas"
+  )) |>
+  mutate(causa = factor(causa, levels = c(
+    "Infecciosas e parasitárias", "Cardiovasculares",
+    "Neoplasias", "Causas externas", "Outras causas"
+  )))
+
+ggplot(mp_long, aes(x = periodo, y = proporcao, fill = causa, group = causa)) +
+  geom_area(alpha = 0.8) +
+  scale_fill_manual(values = c(
+    "Infecciosas e parasitárias" = "#1b9e77",
+    "Cardiovasculares" = "#d95f02",
+    "Neoplasias" = "#7570b3",
+    "Causas externas" = "#e7298a",
+    "Outras causas" = "#cccccc"
+  )) +
+  labs(
+    title = "Transição epidemiológica brasileira (1930–2020)",
+    subtitle = "Queda das infecciosas, ascensão das DCNT e das causas externas",
+    x = "Período", y = "Mortalidade proporcional (%)", fill = "Grupo de causas",
+    caption = "Fonte: SIM/DATASUS; Rouquayrol & Gurgel, 2017 (valores aproximados)"
+  ) +
+  tema_indicadores()
+```
+
+## Transição demográfica
+
+A transição demográfica acompanha a epidemiológica: redução da mortalidade → redução da natalidade → envelhecimento populacional.
+
+```{r}
+#| label: fig-piramide-transicao
+#| fig-cap: "Mudança na estrutura etária brasileira (2000 vs. 2030 projetado)"
+
+# Dados reais: IBGE — SIDRA 7358 — Projeções por grupo de idade e sexo
+piramide_raw <- carregar_dados("piramide_brasil") |>
+  filter(ano %in% c(2000, 2030))
+
+# Calcular proporção em relação ao total de cada ano
+piramide_pct <- piramide_raw |>
+  group_by(ano) |>
+  mutate(total = sum(valor)) |>
+  ungroup() |>
+  mutate(
+    pct = valor / total * 100,
+    pct = ifelse(sexo == "Homens", -pct, pct)
+  ) |>
+  mutate(sexo = ifelse(sexo == "Homens", "Masculino", "Feminino"))
+
+ggplot(piramide_pct, aes(x = faixa, y = pct, fill = sexo)) +
+  geom_col(width = 0.7) +
+  coord_flip() +
+  facet_wrap(~ano) +
+  scale_fill_manual(values = c("Masculino" = "#2c7fb8", "Feminino" = "#e7298a")) +
+  scale_y_continuous(labels = function(x) paste0(abs(round(x, 1)), "%")) +
+  labs(
+    title = "Envelhecimento populacional brasileiro",
+    subtitle = "Base larga em 2000 → topo expandido em 2030",
+    x = "Faixa etária", y = "Proporção da população (%)", fill = "Sexo",
+    caption = fonte_dados("piramide_brasil")
+  ) +
+  tema_indicadores()
+```
+
+## Implicações para o sistema de saúde
+
+O envelhecimento populacional gera o que se chama de **tripla carga de doença**:
+
+| Carga | Exemplos | Tendência |
+|-------|----------|-----------|
+| Infecciosas persistentes | Dengue, tuberculose, HIV | Estável/ressurgente |
+| DCNT em ascensão | Diabetes, hipertensão, câncer | Crescente |
+| Causas externas | Violência, acidentes de trânsito | Alta (especialmente jovens negros) |
+
+::: {.callout-note}
+## Desafio brasileiro
+
+O Brasil precisa lidar simultaneamente com **doenças da pobreza** (infecciosas, desnutrição) e **doenças da afluência** (obesidade, DCNT) — reflexo da profunda desigualdade social do país.
+:::

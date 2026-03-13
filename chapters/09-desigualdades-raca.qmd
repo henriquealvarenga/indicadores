@@ -1,0 +1,185 @@
+# Desigualdades em Saúde por Cor e Raça
+
+```{r}
+#| label: setup-09
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(glue)
+library(patchwork)
+```
+
+O Brasil é o segundo país com maior população negra do mundo. Segundo o IBGE/PNAD 2019, negros (pretos + pardos) representam **55% da população brasileira**. As desigualdades em saúde segundo raça/cor são sistemáticas, persistentes e têm raízes no **racismo estrutural** [@ibge2020; @chor2013].
+
+::: {.callout-note}
+## Raça/cor como variável epidemiológica
+
+No Brasil, a classificação de raça/cor é **autodeclarada** segundo os critérios do IBGE: branca, preta, parda, amarela, indígena. A Declaração de Óbito possui campo específico para raça/cor — seu preenchimento adequado é condição necessária para a produção de indicadores desagregados e para a equidade em saúde.
+:::
+
+## Mortalidade Materna por Raça/Cor
+
+A mortalidade materna é um dos indicadores que melhor revelam as desigualdades raciais em saúde.
+
+```{r}
+#| label: fig-rmm-raca
+#| fig-cap: "Razão de Mortalidade Materna (RMM) por raça/cor — Brasil"
+
+# Valores aproximados baseados em SVS/MS — DATASUS, SIM
+# Consulte o Painel de Mortalidade Materna para dados exatos
+rmm <- tibble::tribble(
+  ~raca_cor, ~rmm, ~razao,
+  "Branca",   51,  1.0,
+  "Parda",    89,  1.7,
+  "Preta",   134,  2.6,
+  "Indígena", 185, 3.6
+)
+
+ggplot(rmm, aes(x = reorder(raca_cor, rmm), y = rmm,
+                fill = raca_cor)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = paste0(rmm, "\n(", razao, "×)")),
+            vjust = -0.3, size = 3.5, fontface = "bold") +
+  geom_hline(yintercept = 70, linetype = "dashed", color = "#333") +
+  annotate("text", x = 0.7, y = 78, label = "Meta ODS: 70",
+           fontface = "italic", size = 3) +
+  scale_fill_manual(values = c(
+    "Branca" = cores_indicadores["branca"],
+    "Parda" = cores_indicadores["parda"],
+    "Preta" = cores_indicadores["preta"],
+    "Indígena" = cores_indicadores["indigena"]
+  )) +
+  scale_y_continuous(limits = c(0, 220)) +
+  labs(
+    title = "Mulheres negras e indígenas morrem mais por causas maternas",
+    subtitle = "RMM por 100.000 nascidos vivos — razão em relação à mulher branca entre parênteses",
+    x = NULL, y = "RMM (por 100.000 NV)",
+    caption = "Fonte: SVS/MS — DATASUS, SIM (valores aproximados)"
+  ) +
+  tema_indicadores() +
+  theme(legend.position = "none")
+```
+
+As causas dessa desigualdade são multifatoriais:
+
+- Menor acesso e menor qualidade do pré-natal
+- Discriminação institucional nos serviços de saúde
+- Maior exposição a determinantes sociais adversos
+- Racismo estrutural que atravessa todas as dimensões da vida social
+
+## Mortalidade Infantil por Raça/Cor
+
+```{r}
+#| label: fig-mi-raca
+#| fig-cap: "Mortalidade infantil por raça/cor — Brasil"
+
+# Valores aproximados baseados em SVS/MS — DATASUS, SIM/SINASC
+# Consulte TabNet para dados exatos por raça/cor
+mi_raca <- tibble::tribble(
+  ~raca_cor, ~mi, ~razao,
+  "Branca",    9.0, 1.0,
+  "Parda",    14.2, 1.6,
+  "Preta",    17.0, 1.9,
+  "Indígena", 28.5, 3.2
+)
+
+ggplot(mi_raca, aes(x = reorder(raca_cor, mi), y = mi, fill = raca_cor)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = paste0(fmt_br(mi), "\n(", razao, "×)")),
+            vjust = -0.3, size = 3.5, fontface = "bold") +
+  scale_fill_manual(values = c(
+    "Branca" = cores_indicadores["branca"],
+    "Parda" = cores_indicadores["parda"],
+    "Preta" = cores_indicadores["preta"],
+    "Indígena" = cores_indicadores["indigena"]
+  )) +
+  scale_y_continuous(limits = c(0, 35)) +
+  labs(
+    title = "Mortalidade infantil: crianças indígenas morrem 3× mais",
+    subtitle = "MI por 1.000 NV — razão em relação à criança branca entre parênteses",
+    x = NULL, y = "MI (por 1.000 NV)",
+    caption = "Fonte: SVS/MS — DATASUS, SIM/SINASC (valores aproximados)"
+  ) +
+  tema_indicadores() +
+  theme(legend.position = "none")
+```
+
+::: {.callout-important}
+## Efeito independente da raça/cor
+
+Estudos mostram que, mesmo após controle de variáveis socioeconômicas, persiste um **efeito independente da raça/cor** sobre a mortalidade infantil, indicando que o racismo age **além da mediação econômica** [@cardoso2005].
+:::
+
+## Homicídios — A Cor da Violência
+
+As causas externas revelam a face mais dramática das desigualdades raciais em saúde no Brasil [@ipea2023].
+
+```{r}
+#| label: fig-homicidios-raca
+#| fig-cap: "Taxa de homicídios por raça/cor — Brasil"
+
+# Dados reais: Atlas da Violência 2023 (IPEA/FBSP), referentes a 2021
+# Taxa por 100 mil hab.: negros 31,0; não negros 10,8
+# Proporção: negros 79% das vítimas
+homic <- tibble::tribble(
+  ~grupo, ~taxa, ~pct_vitimas,
+  "Não negros",                10.8, 21,
+  "Negros (pretos + pardos)",  31.0, 79
+)
+
+p_taxa <- ggplot(homic, aes(x = grupo, y = taxa, fill = grupo)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(label = fmt_br(taxa)), vjust = -0.5, size = 4, fontface = "bold") +
+  scale_fill_manual(values = c("Não negros" = "#4575b4", "Negros (pretos + pardos)" = "#d73027")) +
+  scale_y_continuous(limits = c(0, 40)) +
+  labs(title = "Taxa de homicídios\n(por 100 mil hab.)", x = NULL, y = NULL) +
+  tema_indicadores(base_size = 10) +
+  theme(legend.position = "none")
+
+p_prop <- ggplot(homic, aes(x = "", y = pct_vitimas, fill = grupo)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = paste0(pct_vitimas, "%")),
+            position = position_stack(vjust = 0.5), color = "white", size = 5, fontface = "bold") +
+  coord_flip() +
+  scale_fill_manual(values = c("Não negros" = "#4575b4", "Negros (pretos + pardos)" = "#d73027")) +
+  labs(title = "Proporção das vítimas", x = NULL, y = NULL, fill = NULL) +
+  tema_indicadores(base_size = 10) +
+  theme(axis.text = element_blank(), panel.grid = element_blank())
+
+p_taxa / p_prop +
+  plot_annotation(
+    title = "Negros morrem por homicídio 2,9× mais que não negros",
+    subtitle = "79% das vítimas de homicídio no Brasil são negras (dados de 2021)",
+    caption = "Fonte: Atlas da Violência 2023 — IPEA/FBSP (dados referentes a 2021)"
+  )
+```
+
+- Jovens negros (15-29 anos) constituem o grupo mais vulnerável
+- A diferença persiste **mesmo após controle** de renda e escolaridade
+
+## Fontes de dados sobre saúde e raça/cor
+
+```{r}
+#| label: tbl-fontes-raca
+#| tbl-cap: "Principais bases de dados sobre saúde e raça/cor no Brasil"
+
+fontes_raca <- tibble::tribble(
+  ~`Sistema/Base`, ~Cobertura, ~`Uso principal`,
+  "DATASUS / SIM",        "Nacional", "Mortalidade por raça/cor, causa e município",
+  "SINASC",               "Nacional", "Natalidade por raça/cor da mãe",
+  "PNAD Contínua / IBGE", "Nacional", "Dados socioeconômicos e autodeclaração racial",
+  "Atlas da Violência / IPEA", "Nacional", "Homicídios e segurança com recorte racial",
+  "Painel de Mortalidade Materna", "Nacional", "Dados em tempo real por raça/cor"
+)
+
+tabela_indicador(fontes_raca)
+```
+
+::: {.callout-tip}
+## Equidade ≠ Igualdade
+
+**Igualdade** distribui recursos de forma uniforme. **Equidade** distribui segundo a necessidade — dando mais a quem mais precisa. As desigualdades raciais em saúde não são biológicas nem naturais: são produtos de injustiça histórica e estrutural. O papel do médico começa pelo **preenchimento correto da Declaração de Óbito**.
+:::

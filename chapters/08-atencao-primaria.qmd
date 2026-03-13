@@ -1,0 +1,146 @@
+# Indicadores da Atenção Primária à Saúde
+
+```{r}
+#| label: setup-08
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(glue)
+library(patchwork)
+```
+
+A Atenção Primária à Saúde (APS), operacionalizada no Brasil principalmente pela **Estratégia Saúde da Família (ESF)**, é a porta de entrada preferencial do SUS. Seus indicadores refletem a capacidade do sistema de prevenir doenças, promover saúde e coordenar o cuidado [@egestorab2024].
+
+## Cobertura da Estratégia Saúde da Família
+
+```{r}
+#| label: fig-cobertura-esf
+#| fig-cap: "Evolução da cobertura da ESF no Brasil (2008–2023)"
+
+# Valores aproximados baseados em e-Gestor AB / Ministério da Saúde
+# Consulte https://egestorab.saude.gov.br/ para dados exatos
+esf <- tibble::tribble(
+  ~ano, ~cobertura,
+  2008, 49.5,
+  2010, 52.2,
+  2012, 54.8,
+  2014, 56.4,
+  2016, 63.0,
+  2018, 64.2,
+  2020, 65.8,
+  2022, 66.5,
+  2023, 67.8
+)
+
+ggplot(esf, aes(x = ano, y = cobertura)) +
+  geom_area(fill = cores_indicadores["sucesso"], alpha = 0.15) +
+  geom_line(color = cores_indicadores["sucesso"], linewidth = 1.2) +
+  geom_point(color = cores_indicadores["sucesso"], size = 2.5) +
+  geom_text(aes(label = paste0(fmt_br(cobertura), "%")), vjust = -1, size = 3) +
+  scale_y_continuous(limits = c(0, 80)) +
+  labs(
+    title = "Cobertura da Estratégia Saúde da Família",
+    subtitle = "Cerca de 2/3 da população brasileira coberta pela ESF",
+    x = "Ano", y = "Cobertura (%)",
+    caption = "Fonte: e-Gestor AB / Ministério da Saúde (valores aproximados)"
+  ) +
+  tema_indicadores()
+```
+
+## Indicadores do Previne Brasil
+
+O programa **Previne Brasil** (2020) estabeleceu indicadores de pagamento por desempenho para a APS. Os sete indicadores estratégicos são:
+
+```{r}
+#| label: tbl-previne
+#| tbl-cap: "Indicadores do Previne Brasil"
+
+previne <- tibble::tribble(
+  ~`Indicador`, ~`O que mede`, ~`Meta`,
+  "Pré-natal (6+ consultas)",  "Gestantes com ≥6 consultas de pré-natal", "≥ 60%",
+  "Sífilis na gestação",       "Gestantes testadas para sífilis",          "≥ 60%",
+  "Gestantes HIV",             "Gestantes testadas para HIV",              "≥ 60%",
+  "Citopatológico (25-64a)",   "Mulheres com Papanicolaou em dia",        "≥ 40%",
+  "Pressão arterial",          "Hipertensos com PA aferida no semestre",   "≥ 50%",
+  "Hemoglobina glicada",       "Diabéticos com HbA1c no semestre",         "≥ 50%",
+  "Vacinação (< 1 ano)",       "Crianças com vacinas em dia",             "≥ 95%"
+)
+
+tabela_indicador(previne)
+```
+
+## Internações por Condições Sensíveis à Atenção Primária (ICSAP)
+
+As ICSAP são internações hospitalares que poderiam ser **evitadas** por uma APS efetiva. São consideradas um indicador indireto da resolutividade da atenção primária.
+
+```{r}
+#| label: fig-icsap
+#| fig-cap: "Proporção de ICSAP entre internações SUS por região — Brasil"
+
+# Valores aproximados baseados em SIH/DATASUS — consulte TabNet para dados exatos
+icsap <- tibble::tribble(
+  ~regiao, ~`2010`, ~`2015`, ~`2020`,
+  "Norte",        32.5, 30.0, 27.5,
+  "Nordeste",     30.0, 27.5, 25.0,
+  "Sudeste",      24.0, 21.0, 18.5,
+  "Sul",          28.5, 25.0, 22.0,
+  "Centro-Oeste", 26.5, 23.5, 20.5
+)
+
+icsap_long <- icsap |>
+  pivot_longer(-regiao, names_to = "ano", values_to = "prop") |>
+  mutate(ano = as.numeric(ano))
+
+ggplot(icsap_long, aes(x = ano, y = prop, color = regiao, group = regiao)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2.5) +
+  scale_color_manual(values = cores_regioes) +
+  labs(
+    title = "Queda das ICSAP em todas as regiões",
+    subtitle = "Internações evitáveis diminuem com a expansão da ESF",
+    x = "Ano", y = "ICSAP (% das internações SUS)", color = "Região",
+    caption = "Fonte: SIH/DATASUS (valores aproximados)"
+  ) +
+  tema_indicadores()
+```
+
+::: {.callout-tip}
+## Interpretação
+
+A redução das ICSAP ao longo dos anos sugere que a expansão da ESF tem contribuído para maior resolutividade na atenção primária, reduzindo internações que poderiam ser evitadas com prevenção e manejo adequado de doenças crônicas.
+:::
+
+## Indicadores de processo na APS
+
+```{r}
+#| label: fig-prenatal
+#| fig-cap: "Proporção de gestantes com 7+ consultas de pré-natal por região"
+
+# Valores aproximados baseados em SINASC/DATASUS — consulte TabNet para dados exatos
+prenatal <- tibble::tribble(
+  ~regiao, ~prop,
+  "Sul",          80.2,
+  "Sudeste",      78.5,
+  "Centro-Oeste", 72.0,
+  "Nordeste",     55.0,
+  "Norte",        42.5
+)
+
+ggplot(prenatal, aes(x = reorder(regiao, prop), y = prop, fill = regiao)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = paste0(fmt_br(prop), "%")), hjust = -0.1, size = 4) +
+  coord_flip() +
+  scale_fill_manual(values = cores_regioes) +
+  scale_y_continuous(limits = c(0, 95)) +
+  labs(
+    title = "Desigualdade regional no acesso ao pré-natal",
+    subtitle = "Norte e Nordeste com proporções muito abaixo do Sul e Sudeste",
+    x = NULL, y = "Gestantes com 7+ consultas (%)",
+    caption = "Fonte: SINASC/DATASUS (valores aproximados)"
+  ) +
+  tema_indicadores() +
+  theme(legend.position = "none")
+```

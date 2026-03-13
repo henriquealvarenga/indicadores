@@ -1,0 +1,91 @@
+# Como Usar Indicadores com Responsabilidade
+
+```{r}
+#| label: setup-11
+#| include: false
+source("../R/utils.R")
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+Diante das limitações apresentadas, o uso responsável de indicadores de saúde requer uma postura **crítica, metodologicamente informada e eticamente comprometida**.
+
+## As cinco práticas essenciais
+
+```{r}
+#| label: tbl-praticas
+#| tbl-cap: "Cinco práticas para o uso responsável de indicadores"
+
+praticas <- tibble::tribble(
+  ~`#`, ~Prática, ~`Por que é importante`,
+  "1", "Triangule fontes",        "Nunca baseie decisões em um único indicador. Use múltiplas fontes e indicadores complementares.",
+  "2", "Desagregue os dados",     "Questione o que está escondido na média. Analise por raça/cor, sexo, região, renda e faixa etária.",
+  "3", "Avalie a qualidade",      "Verifique: cobertura do sistema, taxa de incompletude, comparabilidade metodológica e período.",
+  "4", "Correlação ≠ Causalidade", "Indicadores descrevem padrões. Causalidade exige desenhos de estudo adequados e análise de confundidores.",
+  "5", "Considere a série histórica", "Um ponto isolado é pouco informativo. Tendências ao longo de anos revelam padrões mais confiáveis."
+)
+
+tabela_indicador(praticas)
+```
+
+## Checklist para análise de indicadores
+
+Antes de interpretar qualquer indicador, pergunte-se:
+
+### Sobre os dados
+
+- [ ] Qual é a **fonte** dos dados? É confiável e auditável?
+- [ ] Qual é o **período** de referência? Os dados são atuais?
+- [ ] Qual é a **cobertura** do sistema de informação? Há subregistro?
+- [ ] Como os dados foram **coletados**? Há viés de seleção?
+
+### Sobre o indicador
+
+- [ ] O indicador é uma **proporção, taxa, razão ou índice**?
+- [ ] O **denominador** é adequado? Quem está incluído e quem está excluído?
+- [ ] A taxa é **bruta ou padronizada**? Faz sentido comparar diretamente?
+- [ ] Os dados estão **desagregados** por sexo, idade, raça/cor, região?
+
+### Sobre a interpretação
+
+- [ ] Estou atribuindo **causalidade** a uma simples correlação?
+- [ ] Estou cometendo **falácia ecológica** (inferindo indivíduos a partir de grupos)?
+- [ ] A tendência é real ou resultado de **mudança metodológica**?
+- [ ] Quem **se beneficia** desta interpretação? Quem é **invisibilizado**?
+
+## Indicadores como instrumentos de poder
+
+```{r}
+#| label: fig-poder-dados
+#| fig-cap: "Dimensões do poder nos dados em saúde"
+
+poder <- tibble::tribble(
+  ~Dimensão, ~Pergunta, ~Implicação,
+  "Produção",      "Quem coleta os dados?",        "Comunidades sem UBS não geram dados — são invisíveis",
+  "Acesso",        "Quem pode usar os dados?",      "Dados abertos são condição para controle social",
+  "Interpretação", "Quem analisa e comunica?",       "A narrativa sobre os dados molda políticas públicas",
+  "Ação",          "Quem decide com base nos dados?", "Indicadores sem ação política não salvam vidas"
+)
+
+tabela_indicador(poder, caption = "Dados são instrumentos de poder")
+```
+
+::: {.callout-important}
+## Reflexão final
+
+Dados são instrumentos de poder. **Quem os produz**, **quem os acessa** e **como são interpretados** definem quais problemas entram na agenda pública de saúde e quais populações se tornam invisíveis.
+
+O profissional de saúde crítico é um agente fundamental na produção e no uso ético dos dados em saúde.
+:::
+
+## Recursos para aprofundamento
+
+| Recurso | Descrição | Acesso |
+|---------|-----------|--------|
+| DATASUS TabNet | Tabulador de dados do SUS | [datasus.saude.gov.br](https://datasus.saude.gov.br) |
+| IBGE Sidra | Banco de dados do IBGE | [sidra.ibge.gov.br](https://sidra.ibge.gov.br) |
+| Atlas da Violência | Dados sobre violência — IPEA | [ipea.gov.br/atlasviolencia](https://www.ipea.gov.br/atlasviolencia) |
+| GBD Compare | Carga de doença global — IHME | [vizhub.healthdata.org](https://vizhub.healthdata.org/gbd-compare) |
+| e-Gestor AB | Indicadores da Atenção Básica | [egestorab.saude.gov.br](https://egestorab.saude.gov.br) |
+| OpenDataSUS | Dados abertos do SUS | [opendatasus.saude.gov.br](https://opendatasus.saude.gov.br) |
