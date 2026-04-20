@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Prof.&nbsp;Henrique Alvarenga da Silva">
+<meta name="description" content="Conceitos, métodos e aplicações com dados do Brasil.">
 
 <title>Indicadores de Saúde</title>
 <style>
@@ -21,80 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapters/01-introducao.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b1ca5f80899139f40ed8bfd1818ba908.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-9807e3780fe3f38e5a402304958a587f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-b1ca5f80899139f40ed8bfd1818ba908.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8a94df9820dfae99fa237a0ed77b3c87.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-7b3dd6481063dfa27f2b59f533e5440e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-8a94df9820dfae99fa237a0ed77b3c87.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -116,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -282,344 +243,400 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Prefácio</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo.svg" alt="Indicadores de Saúde" class="navbar-logo light-content">
+    <img src="./images/logo.svg" alt="Indicadores de Saúde" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text"><i class="bi bi-house"></i> Início</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fundamentos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Fundamentos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fundamentos">    
+        <li>
+    <a class="dropdown-item" href="./chapters/01-introducao.html">
+ <span class="dropdown-text"><i class="bi bi-book"></i> O que são indicadores de saúde?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/02-fecundidade-natalidade.html">
+ <span class="dropdown-text"><i class="bi bi-gender-female"></i> Fecundidade e natalidade</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/03-mortalidade.html">
+ <span class="dropdown-text"><i class="bi bi-heart-pulse"></i> Mortalidade</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-indicadores-avançados" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Indicadores Avançados</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-indicadores-avançados">    
+        <li>
+    <a class="dropdown-item" href="./chapters/04-morbidade.html">
+ <span class="dropdown-text"><i class="bi bi-thermometer-half"></i> Morbidade</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/05-cobertura-vacinal.html">
+ <span class="dropdown-text"><i class="bi bi-shield-plus"></i> Cobertura vacinal</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/06-padronizacao.html">
+ <span class="dropdown-text"><i class="bi bi-rulers"></i> Padronização de taxas</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-contexto-brasileiro" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Contexto Brasileiro</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-contexto-brasileiro">    
+        <li>
+    <a class="dropdown-item" href="./chapters/07-transicao-epidemiologica.html">
+ <span class="dropdown-text"><i class="bi bi-arrow-repeat"></i> Transição epidemiológica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/08-atencao-primaria.html">
+ <span class="dropdown-text"><i class="bi bi-geo-alt"></i> Atenção Primária à Saúde</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/09-desigualdades-raca.html">
+ <span class="dropdown-text"><i class="bi bi-people"></i> Desigualdades raciais</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pensamento-crítico" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Pensamento Crítico</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-pensamento-crítico">    
+        <li>
+    <a class="dropdown-item" href="./chapters/10-limitacoes.html">
+ <span class="dropdown-text"><i class="bi bi-exclamation-diamond"></i> Limitações dos indicadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/11-uso-responsavel.html">
+ <span class="dropdown-text"><i class="bi bi-check-circle"></i> Uso responsável dos dados</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./references.html"> 
+<span class="menu-text">Referências</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./metodologia.html"> 
+<span class="menu-text"><i class="bi bi-clipboard-data"></i> Metodologia</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text"><i class="bi bi-info-circle"></i> Sobre</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
-      </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Indicadores de Saúde</a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/henriquealvarenga/indicadores-de-saude" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
-    <div class="dropdown">
-      <a href="" title="Compartilhar" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Compartilhar"><i class="bi bi-share"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
-              <i class="bi bi-twitter pe-1"></i>
-            Twitter
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
-              <i class="bi bi-facebook pe-1"></i>
-            Facebook
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
-              <i class="bi bi-linkedin pe-1"></i>
-            LinkedIn
-            </a>
-          </li>
-      </ul>
-    </div>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo de leitor">
-  <div class="quarto-reader-toggle-btn">
-  <i class="bi"></i>
-  </div>
-</a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Procurar"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Prefácio</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Fundamentos</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/01-introducao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que são Indicadores de Saúde?</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/02-fecundidade-natalidade.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Indicadores de Fecundidade e Natalidade</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/03-mortalidade.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Indicadores de Mortalidade</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Indicadores Avançados</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/04-morbidade.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Indicadores de Morbidade</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/05-cobertura-vacinal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cobertura Vacinal</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/06-padronizacao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Padronização de Indicadores</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Contexto Brasileiro</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/07-transicao-epidemiologica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transição Epidemiológica e Demográfica</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/08-atencao-primaria.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Indicadores da Atenção Primária à Saúde</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/09-desigualdades-raca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Desigualdades em Saúde por Cor e Raça</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Pensamento Crítico</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/10-limitacoes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Limitações dos Indicadores de Saúde</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/11-uso-responsavel.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Como Usar Indicadores com Responsabilidade</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Referências Bibliográficas</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Sobre este livro</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Índice</h2>
-   
-  <ul>
-  <li><a href="#prefácio" id="toc-prefácio" class="nav-link active" data-scroll-target="#prefácio">Prefácio</a>
-  <ul class="collapse">
-  <li><a href="#objetivo" id="toc-objetivo" class="nav-link" data-scroll-target="#objetivo">Objetivo</a></li>
-  <li><a href="#estrutura-do-livro" id="toc-estrutura-do-livro" class="nav-link" data-scroll-target="#estrutura-do-livro">Estrutura do livro</a></li>
-  <li><a href="#reprodutibilidade" id="toc-reprodutibilidade" class="nav-link" data-scroll-target="#reprodutibilidade">Reprodutibilidade</a></li>
-  <li><a href="#pré-requisitos" id="toc-pré-requisitos" class="nav-link" data-scroll-target="#pré-requisitos">Pré-requisitos</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/henriquealvarenga/indicadores-de-saude/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/henriquealvarenga/indicadores-de-saude/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Indicadores de Saúde</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
-<p class="subtitle lead">Conceitos, Métodos e Aplicações com Dados do Brasil</p>
-</div>
-
-
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Autor</div>
-  <div class="quarto-title-meta-heading">Afiliação</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Prof.&nbsp;Henrique Alvarenga da Silva <a href="https://orcid.org/true" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNIPTAN (AFYA)
-          </p>
-      </div>
-  </div>
-
-<div class="quarto-title-meta">
-
-      
-    <div>
-    <div class="quarto-title-meta-heading">Data de Publicação</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">13/03/2026</p>
-    </div>
-  </div>
-  
     
+<!-- main -->
+<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+
+<!-- ========== CAPA ========== -->
+<section class="cover">
+  <div class="cover-content">
+
+    <div class="cover-visual">
+      <svg viewbox="0 0 140 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- mini barras ao fundo -->
+        <rect x="10" y="70" width="16" height="40" rx="3" fill="#3B82F6" opacity="0.85"></rect>
+        <rect x="32" y="45" width="16" height="65" rx="3" fill="#60A5FA" opacity="0.85"></rect>
+        <rect x="54" y="55" width="16" height="55" rx="3" fill="#93C5FD" opacity="0.85"></rect>
+        <rect x="76" y="30" width="16" height="80" rx="3" fill="#3B82F6" opacity="0.85"></rect>
+        <rect x="98" y="50" width="16" height="60" rx="3" fill="#60A5FA" opacity="0.85"></rect>
+        <rect x="120" y="65" width="16" height="45" rx="3" fill="#93C5FD" opacity="0.85"></rect>
+        <!-- pulso cardíaco -->
+        <path d="M6 62 L30 62 L38 40 L48 88 L58 22 L68 70 L80 62 L90 62 L98 48 L108 72 L118 62 L134 62" stroke="#EF4444" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+        <!-- pontos nos picos -->
+        <circle cx="38" cy="40" r="3" fill="#EF4444"></circle>
+        <circle cx="58" cy="22" r="3" fill="#EF4444"></circle>
+        <circle cx="98" cy="48" r="3" fill="#EF4444"></circle>
+      </svg>
+    </div>
+
+    <h1>Indicadores<br>de <span class="highlight">Saúde</span></h1>
+
+    <p class="cover-subtitle">
+      Conceitos, métodos e aplicações com dados do Brasil.<br>
+      Dos fundamentos epidemiológicos ao uso crítico e responsável dos dados, com R.
+    </p>
+
+    <div class="cover-author">
+      <a href="https://www.henriquealvarenga.com" target="_blank" rel="noopener">Prof. Henrique Alvarenga da Silva</a><br>
+      <span class="affiliation">UNIPTAN/AFYA</span>
+    </div>
+
+    <a href="#conteudo" class="cover-cta">
+      Começar a explorar
+      <span class="arrow">→</span>
+    </a>
   </div>
-  
 
-
-</header>
-
-
-<section id="prefácio" class="level1 unnumbered">
-<h1 class="unnumbered">Prefácio</h1>
-<p>Este livreto é um material de apoio para a disciplina de <strong>Métodos Científicos em Medicina 2</strong> do curso de graduação em Medicina do UNIPTAN (AFYA).</p>
-<section id="objetivo" class="level2">
-<h2 class="anchored" data-anchor-id="objetivo">Objetivo</h2>
-<p>Apresentar de forma didática e aplicada os principais <strong>indicadores de saúde</strong> utilizados em Saúde Pública, combinando:</p>
-<ul>
-<li>Fundamentos teóricos e conceituais</li>
-<li>Dados reais do sistema de saúde brasileiro (DATASUS, IBGE, SINAN)</li>
-<li>Visualizações construídas com código reprodutível em <strong>R</strong></li>
-<li>Análise crítica das limitações e do uso ético dos dados</li>
-</ul>
-</section>
-<section id="estrutura-do-livro" class="level2">
-<h2 class="anchored" data-anchor-id="estrutura-do-livro">Estrutura do livro</h2>
-<p>O livro está organizado em quatro partes:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 41%">
-<col style="width: 58%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parte</th>
-<th>Conteúdo</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>I — Fundamentos</strong></td>
-<td>Conceitos básicos, indicadores de fecundidade/natalidade e mortalidade</td>
-</tr>
-<tr class="even">
-<td><strong>II — Indicadores Avançados</strong></td>
-<td>Morbidade, cobertura vacinal e padronização de taxas</td>
-</tr>
-<tr class="odd">
-<td><strong>III — Contexto Brasileiro</strong></td>
-<td>Transição epidemiológica, Atenção Primária e desigualdades raciais</td>
-</tr>
-<tr class="even">
-<td><strong>IV — Pensamento Crítico</strong></td>
-<td>Limitações dos indicadores e uso responsável dos dados</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="reprodutibilidade" class="level2">
-<h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>
-<p>Todos os gráficos e tabelas deste livro foram construídos com código em R. O leitor pode expandir os blocos de código para ver exatamente como cada análise foi realizada. Os dados utilizados são, sempre que possível, obtidos diretamente de bases públicas brasileiras.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Como usar este material
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Clique em <strong>“Mostrar código R”</strong> abaixo de qualquer gráfico para ver o código-fonte. Você pode copiá-lo e adaptá-lo para suas próprias análises.</p>
-</div>
-</div>
-</section>
-<section id="pré-requisitos" class="level2">
-<h2 class="anchored" data-anchor-id="pré-requisitos">Pré-requisitos</h2>
-<p>Para reproduzir as análises, você precisará de:</p>
-<ul>
-<li><a href="https://cran.r-project.org/">R</a> (versão ≥ 4.2)</li>
-<li><a href="https://posit.co/download/rstudio-desktop/">RStudio</a> ou editor de sua preferência</li>
-<li><a href="https://quarto.org/docs/get-started/">Quarto</a> (versão ≥ 1.4)</li>
-<li>Pacotes R: <code>tidyverse</code>, <code>httr2</code>, <code>janitor</code>, <code>scales</code>, <code>knitr</code>, <code>kableExtra</code>, <code>glue</code>, <code>patchwork</code></li>
-</ul>
-
-
-<!-- -->
-
-</section>
+  <div class="cover-scroll-hint">scroll ↓</div>
 </section>
 
-</main> <!-- /main -->
+<!-- ========== CONTEÚDO ========== -->
+<div id="conteudo">
+
+<!-- FUNDAMENTOS -->
+<section class="content-section">
+  <div class="section-header">
+    <div class="section-label fundamentos">Parte I</div>
+    <h2 class="section-title">Fundamentos</h2>
+  </div>
+
+  <div class="cards-grid">
+
+    <a href="chapters/01-introducao.html" class="card-new">
+      <div class="card-accent fundamentos"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container fundamentos">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path></svg>
+        </div>
+        <h3>O que são indicadores de saúde?</h3>
+        <p>Conceitos, usos e limitações dos indicadores. Categorias RIPSA/OPAS e o vocabulário mínimo para ler e discutir dados de saúde com rigor.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Fundamentos</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="chapters/02-fecundidade-natalidade.html" class="card-new">
+      <div class="card-accent fundamentos"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container fundamentos">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"></circle><line x1="12" y1="14" x2="12" y2="22"></line><line x1="9" y1="19" x2="15" y2="19"></line></svg>
+        </div>
+        <h3>Fecundidade e natalidade</h3>
+        <p>Taxa bruta de natalidade, taxa de fecundidade total e pirâmide etária do Brasil. A transição demográfica em números.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Fundamentos</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="chapters/03-mortalidade.html" class="card-new">
+      <div class="card-accent fundamentos"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container fundamentos">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path><polyline points="3.5 12 7 12 9 9 12 15 14 11 16 13 20.5 13"></polyline></svg>
+        </div>
+        <h3>Mortalidade</h3>
+        <p>Taxa bruta de mortalidade, mortalidade infantil, esperança de vida e razão de mortalidade materna. Indicadores que contam histórias.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Fundamentos</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- INDICADORES AVANÇADOS -->
+<section class="content-section">
+  <div class="section-header">
+    <div class="section-label avancados">Parte II</div>
+    <h2 class="section-title">Indicadores Avançados</h2>
+  </div>
+
+  <div class="cards-grid">
+
+    <a href="chapters/04-morbidade.html" class="card-new">
+      <div class="card-accent avancados"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container avancados">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z"></path></svg>
+        </div>
+        <h3>Morbidade</h3>
+        <p>Incidência, prevalência e o vínculo entre elas. Coeficientes de internação e letalidade aplicados a agravos de notificação no Brasil.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Indicadores Avançados</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="chapters/05-cobertura-vacinal.html" class="card-new">
+      <div class="card-accent avancados"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container avancados">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="14"></line><line x1="9" y1="11" x2="15" y2="11"></line></svg>
+        </div>
+        <h3>Cobertura vacinal</h3>
+        <p>Como se calcula a cobertura, o que é imunidade de rebanho e por que o Brasil saiu de referência mundial para queda preocupante nas últimas décadas.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Indicadores Avançados</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="chapters/06-padronizacao.html" class="card-new">
+      <div class="card-accent avancados"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container avancados">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 3 21"></path><path d="M7 3v4"></path><path d="M11 3v2"></path><path d="M3 7h4"></path><path d="M3 11h2"></path><path d="M17 17v4"></path><path d="M19 19h4"></path><path d="M13 17v2"></path><path d="M17 13h2"></path></svg>
+        </div>
+        <h3>Padronização de taxas</h3>
+        <p>Por que comparar populações diferentes exige ajuste. Padronização direta e indireta com exemplos do SIM e do IBGE.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Indicadores Avançados</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CONTEXTO BRASILEIRO -->
+<section class="content-section">
+  <div class="section-header">
+    <div class="section-label critico">Parte III</div>
+    <h2 class="section-title">Contexto Brasileiro</h2>
+  </div>
+
+  <div class="cards-grid">
+
+    <a href="chapters/07-transicao-epidemiologica.html" class="card-new">
+      <div class="card-accent critico"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container critico">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.2-8.55"></path><polyline points="21 4 21 10 15 10"></polyline></svg>
+        </div>
+        <h3>Transição epidemiológica</h3>
+        <p>Da dominância das infecciosas às DCNTs. Como o perfil de doenças do Brasil mudou, e por que ele continua a mudar de forma desigual.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Contexto Brasileiro</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="chapters/08-atencao-primaria.html" class="card-new">
+      <div class="card-accent critico"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container critico">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <h3>Atenção Primária à Saúde</h3>
+        <p>Indicadores de desempenho da APS: cobertura da ESF, Previne Brasil, ICSAP. O que funciona e o que os números ainda não captam.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Contexto Brasileiro</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="chapters/09-desigualdades-raca.html" class="card-new">
+      <div class="card-accent critico"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container critico">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <h3>Desigualdades raciais em saúde</h3>
+        <p>Mortalidade materna, DCNTs, COVID-19. O que os indicadores mostram quando desagregados por raça/cor — e o que isso exige do SUS.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Contexto Brasileiro</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- PENSAMENTO CRÍTICO -->
+<section class="content-section">
+  <div class="section-header">
+    <div class="section-label ferramentas">Parte IV</div>
+    <h2 class="section-title">Pensamento Crítico</h2>
+  </div>
+
+  <div class="cards-grid">
+
+    <a href="chapters/10-limitacoes.html" class="card-new">
+      <div class="card-accent ferramentas"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container ferramentas">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        </div>
+        <h3>Limitações dos indicadores</h3>
+        <p>Subnotificação, falibilidade do SIM/SINASC, viés ecológico e falácias. Por que um indicador ruim é pior do que nenhum indicador.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Pensamento Crítico</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="chapters/11-uso-responsavel.html" class="card-new">
+      <div class="card-accent ferramentas"></div>
+      <div class="card-body-new">
+        <div class="card-icon-container ferramentas">
+          <svg viewbox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <h3>Uso responsável dos dados</h3>
+        <p>Da ética da privacidade à comunicação honesta. Boas práticas para estudantes, pesquisadores e gestores ao manejar indicadores de saúde.</p>
+      </div>
+      <div class="card-footer-new">
+        <span class="card-chapter">Pensamento Crítico</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+</div>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> De volta ao topo</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -635,13 +652,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       window.document.body.appendChild(a);
     }
     setColorSchemeToggle(hasAlternateSentinel())
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -704,60 +714,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       });
       clipboardModal.on('success', onCopySuccess);
     }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/henriquealvarenga\.com\/indicadores");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -776,8 +735,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             if (link.getAttribute("rel") === null) {
               link.setAttribute("rel", "noopener");
             }
-            // default icon
-            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1091,83 +1048,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./chapters/01-introducao.html" class="pagination-link" aria-label="O que são Indicadores de Saúde?">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">O que são Indicadores de Saúde?</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu"># Prefácio {.unnumbered}</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="in">```{r}</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#| label: setup</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#| include: false</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">source</span>(<span class="st">"R/utils.R"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">instalar_se_necessario</span>(pacotes)</span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="fu">library</span>(glue)</span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="in">```</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a></span>
-<span id="cb1-18"><a href="#cb1-18"></a>Este livreto é um material de apoio para a disciplina de **Métodos Científicos em Medicina 2** do curso de graduação em Medicina do UNIPTAN (AFYA).</span>
-<span id="cb1-19"><a href="#cb1-19"></a></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="fu">## Objetivo</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a>Apresentar de forma didática e aplicada os principais **indicadores de saúde** utilizados em Saúde Pública, combinando:</span>
-<span id="cb1-23"><a href="#cb1-23"></a></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="ss">- </span>Fundamentos teóricos e conceituais</span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="ss">- </span>Dados reais do sistema de saúde brasileiro (DATASUS, IBGE, SINAN)</span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="ss">- </span>Visualizações construídas com código reprodutível em **R**</span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="ss">- </span>Análise crítica das limitações e do uso ético dos dados</span>
-<span id="cb1-28"><a href="#cb1-28"></a></span>
-<span id="cb1-29"><a href="#cb1-29"></a><span class="fu">## Estrutura do livro</span></span>
-<span id="cb1-30"><a href="#cb1-30"></a></span>
-<span id="cb1-31"><a href="#cb1-31"></a>O livro está organizado em quatro partes:</span>
-<span id="cb1-32"><a href="#cb1-32"></a></span>
-<span id="cb1-33"><a href="#cb1-33"></a><span class="pp">|</span> Parte <span class="pp">|</span> Conteúdo <span class="pp">|</span></span>
-<span id="cb1-34"><a href="#cb1-34"></a><span class="pp">|-------|----------|</span></span>
-<span id="cb1-35"><a href="#cb1-35"></a><span class="pp">|</span> **I — Fundamentos** <span class="pp">|</span> Conceitos básicos, indicadores de fecundidade/natalidade e mortalidade <span class="pp">|</span></span>
-<span id="cb1-36"><a href="#cb1-36"></a><span class="pp">|</span> **II — Indicadores Avançados** <span class="pp">|</span> Morbidade, cobertura vacinal e padronização de taxas <span class="pp">|</span></span>
-<span id="cb1-37"><a href="#cb1-37"></a><span class="pp">|</span> **III — Contexto Brasileiro** <span class="pp">|</span> Transição epidemiológica, Atenção Primária e desigualdades raciais <span class="pp">|</span></span>
-<span id="cb1-38"><a href="#cb1-38"></a><span class="pp">|</span> **IV — Pensamento Crítico** <span class="pp">|</span> Limitações dos indicadores e uso responsável dos dados <span class="pp">|</span></span>
-<span id="cb1-39"><a href="#cb1-39"></a></span>
-<span id="cb1-40"><a href="#cb1-40"></a><span class="fu">## Reprodutibilidade</span></span>
-<span id="cb1-41"><a href="#cb1-41"></a></span>
-<span id="cb1-42"><a href="#cb1-42"></a>Todos os gráficos e tabelas deste livro foram construídos com código em R. O leitor pode expandir os blocos de código para ver exatamente como cada análise foi realizada. Os dados utilizados são, sempre que possível, obtidos diretamente de bases públicas brasileiras.</span>
-<span id="cb1-43"><a href="#cb1-43"></a></span>
-<span id="cb1-44"><a href="#cb1-44"></a>::: {.callout-note}</span>
-<span id="cb1-45"><a href="#cb1-45"></a><span class="fu">## Como usar este material</span></span>
-<span id="cb1-46"><a href="#cb1-46"></a></span>
-<span id="cb1-47"><a href="#cb1-47"></a>Clique em **"Mostrar código R"** abaixo de qualquer gráfico para ver o código-fonte. Você pode copiá-lo e adaptá-lo para suas próprias análises.</span>
-<span id="cb1-48"><a href="#cb1-48"></a>:::</span>
-<span id="cb1-49"><a href="#cb1-49"></a></span>
-<span id="cb1-50"><a href="#cb1-50"></a><span class="fu">## Pré-requisitos</span></span>
-<span id="cb1-51"><a href="#cb1-51"></a></span>
-<span id="cb1-52"><a href="#cb1-52"></a>Para reproduzir as análises, você precisará de:</span>
-<span id="cb1-53"><a href="#cb1-53"></a></span>
-<span id="cb1-54"><a href="#cb1-54"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R</span><span class="co">](https://cran.r-project.org/)</span> (versão ≥ 4.2)</span>
-<span id="cb1-55"><a href="#cb1-55"></a><span class="ss">- </span><span class="co">[</span><span class="ot">RStudio</span><span class="co">](https://posit.co/download/rstudio-desktop/)</span> ou editor de sua preferência</span>
-<span id="cb1-56"><a href="#cb1-56"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org/docs/get-started/)</span> (versão ≥ 1.4)</span>
-<span id="cb1-57"><a href="#cb1-57"></a><span class="ss">- </span>Pacotes R: <span class="in">`tidyverse`</span>, <span class="in">`httr2`</span>, <span class="in">`janitor`</span>, <span class="in">`scales`</span>, <span class="in">`knitr`</span>, <span class="in">`kableExtra`</span>, <span class="in">`glue`</span>, <span class="in">`patchwork`</span></span>
-</code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Indicadores de Saúde — UNIPTAN (AFYA)</p>
+<p>Indicadores de Saúde<br>© 2026 <a href="https://henriquealvarenga.com">Henrique Alvarenga da Silva</a></p>
 </div>   
     <div class="nav-footer-center">
-<p>Material de apoio para Métodos Científicos em Medicina 2</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/henriquealvarenga/indicadores-de-saude/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/henriquealvarenga/indicadores-de-saude/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+<p>Material didático de acesso livre — edição do autor</p>
+<div class="toc-actions"><ul><li><a href="https://github.com/henriquealvarenga/indicadores-de-saude/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/henriquealvarenga/indicadores-de-saude/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Construído com <a href="https://quarto.org/">Quarto</a></p>
+<p>Feito com <a href="https://quarto.org/">Quarto</a> e <a href="https://www.r-project.org/">R</a></p>
 </div>
   </div>
 </footer>

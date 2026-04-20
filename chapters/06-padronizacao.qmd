@@ -125,7 +125,7 @@ ggplot(tbn_pad_long, aes(x = regiao, y = taxa, fill = tipo)) +
     title = "Padronização reduz diferenças regionais de natalidade",
     subtitle = "Sudeste e Sul 'sobem' após padronização; Norte e Nordeste 'descem'",
     x = NULL, y = "TBN (por 1.000 hab.)", fill = NULL,
-    caption = "Fonte: IBGE/DATASUS; OPAS, 2008 (valores aproximados)"
+    caption = "Fonte: IBGE/DATASUS; OPAS, 2008 (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores()
 ```

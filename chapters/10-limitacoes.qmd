@@ -50,7 +50,7 @@ ggplot(subreg, aes(x = reorder(regiao, subregistro), y = subregistro, fill = reg
     title = "Subregistro de óbitos: problema concentrado no Norte e Nordeste",
     subtitle = "Estimativas de subregistro do SIM por região",
     x = NULL, y = "Subregistro estimado (%)",
-    caption = "Fonte: Estimativas baseadas em Busca Ativa / SVS (valores aproximados)"
+    caption = "Fonte: Estimativas baseadas em Busca Ativa / SVS (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores() +
   theme(legend.position = "none")
@@ -71,7 +71,7 @@ Taxas brutas **não são diretamente comparáveis** entre populações com estru
 - Diferenças nas **definições de caso** entre países (ex.: critérios para morte materna)
 - Sistemas de informação heterogêneos (SIM, SINASC, SINAN) com critérios e coberturas diferentes
 - Variações culturais na **autopercepção de saúde**
-- Solução: **padronização** e harmonização metodológica (ver @sec-padronizacao)
+- Solução: **padronização** e harmonização metodológica (ver [capítulo sobre padronização](06-padronizacao.qmd))
 
 ## Falácia ecológica
 

@@ -1,0 +1,2136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Metodologia e Fontes dos Dados – Indicadores de Saúde</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./about.html" rel="next">
+<link href="./references.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-400497f035c4132613b40194b40ed1dd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-75b8641451a9be0a5aa80819f80af717.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-400497f035c4132613b40194b40ed1dd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo.svg" alt="Indicadores de Saúde" class="navbar-logo light-content">
+    <img src="./images/logo.svg" alt="Indicadores de Saúde" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text"><i class="bi bi-house"></i> Início</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fundamentos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Fundamentos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fundamentos">    
+        <li>
+    <a class="dropdown-item" href="./chapters/01-introducao.html">
+ <span class="dropdown-text"><i class="bi bi-book"></i> O que são indicadores de saúde?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/02-fecundidade-natalidade.html">
+ <span class="dropdown-text"><i class="bi bi-gender-female"></i> Fecundidade e natalidade</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/03-mortalidade.html">
+ <span class="dropdown-text"><i class="bi bi-heart-pulse"></i> Mortalidade</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-indicadores-avançados" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Indicadores Avançados</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-indicadores-avançados">    
+        <li>
+    <a class="dropdown-item" href="./chapters/04-morbidade.html">
+ <span class="dropdown-text"><i class="bi bi-thermometer-half"></i> Morbidade</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/05-cobertura-vacinal.html">
+ <span class="dropdown-text"><i class="bi bi-shield-plus"></i> Cobertura vacinal</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/06-padronizacao.html">
+ <span class="dropdown-text"><i class="bi bi-rulers"></i> Padronização de taxas</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-contexto-brasileiro" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Contexto Brasileiro</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-contexto-brasileiro">    
+        <li>
+    <a class="dropdown-item" href="./chapters/07-transicao-epidemiologica.html">
+ <span class="dropdown-text"><i class="bi bi-arrow-repeat"></i> Transição epidemiológica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/08-atencao-primaria.html">
+ <span class="dropdown-text"><i class="bi bi-geo-alt"></i> Atenção Primária à Saúde</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/09-desigualdades-raca.html">
+ <span class="dropdown-text"><i class="bi bi-people"></i> Desigualdades raciais</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-pensamento-crítico" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Pensamento Crítico</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-pensamento-crítico">    
+        <li>
+    <a class="dropdown-item" href="./chapters/10-limitacoes.html">
+ <span class="dropdown-text"><i class="bi bi-exclamation-diamond"></i> Limitações dos indicadores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./chapters/11-uso-responsavel.html">
+ <span class="dropdown-text"><i class="bi bi-check-circle"></i> Uso responsável dos dados</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./references.html"> 
+<span class="menu-text">Referências</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./metodologia.html"> 
+<span class="menu-text"><i class="bi bi-clipboard-data"></i> Metodologia</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text"><i class="bi bi-info-circle"></i> Sobre</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./metodologia.html">Metodologia e Fontes dos Dados</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Fundamentos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/01-introducao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">O que são Indicadores de Saúde?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/02-fecundidade-natalidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Indicadores de Fecundidade e Natalidade</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/03-mortalidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Indicadores de Mortalidade</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Indicadores Avançados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/04-morbidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Indicadores de Morbidade</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/05-cobertura-vacinal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cobertura Vacinal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/06-padronizacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Padronização de Indicadores</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Contexto Brasileiro</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/07-transicao-epidemiologica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transição Epidemiológica e Demográfica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/08-atencao-primaria.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Indicadores da Atenção Primária à Saúde</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/09-desigualdades-raca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Desigualdades em Saúde por Cor e Raça</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Pensamento Crítico</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/10-limitacoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Limitações dos Indicadores de Saúde</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/11-uso-responsavel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Como Usar Indicadores com Responsabilidade</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências Bibliográficas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./metodologia.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Metodologia e Fontes dos Dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sobre este livro</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#dados-extraídos-via-api-reproduzíveis" id="toc-dados-extraídos-via-api-reproduzíveis" class="nav-link active" data-scroll-target="#dados-extraídos-via-api-reproduzíveis"><span class="header-section-number">1</span> Dados extraídos via API (reproduzíveis)</a>
+  <ul class="collapse">
+  <li><a href="#código-completo-do-script-de-coleta" id="toc-código-completo-do-script-de-coleta" class="nav-link" data-scroll-target="#código-completo-do-script-de-coleta"><span class="header-section-number">1.0.1</span> Código completo do script de coleta</a></li>
+  <li><a href="#ibge-tabela-sidra-7360-projeções-da-população-do-brasil-revisão-2018" id="toc-ibge-tabela-sidra-7360-projeções-da-população-do-brasil-revisão-2018" class="nav-link" data-scroll-target="#ibge-tabela-sidra-7360-projeções-da-população-do-brasil-revisão-2018"><span class="header-section-number">1.1</span> IBGE — Tabela SIDRA 7360 (Projeções da População do Brasil, Revisão 2018)</a></li>
+  <li><a href="#ibge-tabela-sidra-7362-mortalidade-infantil-e-esperança-de-vida" id="toc-ibge-tabela-sidra-7362-mortalidade-infantil-e-esperança-de-vida" class="nav-link" data-scroll-target="#ibge-tabela-sidra-7362-mortalidade-infantil-e-esperança-de-vida"><span class="header-section-number">1.2</span> IBGE — Tabela SIDRA 7362 (Mortalidade Infantil e Esperança de Vida)</a></li>
+  <li><a href="#ibge-tabela-sidra-7358-população-por-grupo-de-idade-e-sexo" id="toc-ibge-tabela-sidra-7358-população-por-grupo-de-idade-e-sexo" class="nav-link" data-scroll-target="#ibge-tabela-sidra-7358-população-por-grupo-de-idade-e-sexo"><span class="header-section-number">1.3</span> IBGE — Tabela SIDRA 7358 (População por grupo de idade e sexo)</a></li>
+  </ul></li>
+  <li><a href="#dados-transcritos-manualmente-de-fontes-públicas" id="toc-dados-transcritos-manualmente-de-fontes-públicas" class="nav-link" data-scroll-target="#dados-transcritos-manualmente-de-fontes-públicas"><span class="header-section-number">2</span> Dados transcritos manualmente de fontes públicas</a>
+  <ul class="collapse">
+  <li><a href="#capítulo-2-comparação-internacional-de-tft" id="toc-capítulo-2-comparação-internacional-de-tft" class="nav-link" data-scroll-target="#capítulo-2-comparação-internacional-de-tft"><span class="header-section-number">2.1</span> Capítulo 2 — Comparação internacional de TFT</a></li>
+  <li><a href="#capítulo-3-mortalidade" id="toc-capítulo-3-mortalidade" class="nav-link" data-scroll-target="#capítulo-3-mortalidade"><span class="header-section-number">2.2</span> Capítulo 3 — Mortalidade</a></li>
+  <li><a href="#capítulo-4-morbidade" id="toc-capítulo-4-morbidade" class="nav-link" data-scroll-target="#capítulo-4-morbidade"><span class="header-section-number">2.3</span> Capítulo 4 — Morbidade</a></li>
+  <li><a href="#capítulo-5-cobertura-vacinal" id="toc-capítulo-5-cobertura-vacinal" class="nav-link" data-scroll-target="#capítulo-5-cobertura-vacinal"><span class="header-section-number">2.4</span> Capítulo 5 — Cobertura vacinal</a></li>
+  <li><a href="#capítulo-6-padronização" id="toc-capítulo-6-padronização" class="nav-link" data-scroll-target="#capítulo-6-padronização"><span class="header-section-number">2.5</span> Capítulo 6 — Padronização</a></li>
+  <li><a href="#capítulo-7-transição-epidemiológica" id="toc-capítulo-7-transição-epidemiológica" class="nav-link" data-scroll-target="#capítulo-7-transição-epidemiológica"><span class="header-section-number">2.6</span> Capítulo 7 — Transição epidemiológica</a></li>
+  <li><a href="#capítulo-8-atenção-primária" id="toc-capítulo-8-atenção-primária" class="nav-link" data-scroll-target="#capítulo-8-atenção-primária"><span class="header-section-number">2.7</span> Capítulo 8 — Atenção Primária</a></li>
+  <li><a href="#capítulo-9-desigualdades-raciais" id="toc-capítulo-9-desigualdades-raciais" class="nav-link" data-scroll-target="#capítulo-9-desigualdades-raciais"><span class="header-section-number">2.8</span> Capítulo 9 — Desigualdades raciais</a></li>
+  <li><a href="#capítulo-10-limitações" id="toc-capítulo-10-limitações" class="nav-link" data-scroll-target="#capítulo-10-limitações"><span class="header-section-number">2.9</span> Capítulo 10 — Limitações</a></li>
+  </ul></li>
+  <li><a href="#exemplos-hipotéticos-didáticos" id="toc-exemplos-hipotéticos-didáticos" class="nav-link" data-scroll-target="#exemplos-hipotéticos-didáticos"><span class="header-section-number">3</span> Exemplos hipotéticos (didáticos)</a>
+  <ul class="collapse">
+  <li><a href="#capítulo-3-eua-câncer-19202011-eua_cancer" id="toc-capítulo-3-eua-câncer-19202011-eua_cancer" class="nav-link" data-scroll-target="#capítulo-3-eua-câncer-19202011-eua_cancer"><span class="header-section-number">3.1</span> Capítulo 3 — EUA / câncer, 1920–2011 (<code>eua_cancer</code>)</a></li>
+  <li><a href="#capítulo-6-cidades-a-e-b-cidades-pop_padrao-pad_result" id="toc-capítulo-6-cidades-a-e-b-cidades-pop_padrao-pad_result" class="nav-link" data-scroll-target="#capítulo-6-cidades-a-e-b-cidades-pop_padrao-pad_result"><span class="header-section-number">3.2</span> Capítulo 6 — Cidades A e B (<code>cidades</code>, <code>pop_padrao</code>, <code>pad_result</code>)</a></li>
+  <li><a href="#capítulo-10-bairros-da-cidade-falacia" id="toc-capítulo-10-bairros-da-cidade-falacia" class="nav-link" data-scroll-target="#capítulo-10-bairros-da-cidade-falacia"><span class="header-section-number">3.3</span> Capítulo 10 — Bairros da cidade (<code>falacia</code>)</a></li>
+  <li><a href="#capítulo-10-tvs-e-mortalidade-infantil-espuria" id="toc-capítulo-10-tvs-e-mortalidade-infantil-espuria" class="nav-link" data-scroll-target="#capítulo-10-tvs-e-mortalidade-infantil-espuria"><span class="header-section-number">3.4</span> Capítulo 10 — TVs e mortalidade infantil (<code>espuria</code>)</a></li>
+  </ul></li>
+  <li><a href="#tabelas-conceituais" id="toc-tabelas-conceituais" class="nav-link" data-scroll-target="#tabelas-conceituais"><span class="header-section-number">4</span> Tabelas conceituais</a></li>
+  <li><a href="#funções-auxiliares-rutils.r" id="toc-funções-auxiliares-rutils.r" class="nav-link" data-scroll-target="#funções-auxiliares-rutils.r"><span class="header-section-number">5</span> Funções auxiliares (<code>R/utils.R</code>)</a></li>
+  <li><a href="#software-e-reprodutibilidade" id="toc-software-e-reprodutibilidade" class="nav-link" data-scroll-target="#software-e-reprodutibilidade"><span class="header-section-number">6</span> Software e reprodutibilidade</a></li>
+  <li><a href="#limitações-assumidas" id="toc-limitações-assumidas" class="nav-link" data-scroll-target="#limitações-assumidas"><span class="header-section-number">7</span> Limitações assumidas</a></li>
+  <li><a href="#como-consultar-a-fonte-de-um-dado-específico" id="toc-como-consultar-a-fonte-de-um-dado-específico" class="nav-link" data-scroll-target="#como-consultar-a-fonte-de-um-dado-específico"><span class="header-section-number">8</span> Como consultar a fonte de um dado específico</a>
+  <ul class="collapse">
+  <li><a href="#demonstração-ao-vivo-inspecionando-os-metadados" id="toc-demonstração-ao-vivo-inspecionando-os-metadados" class="nav-link" data-scroll-target="#demonstração-ao-vivo-inspecionando-os-metadados"><span class="header-section-number">8.1</span> Demonstração ao vivo: inspecionando os metadados</a></li>
+  <li><a href="#inventário-automático-dos-arquivos-em-data" id="toc-inventário-automático-dos-arquivos-em-data" class="nav-link" data-scroll-target="#inventário-automático-dos-arquivos-em-data"><span class="header-section-number">8.2</span> Inventário automático dos arquivos em <code>data/</code></a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/henriquealvarenga/indicadores-de-saude/edit/main/metodologia.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/henriquealvarenga/indicadores-de-saude/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Metodologia e Fontes dos Dados</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Este documento descreve, com precisão, a origem de cada dado utilizado no livreto <em>Indicadores de Saúde — Conceitos, Métodos e Aplicações com Dados do Brasil</em>. Compromissos editoriais:</p>
+<ol type="1">
+<li><strong>Dados extraídos via API</strong> de fontes públicas têm a origem documentada, com tabela, URL e data de acesso; são reproduzíveis a partir do código disponível no repositório.</li>
+<li><strong>Dados transcritos manualmente de fontes públicas</strong> (por indisponibilidade de API ou por requererem consulta interativa) trazem a citação completa da fonte original e a ressalva de que os valores exibidos são aproximados e <strong>não devem ser usados como estatística oficial</strong> — para uso científico ou regulatório, o leitor é sempre orientado a consultar a fonte primária.</li>
+<li><strong>Dados hipotéticos ou ilustrativos</strong>, quando usados para fins exclusivamente didáticos (demonstrar um conceito epidemiológico), estão <strong>explicitamente identificados como tais</strong> na legenda do gráfico correspondente e repetidos aqui com a mesma ressalva.</li>
+<li><strong>Tabelas conceituais</strong> (classificações, fórmulas, listas de referência) são apresentadas como conteúdo didático, não como dados empíricos, e citam a fonte da classificação quando aplicável.</li>
+</ol>
+<p>Por opção editorial, este livro não faz afirmação genérica de que os valores exibidos são “dados reais” ou “estatísticas oficiais”. O leitor interessado em precisão numérica deve consultar diretamente as fontes citadas em cada figura e no inventário deste documento.</p>
+<section id="dados-extraídos-via-api-reproduzíveis" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Dados extraídos via API (reproduzíveis)</h1>
+<p>Estes dados são obtidos automaticamente pelo script <a href="https://github.com/henriquealvarenga/indicadores-de-saude/blob/main/R/obter_dados.R"><code>R/obter_dados.R</code></a>, que usa o pacote <a href="https://cran.r-project.org/package=sidrar"><code>sidrar</code></a> para consultar a API pública do IBGE/SIDRA. Cada arquivo <code>.rds</code> gerado carrega atributos com <code>fonte</code>, <code>tabela</code>, <code>url</code>, <code>descricao</code> e <code>data_coleta</code>, inspecionáveis via <code>attributes(readRDS("data/&lt;arquivo&gt;.rds"))</code>.</p>
+<p><strong>Para reproduzir a coleta:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">Rscript</span> R/obter_dados.R</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="código-completo-do-script-de-coleta" class="level3" data-number="1.0.1">
+<h3 data-number="1.0.1" class="anchored" data-anchor-id="código-completo-do-script-de-coleta"><span class="header-section-number">1.0.1</span> Código completo do script de coleta</h3>
+<p>O código abaixo é <strong>lido diretamente</strong> do arquivo <code>R/obter_dados.R</code> a cada renderização do site — portanto, representa sempre a versão mais atual que gerou os dados em <code>data/</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># obter_dados.R — Coleta de dados reais de fontes oficiais</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># Este script busca dados de:</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#   - IBGE/SIDRA (tabelas de projeções populacionais)</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#   - IBGE/SIDRA (mortalidade infantil - projeções)</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># Cada dataset é salvo como .rds em data/ com atributos de metadados:</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#   - fonte: instituição responsável</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#   - tabela: código/nome da tabela</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#   - url: link para acesso manual</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#   - descricao: o que o dado representa</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#   - data_coleta: quando foi baixado</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#   - notas: observações relevantes</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co"># Para executar: source("R/obter_dados.R") ou Rscript R/obter_dados.R</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="fu">library</span>(sidrar)</span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="fu">dir.create</span>(<span class="st">"data"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-25"><a href="#cb2-25"></a></span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="co"># Função auxiliar: salvar .rds com metadados</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>salvar_dados <span class="ot">&lt;-</span> <span class="cf">function</span>(df, nome_arquivo, fonte, tabela, url, descricao, <span class="at">notas =</span> <span class="st">""</span>) {</span>
+<span id="cb2-28"><a href="#cb2-28"></a>  <span class="fu">attr</span>(df, <span class="st">"fonte"</span>)       <span class="ot">&lt;-</span> fonte</span>
+<span id="cb2-29"><a href="#cb2-29"></a>  <span class="fu">attr</span>(df, <span class="st">"tabela"</span>)      <span class="ot">&lt;-</span> tabela</span>
+<span id="cb2-30"><a href="#cb2-30"></a>  <span class="fu">attr</span>(df, <span class="st">"url"</span>)         <span class="ot">&lt;-</span> url</span>
+<span id="cb2-31"><a href="#cb2-31"></a>  <span class="fu">attr</span>(df, <span class="st">"descricao"</span>)   <span class="ot">&lt;-</span> descricao</span>
+<span id="cb2-32"><a href="#cb2-32"></a>  <span class="fu">attr</span>(df, <span class="st">"data_coleta"</span>) <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
+<span id="cb2-33"><a href="#cb2-33"></a>  <span class="fu">attr</span>(df, <span class="st">"notas"</span>)       <span class="ot">&lt;-</span> notas</span>
+<span id="cb2-34"><a href="#cb2-34"></a></span>
+<span id="cb2-35"><a href="#cb2-35"></a>  caminho <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"data"</span>, <span class="fu">paste0</span>(nome_arquivo, <span class="st">".rds"</span>))</span>
+<span id="cb2-36"><a href="#cb2-36"></a>  <span class="fu">saveRDS</span>(df, caminho)</span>
+<span id="cb2-37"><a href="#cb2-37"></a>  <span class="fu">cat</span>(<span class="st">"[OK]"</span>, nome_arquivo, <span class="st">"-&gt;"</span>, caminho, <span class="st">"("</span>, <span class="fu">nrow</span>(df), <span class="st">"linhas )</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-38"><a href="#cb2-38"></a>}</span>
+<span id="cb2-39"><a href="#cb2-39"></a></span>
+<span id="cb2-40"><a href="#cb2-40"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a><span class="co"># 1. IBGE Projeções (Tabela 7360) — Brasil</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a><span class="co">#    TFT, TBN, TBM, Índice de Envelhecimento, etc.</span></span>
+<span id="cb2-43"><a href="#cb2-43"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-44"><a href="#cb2-44"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Baixando IBGE Projeções — Brasil (tabela 7360) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-45"><a href="#cb2-45"></a></span>
+<span id="cb2-46"><a href="#cb2-46"></a>proj_br <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="dv">7360</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Brazil"</span>)</span>
+<span id="cb2-47"><a href="#cb2-47"></a><span class="fu">names</span>(proj_br)[<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_pub_cod"</span>, <span class="st">"ano_pub"</span>)</span>
+<span id="cb2-48"><a href="#cb2-48"></a><span class="fu">names</span>(proj_br)[<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">13</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_proj_cod"</span>, <span class="st">"ano_proj"</span>)</span>
+<span id="cb2-49"><a href="#cb2-49"></a></span>
+<span id="cb2-50"><a href="#cb2-50"></a>limpar_proj <span class="ot">&lt;-</span> <span class="cf">function</span>(df, padrao_variavel) {</span>
+<span id="cb2-51"><a href="#cb2-51"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb2-52"><a href="#cb2-52"></a>    <span class="fu">filter</span>(<span class="fu">grepl</span>(padrao_variavel, Variável, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-53"><a href="#cb2-53"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-54"><a href="#cb2-54"></a>      <span class="at">ano   =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(ano_proj)),</span>
+<span id="cb2-55"><a href="#cb2-55"></a>      <span class="at">valor =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(Valor))</span>
+<span id="cb2-56"><a href="#cb2-56"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-57"><a href="#cb2-57"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(valor)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-58"><a href="#cb2-58"></a>    <span class="fu">select</span>(ano, valor) <span class="sc">%&gt;%</span></span>
+<span id="cb2-59"><a href="#cb2-59"></a>    <span class="fu">arrange</span>(ano)</span>
+<span id="cb2-60"><a href="#cb2-60"></a>}</span>
+<span id="cb2-61"><a href="#cb2-61"></a></span>
+<span id="cb2-62"><a href="#cb2-62"></a><span class="co"># 1a. Taxa de Fecundidade Total (TFT) — Brasil</span></span>
+<span id="cb2-63"><a href="#cb2-63"></a>tft_brasil <span class="ot">&lt;-</span> <span class="fu">limpar_proj</span>(proj_br, <span class="st">"fecundidade total"</span>)</span>
+<span id="cb2-64"><a href="#cb2-64"></a><span class="fu">salvar_dados</span>(tft_brasil, <span class="st">"tft_brasil"</span>,</span>
+<span id="cb2-65"><a href="#cb2-65"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-66"><a href="#cb2-66"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7360 — Variável: Taxa de fecundidade total"</span>,</span>
+<span id="cb2-67"><a href="#cb2-67"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7360"</span>,</span>
+<span id="cb2-68"><a href="#cb2-68"></a>  <span class="at">descricao =</span> <span class="st">"Taxa de Fecundidade Total (filhos por mulher) — Brasil, série 2000-2060"</span></span>
+<span id="cb2-69"><a href="#cb2-69"></a>)</span>
+<span id="cb2-70"><a href="#cb2-70"></a></span>
+<span id="cb2-71"><a href="#cb2-71"></a><span class="co"># 1b. Taxa Bruta de Natalidade (TBN) — Brasil</span></span>
+<span id="cb2-72"><a href="#cb2-72"></a>tbn_brasil <span class="ot">&lt;-</span> <span class="fu">limpar_proj</span>(proj_br, <span class="st">"bruta de natalidade"</span>)</span>
+<span id="cb2-73"><a href="#cb2-73"></a><span class="fu">salvar_dados</span>(tbn_brasil, <span class="st">"tbn_brasil"</span>,</span>
+<span id="cb2-74"><a href="#cb2-74"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-75"><a href="#cb2-75"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7360 — Variável: Taxa bruta de natalidade"</span>,</span>
+<span id="cb2-76"><a href="#cb2-76"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7360"</span>,</span>
+<span id="cb2-77"><a href="#cb2-77"></a>  <span class="at">descricao =</span> <span class="st">"Taxa Bruta de Natalidade (por 1.000 hab.) — Brasil, série 2000-2060"</span></span>
+<span id="cb2-78"><a href="#cb2-78"></a>)</span>
+<span id="cb2-79"><a href="#cb2-79"></a></span>
+<span id="cb2-80"><a href="#cb2-80"></a><span class="co"># 1c. Taxa Bruta de Mortalidade (TBM) — Brasil</span></span>
+<span id="cb2-81"><a href="#cb2-81"></a>tbm_brasil <span class="ot">&lt;-</span> <span class="fu">limpar_proj</span>(proj_br, <span class="st">"bruta de mortalidade"</span>)</span>
+<span id="cb2-82"><a href="#cb2-82"></a><span class="fu">salvar_dados</span>(tbm_brasil, <span class="st">"tbm_brasil"</span>,</span>
+<span id="cb2-83"><a href="#cb2-83"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-84"><a href="#cb2-84"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7360 — Variável: Taxa bruta de mortalidade"</span>,</span>
+<span id="cb2-85"><a href="#cb2-85"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7360"</span>,</span>
+<span id="cb2-86"><a href="#cb2-86"></a>  <span class="at">descricao =</span> <span class="st">"Taxa Bruta de Mortalidade (por 1.000 hab.) — Brasil, série 2010-2060"</span></span>
+<span id="cb2-87"><a href="#cb2-87"></a>)</span>
+<span id="cb2-88"><a href="#cb2-88"></a></span>
+<span id="cb2-89"><a href="#cb2-89"></a><span class="co"># 1d. Índice de Envelhecimento — Brasil</span></span>
+<span id="cb2-90"><a href="#cb2-90"></a>ie_brasil <span class="ot">&lt;-</span> <span class="fu">limpar_proj</span>(proj_br, <span class="st">"envelhecimento"</span>)</span>
+<span id="cb2-91"><a href="#cb2-91"></a><span class="fu">salvar_dados</span>(ie_brasil, <span class="st">"ie_brasil"</span>,</span>
+<span id="cb2-92"><a href="#cb2-92"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-93"><a href="#cb2-93"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7360 — Variável: Índice de envelhecimento"</span>,</span>
+<span id="cb2-94"><a href="#cb2-94"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7360"</span>,</span>
+<span id="cb2-95"><a href="#cb2-95"></a>  <span class="at">descricao =</span> <span class="st">"Índice de Envelhecimento (idosos 65+ / jovens 0-14 × 100) — Brasil, série"</span></span>
+<span id="cb2-96"><a href="#cb2-96"></a>)</span>
+<span id="cb2-97"><a href="#cb2-97"></a></span>
+<span id="cb2-98"><a href="#cb2-98"></a><span class="co"># 1e. Razão de Dependência Total — Brasil</span></span>
+<span id="cb2-99"><a href="#cb2-99"></a>rd_brasil <span class="ot">&lt;-</span> <span class="fu">limpar_proj</span>(proj_br, <span class="st">"dependência total"</span>)</span>
+<span id="cb2-100"><a href="#cb2-100"></a><span class="fu">salvar_dados</span>(rd_brasil, <span class="st">"rd_brasil"</span>,</span>
+<span id="cb2-101"><a href="#cb2-101"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-102"><a href="#cb2-102"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7360 — Variável: Razão de dependência total"</span>,</span>
+<span id="cb2-103"><a href="#cb2-103"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7360"</span>,</span>
+<span id="cb2-104"><a href="#cb2-104"></a>  <span class="at">descricao =</span> <span class="st">"Razão de Dependência Total — Brasil"</span></span>
+<span id="cb2-105"><a href="#cb2-105"></a>)</span>
+<span id="cb2-106"><a href="#cb2-106"></a></span>
+<span id="cb2-107"><a href="#cb2-107"></a><span class="co"># 1f. Nascimentos — Brasil (para cálculos)</span></span>
+<span id="cb2-108"><a href="#cb2-108"></a>nasc_brasil <span class="ot">&lt;-</span> <span class="fu">limpar_proj</span>(proj_br, <span class="st">"^Nascimentos$"</span>)</span>
+<span id="cb2-109"><a href="#cb2-109"></a><span class="fu">salvar_dados</span>(nasc_brasil, <span class="st">"nascimentos_brasil"</span>,</span>
+<span id="cb2-110"><a href="#cb2-110"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-111"><a href="#cb2-111"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7360 — Variável: Nascimentos"</span>,</span>
+<span id="cb2-112"><a href="#cb2-112"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7360"</span>,</span>
+<span id="cb2-113"><a href="#cb2-113"></a>  <span class="at">descricao =</span> <span class="st">"Número de nascimentos projetados — Brasil"</span></span>
+<span id="cb2-114"><a href="#cb2-114"></a>)</span>
+<span id="cb2-115"><a href="#cb2-115"></a></span>
+<span id="cb2-116"><a href="#cb2-116"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-117"><a href="#cb2-117"></a><span class="co"># 2. IBGE Projeções (Tabela 7360) — Por Região</span></span>
+<span id="cb2-118"><a href="#cb2-118"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-119"><a href="#cb2-119"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Baixando IBGE Projeções — Regiões (tabela 7360) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-120"><a href="#cb2-120"></a></span>
+<span id="cb2-121"><a href="#cb2-121"></a>proj_reg <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="dv">7360</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Region"</span>)</span>
+<span id="cb2-122"><a href="#cb2-122"></a><span class="fu">names</span>(proj_reg)[<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_pub_cod"</span>, <span class="st">"ano_pub"</span>)</span>
+<span id="cb2-123"><a href="#cb2-123"></a><span class="fu">names</span>(proj_reg)[<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">13</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_proj_cod"</span>, <span class="st">"ano_proj"</span>)</span>
+<span id="cb2-124"><a href="#cb2-124"></a></span>
+<span id="cb2-125"><a href="#cb2-125"></a>limpar_proj_reg <span class="ot">&lt;-</span> <span class="cf">function</span>(df, padrao_variavel) {</span>
+<span id="cb2-126"><a href="#cb2-126"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb2-127"><a href="#cb2-127"></a>    <span class="fu">filter</span>(<span class="fu">grepl</span>(padrao_variavel, Variável, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-128"><a href="#cb2-128"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-129"><a href="#cb2-129"></a>      <span class="at">regiao =</span> <span class="st">`</span><span class="at">Grande Região</span><span class="st">`</span>,</span>
+<span id="cb2-130"><a href="#cb2-130"></a>      <span class="at">ano    =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(ano_proj)),</span>
+<span id="cb2-131"><a href="#cb2-131"></a>      <span class="at">valor  =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(Valor))</span>
+<span id="cb2-132"><a href="#cb2-132"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-133"><a href="#cb2-133"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(valor)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-134"><a href="#cb2-134"></a>    <span class="fu">select</span>(regiao, ano, valor) <span class="sc">%&gt;%</span></span>
+<span id="cb2-135"><a href="#cb2-135"></a>    <span class="fu">arrange</span>(regiao, ano)</span>
+<span id="cb2-136"><a href="#cb2-136"></a>}</span>
+<span id="cb2-137"><a href="#cb2-137"></a></span>
+<span id="cb2-138"><a href="#cb2-138"></a><span class="co"># 2a. TFT por região</span></span>
+<span id="cb2-139"><a href="#cb2-139"></a>tft_regiao <span class="ot">&lt;-</span> <span class="fu">limpar_proj_reg</span>(proj_reg, <span class="st">"fecundidade total"</span>)</span>
+<span id="cb2-140"><a href="#cb2-140"></a><span class="fu">salvar_dados</span>(tft_regiao, <span class="st">"tft_regiao"</span>,</span>
+<span id="cb2-141"><a href="#cb2-141"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-142"><a href="#cb2-142"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7360 — TFT por Grande Região"</span>,</span>
+<span id="cb2-143"><a href="#cb2-143"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7360"</span>,</span>
+<span id="cb2-144"><a href="#cb2-144"></a>  <span class="at">descricao =</span> <span class="st">"Taxa de Fecundidade Total por Grande Região — série 2000-2060"</span></span>
+<span id="cb2-145"><a href="#cb2-145"></a>)</span>
+<span id="cb2-146"><a href="#cb2-146"></a></span>
+<span id="cb2-147"><a href="#cb2-147"></a><span class="co"># 2b. TBN por região</span></span>
+<span id="cb2-148"><a href="#cb2-148"></a>tbn_regiao <span class="ot">&lt;-</span> <span class="fu">limpar_proj_reg</span>(proj_reg, <span class="st">"bruta de natalidade"</span>)</span>
+<span id="cb2-149"><a href="#cb2-149"></a><span class="fu">salvar_dados</span>(tbn_regiao, <span class="st">"tbn_regiao"</span>,</span>
+<span id="cb2-150"><a href="#cb2-150"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-151"><a href="#cb2-151"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7360 — TBN por Grande Região"</span>,</span>
+<span id="cb2-152"><a href="#cb2-152"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7360"</span>,</span>
+<span id="cb2-153"><a href="#cb2-153"></a>  <span class="at">descricao =</span> <span class="st">"Taxa Bruta de Natalidade por Grande Região — série"</span></span>
+<span id="cb2-154"><a href="#cb2-154"></a>)</span>
+<span id="cb2-155"><a href="#cb2-155"></a></span>
+<span id="cb2-156"><a href="#cb2-156"></a><span class="co"># 2c. TBM por região</span></span>
+<span id="cb2-157"><a href="#cb2-157"></a>tbm_regiao <span class="ot">&lt;-</span> <span class="fu">limpar_proj_reg</span>(proj_reg, <span class="st">"bruta de mortalidade"</span>)</span>
+<span id="cb2-158"><a href="#cb2-158"></a><span class="fu">salvar_dados</span>(tbm_regiao, <span class="st">"tbm_regiao"</span>,</span>
+<span id="cb2-159"><a href="#cb2-159"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-160"><a href="#cb2-160"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7360 — TBM por Grande Região"</span>,</span>
+<span id="cb2-161"><a href="#cb2-161"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7360"</span>,</span>
+<span id="cb2-162"><a href="#cb2-162"></a>  <span class="at">descricao =</span> <span class="st">"Taxa Bruta de Mortalidade por Grande Região — série"</span></span>
+<span id="cb2-163"><a href="#cb2-163"></a>)</span>
+<span id="cb2-164"><a href="#cb2-164"></a></span>
+<span id="cb2-165"><a href="#cb2-165"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-166"><a href="#cb2-166"></a><span class="co"># 3. IBGE Projeções (Tabela 7362) — MI e Esperança de Vida</span></span>
+<span id="cb2-167"><a href="#cb2-167"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-168"><a href="#cb2-168"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Baixando MI e Esperança de Vida (tabela 7362) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-169"><a href="#cb2-169"></a></span>
+<span id="cb2-170"><a href="#cb2-170"></a>proj_7362 <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="dv">7362</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Brazil"</span>)</span>
+<span id="cb2-171"><a href="#cb2-171"></a><span class="fu">names</span>(proj_7362)[<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_pub_cod"</span>, <span class="st">"ano_pub"</span>)</span>
+<span id="cb2-172"><a href="#cb2-172"></a><span class="fu">names</span>(proj_7362)[<span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">15</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_proj_cod"</span>, <span class="st">"ano_proj"</span>)</span>
+<span id="cb2-173"><a href="#cb2-173"></a></span>
+<span id="cb2-174"><a href="#cb2-174"></a>limpar_7362 <span class="ot">&lt;-</span> <span class="cf">function</span>(df, padrao_variavel, <span class="at">padrao_sexo =</span> <span class="st">"Total"</span>) {</span>
+<span id="cb2-175"><a href="#cb2-175"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb2-176"><a href="#cb2-176"></a>    <span class="fu">filter</span>(</span>
+<span id="cb2-177"><a href="#cb2-177"></a>      <span class="fu">grepl</span>(padrao_variavel, Variável, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-178"><a href="#cb2-178"></a>      Sexo <span class="sc">==</span> padrao_sexo</span>
+<span id="cb2-179"><a href="#cb2-179"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-180"><a href="#cb2-180"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-181"><a href="#cb2-181"></a>      <span class="at">ano   =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(ano_proj)),</span>
+<span id="cb2-182"><a href="#cb2-182"></a>      <span class="at">valor =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(Valor))</span>
+<span id="cb2-183"><a href="#cb2-183"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-184"><a href="#cb2-184"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(valor)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-185"><a href="#cb2-185"></a>    <span class="fu">select</span>(ano, valor) <span class="sc">%&gt;%</span></span>
+<span id="cb2-186"><a href="#cb2-186"></a>    <span class="fu">arrange</span>(ano)</span>
+<span id="cb2-187"><a href="#cb2-187"></a>}</span>
+<span id="cb2-188"><a href="#cb2-188"></a></span>
+<span id="cb2-189"><a href="#cb2-189"></a><span class="co"># 3a. Mortalidade Infantil — Brasil</span></span>
+<span id="cb2-190"><a href="#cb2-190"></a>mi_brasil <span class="ot">&lt;-</span> <span class="fu">limpar_7362</span>(proj_7362, <span class="st">"mortalidade infantil"</span>)</span>
+<span id="cb2-191"><a href="#cb2-191"></a><span class="fu">salvar_dados</span>(mi_brasil, <span class="st">"mi_brasil"</span>,</span>
+<span id="cb2-192"><a href="#cb2-192"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-193"><a href="#cb2-193"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7362 — Variável: Taxa de mortalidade infantil"</span>,</span>
+<span id="cb2-194"><a href="#cb2-194"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7362"</span>,</span>
+<span id="cb2-195"><a href="#cb2-195"></a>  <span class="at">descricao =</span> <span class="st">"Taxa de Mortalidade Infantil (por 1.000 NV) — Brasil, série 2000-2060"</span>,</span>
+<span id="cb2-196"><a href="#cb2-196"></a>  <span class="at">notas     =</span> <span class="st">"Valores são projeções do IBGE, não dados observados do SIM. Para dados observados, consultar SIM/DATASUS."</span></span>
+<span id="cb2-197"><a href="#cb2-197"></a>)</span>
+<span id="cb2-198"><a href="#cb2-198"></a></span>
+<span id="cb2-199"><a href="#cb2-199"></a><span class="co"># 3b. Esperança de Vida ao Nascer — Brasil (Total, Masc, Fem)</span></span>
+<span id="cb2-200"><a href="#cb2-200"></a>ev_total <span class="ot">&lt;-</span> <span class="fu">limpar_7362</span>(proj_7362, <span class="st">"Esperança"</span>, <span class="st">"Total"</span>)</span>
+<span id="cb2-201"><a href="#cb2-201"></a>ev_masc  <span class="ot">&lt;-</span> <span class="fu">limpar_7362</span>(proj_7362, <span class="st">"Esperança"</span>, <span class="st">"Homens"</span>)</span>
+<span id="cb2-202"><a href="#cb2-202"></a>ev_fem   <span class="ot">&lt;-</span> <span class="fu">limpar_7362</span>(proj_7362, <span class="st">"Esperança"</span>, <span class="st">"Mulheres"</span>)</span>
+<span id="cb2-203"><a href="#cb2-203"></a></span>
+<span id="cb2-204"><a href="#cb2-204"></a>ev_brasil <span class="ot">&lt;-</span> ev_total <span class="sc">%&gt;%</span></span>
+<span id="cb2-205"><a href="#cb2-205"></a>  <span class="fu">rename</span>(<span class="at">total =</span> valor) <span class="sc">%&gt;%</span></span>
+<span id="cb2-206"><a href="#cb2-206"></a>  <span class="fu">left_join</span>(ev_masc <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">masculino =</span> valor), <span class="at">by =</span> <span class="st">"ano"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-207"><a href="#cb2-207"></a>  <span class="fu">left_join</span>(ev_fem <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">feminino =</span> valor), <span class="at">by =</span> <span class="st">"ano"</span>)</span>
+<span id="cb2-208"><a href="#cb2-208"></a></span>
+<span id="cb2-209"><a href="#cb2-209"></a><span class="fu">salvar_dados</span>(ev_brasil, <span class="st">"ev_brasil"</span>,</span>
+<span id="cb2-210"><a href="#cb2-210"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-211"><a href="#cb2-211"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7362 — Variável: Esperança de vida ao nascer"</span>,</span>
+<span id="cb2-212"><a href="#cb2-212"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7362"</span>,</span>
+<span id="cb2-213"><a href="#cb2-213"></a>  <span class="at">descricao =</span> <span class="st">"Esperança de vida ao nascer (anos) — Brasil, por sexo, série 2000-2060"</span></span>
+<span id="cb2-214"><a href="#cb2-214"></a>)</span>
+<span id="cb2-215"><a href="#cb2-215"></a></span>
+<span id="cb2-216"><a href="#cb2-216"></a><span class="co"># 3c. MI por região</span></span>
+<span id="cb2-217"><a href="#cb2-217"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Baixando MI por Região (tabela 7362) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-218"><a href="#cb2-218"></a>proj_7362_reg <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="dv">7362</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Region"</span>)</span>
+<span id="cb2-219"><a href="#cb2-219"></a><span class="fu">names</span>(proj_7362_reg)[<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_pub_cod"</span>, <span class="st">"ano_pub"</span>)</span>
+<span id="cb2-220"><a href="#cb2-220"></a><span class="fu">names</span>(proj_7362_reg)[<span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">15</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_proj_cod"</span>, <span class="st">"ano_proj"</span>)</span>
+<span id="cb2-221"><a href="#cb2-221"></a></span>
+<span id="cb2-222"><a href="#cb2-222"></a>mi_regiao <span class="ot">&lt;-</span> proj_7362_reg <span class="sc">%&gt;%</span></span>
+<span id="cb2-223"><a href="#cb2-223"></a>  <span class="fu">filter</span>(</span>
+<span id="cb2-224"><a href="#cb2-224"></a>    <span class="fu">grepl</span>(<span class="st">"mortalidade infantil"</span>, Variável, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-225"><a href="#cb2-225"></a>    Sexo <span class="sc">==</span> <span class="st">"Total"</span></span>
+<span id="cb2-226"><a href="#cb2-226"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-227"><a href="#cb2-227"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-228"><a href="#cb2-228"></a>    <span class="at">regiao =</span> <span class="st">`</span><span class="at">Grande Região</span><span class="st">`</span>,</span>
+<span id="cb2-229"><a href="#cb2-229"></a>    <span class="at">ano    =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(ano_proj)),</span>
+<span id="cb2-230"><a href="#cb2-230"></a>    <span class="at">valor  =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(Valor))</span>
+<span id="cb2-231"><a href="#cb2-231"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-232"><a href="#cb2-232"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(valor)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-233"><a href="#cb2-233"></a>  <span class="fu">select</span>(regiao, ano, valor) <span class="sc">%&gt;%</span></span>
+<span id="cb2-234"><a href="#cb2-234"></a>  <span class="fu">arrange</span>(regiao, ano)</span>
+<span id="cb2-235"><a href="#cb2-235"></a></span>
+<span id="cb2-236"><a href="#cb2-236"></a><span class="fu">salvar_dados</span>(mi_regiao, <span class="st">"mi_regiao"</span>,</span>
+<span id="cb2-237"><a href="#cb2-237"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-238"><a href="#cb2-238"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7362 — MI por Grande Região"</span>,</span>
+<span id="cb2-239"><a href="#cb2-239"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7362"</span>,</span>
+<span id="cb2-240"><a href="#cb2-240"></a>  <span class="at">descricao =</span> <span class="st">"Taxa de Mortalidade Infantil por Grande Região — série 2000-2060"</span></span>
+<span id="cb2-241"><a href="#cb2-241"></a>)</span>
+<span id="cb2-242"><a href="#cb2-242"></a></span>
+<span id="cb2-243"><a href="#cb2-243"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-244"><a href="#cb2-244"></a><span class="co"># 4. IBGE Projeções — População por faixa etária (pirâmide)</span></span>
+<span id="cb2-245"><a href="#cb2-245"></a><span class="co">#    Tabela 7358</span></span>
+<span id="cb2-246"><a href="#cb2-246"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-247"><a href="#cb2-247"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Baixando população por faixa etária (tabela 7358) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-248"><a href="#cb2-248"></a></span>
+<span id="cb2-249"><a href="#cb2-249"></a>proj_7358 <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="dv">7358</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Brazil"</span>)</span>
+<span id="cb2-250"><a href="#cb2-250"></a><span class="fu">names</span>(proj_7358)[<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_pub_cod"</span>, <span class="st">"ano_pub"</span>)</span>
+<span id="cb2-251"><a href="#cb2-251"></a><span class="fu">names</span>(proj_7358)[<span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_proj_cod"</span>, <span class="st">"ano_proj"</span>)</span>
+<span id="cb2-252"><a href="#cb2-252"></a></span>
+<span id="cb2-253"><a href="#cb2-253"></a>piramide <span class="ot">&lt;-</span> proj_7358 <span class="sc">%&gt;%</span></span>
+<span id="cb2-254"><a href="#cb2-254"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-255"><a href="#cb2-255"></a>    <span class="at">ano   =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(ano_proj)),</span>
+<span id="cb2-256"><a href="#cb2-256"></a>    <span class="at">valor =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(Valor)),</span>
+<span id="cb2-257"><a href="#cb2-257"></a>    <span class="at">sexo  =</span> proj_7358[[<span class="st">"Sexo"</span>]],</span>
+<span id="cb2-258"><a href="#cb2-258"></a>    <span class="at">faixa =</span> Idade</span>
+<span id="cb2-259"><a href="#cb2-259"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-260"><a href="#cb2-260"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(valor), <span class="sc">!</span><span class="fu">is.na</span>(ano), sexo <span class="sc">!=</span> <span class="st">"Total"</span>, faixa <span class="sc">!=</span> <span class="st">"Total"</span>,</span>
+<span id="cb2-261"><a href="#cb2-261"></a>         ano <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="dv">2020</span>, <span class="dv">2030</span>, <span class="dv">2040</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-262"><a href="#cb2-262"></a>  <span class="fu">select</span>(ano, sexo, faixa, valor) <span class="sc">%&gt;%</span></span>
+<span id="cb2-263"><a href="#cb2-263"></a>  <span class="fu">arrange</span>(ano, sexo, faixa)</span>
+<span id="cb2-264"><a href="#cb2-264"></a></span>
+<span id="cb2-265"><a href="#cb2-265"></a><span class="fu">salvar_dados</span>(piramide, <span class="st">"piramide_brasil"</span>,</span>
+<span id="cb2-266"><a href="#cb2-266"></a>  <span class="at">fonte     =</span> <span class="st">"IBGE — Projeções da População do Brasil (Revisão 2018)"</span>,</span>
+<span id="cb2-267"><a href="#cb2-267"></a>  <span class="at">tabela    =</span> <span class="st">"SIDRA 7358 — População por grupo de idade e sexo"</span>,</span>
+<span id="cb2-268"><a href="#cb2-268"></a>  <span class="at">url       =</span> <span class="st">"https://sidra.ibge.gov.br/tabela/7358"</span>,</span>
+<span id="cb2-269"><a href="#cb2-269"></a>  <span class="at">descricao =</span> <span class="st">"População por grupo de idade, sexo e ano — Brasil (projeções), anos selecionados"</span></span>
+<span id="cb2-270"><a href="#cb2-270"></a>)</span>
+<span id="cb2-271"><a href="#cb2-271"></a></span>
+<span id="cb2-272"><a href="#cb2-272"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-273"><a href="#cb2-273"></a><span class="co"># RESUMO FINAL</span></span>
+<span id="cb2-274"><a href="#cb2-274"></a><span class="co"># ============================================================</span></span>
+<span id="cb2-275"><a href="#cb2-275"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">==========================================</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-276"><a href="#cb2-276"></a><span class="fu">cat</span>(<span class="st">"COLETA FINALIZADA</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-277"><a href="#cb2-277"></a><span class="fu">cat</span>(<span class="st">"==========================================</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-278"><a href="#cb2-278"></a>arquivos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"data"</span>, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.rds$"</span>)</span>
+<span id="cb2-279"><a href="#cb2-279"></a><span class="cf">for</span> (arq <span class="cf">in</span> arquivos) {</span>
+<span id="cb2-280"><a href="#cb2-280"></a>  df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">file.path</span>(<span class="st">"data"</span>, arq))</span>
+<span id="cb2-281"><a href="#cb2-281"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"  %-25s  %4d linhas  |  %s</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb2-282"><a href="#cb2-282"></a>              arq, <span class="fu">nrow</span>(df), <span class="fu">attr</span>(df, <span class="st">"fonte"</span>)))</span>
+<span id="cb2-283"><a href="#cb2-283"></a>}</span>
+<span id="cb2-284"><a href="#cb2-284"></a><span class="fu">cat</span>(<span class="st">"==========================================</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="ibge-tabela-sidra-7360-projeções-da-população-do-brasil-revisão-2018" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="ibge-tabela-sidra-7360-projeções-da-população-do-brasil-revisão-2018"><span class="header-section-number">1.1</span> IBGE — Tabela SIDRA 7360 (Projeções da População do Brasil, Revisão 2018)</h2>
+<p><strong>URL da tabela:</strong> <a href="https://sidra.ibge.gov.br/tabela/7360" class="uri">https://sidra.ibge.gov.br/tabela/7360</a></p>
+<p>Variáveis extraídas para o nível Brasil e para cada Grande Região (Norte, Nordeste, Sudeste, Sul, Centro-Oeste):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Arquivo (<code>data/</code>)</th>
+<th>Indicador</th>
+<th>Série</th>
+<th>Usado em</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tft_brasil.rds</code></td>
+<td>Taxa de Fecundidade Total — filhos por mulher</td>
+<td>2000–2060</td>
+<td>Cap. 2</td>
+</tr>
+<tr class="even">
+<td><code>tft_regiao.rds</code></td>
+<td>TFT por Grande Região</td>
+<td>2000–2060</td>
+<td>Cap. 2</td>
+</tr>
+<tr class="odd">
+<td><code>tbn_brasil.rds</code></td>
+<td>Taxa Bruta de Natalidade (por 1.000 hab.)</td>
+<td>2000–2060</td>
+<td>Cap. 2</td>
+</tr>
+<tr class="even">
+<td><code>tbn_regiao.rds</code></td>
+<td>TBN por Grande Região</td>
+<td>2000–2060</td>
+<td>Cap. 2</td>
+</tr>
+<tr class="odd">
+<td><code>tbm_brasil.rds</code></td>
+<td>Taxa Bruta de Mortalidade (por 1.000 hab.)</td>
+<td>2010–2060</td>
+<td>Cap. 3</td>
+</tr>
+<tr class="even">
+<td><code>tbm_regiao.rds</code></td>
+<td>TBM por Grande Região</td>
+<td>2010–2060</td>
+<td>(reserva)</td>
+</tr>
+<tr class="odd">
+<td><code>ie_brasil.rds</code></td>
+<td>Índice de Envelhecimento</td>
+<td>série</td>
+<td>(reserva)</td>
+</tr>
+<tr class="even">
+<td><code>rd_brasil.rds</code></td>
+<td>Razão de Dependência Total</td>
+<td>série</td>
+<td>(reserva)</td>
+</tr>
+<tr class="odd">
+<td><code>nascimentos_brasil.rds</code></td>
+<td>Nascimentos projetados</td>
+<td>série</td>
+<td>(reserva)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ibge-tabela-sidra-7362-mortalidade-infantil-e-esperança-de-vida" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="ibge-tabela-sidra-7362-mortalidade-infantil-e-esperança-de-vida"><span class="header-section-number">1.2</span> IBGE — Tabela SIDRA 7362 (Mortalidade Infantil e Esperança de Vida)</h2>
+<p><strong>URL da tabela:</strong> <a href="https://sidra.ibge.gov.br/tabela/7362" class="uri">https://sidra.ibge.gov.br/tabela/7362</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Indicador</th>
+<th>Observação</th>
+<th>Usado em</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mi_brasil.rds</code></td>
+<td>Taxa de Mortalidade Infantil — por 1.000 NV</td>
+<td><strong>Projeções</strong> do IBGE, não dados observados do SIM</td>
+<td>Cap. 3</td>
+</tr>
+<tr class="even">
+<td><code>mi_regiao.rds</code></td>
+<td>MI por Grande Região</td>
+<td>Projeções</td>
+<td>Cap. 3</td>
+</tr>
+<tr class="odd">
+<td><code>ev_brasil.rds</code></td>
+<td>Esperança de vida ao nascer (total, masculino, feminino)</td>
+<td>Projeções</td>
+<td>Cap. 3</td>
+</tr>
+</tbody>
+</table>
+<p>Nota importante sobre MI: os valores representam as <strong>projeções demográficas</strong> da Revisão 2018 do IBGE. Para a mortalidade infantil observada (com base nos registros efetivos do SIM/SINASC), é necessário consultar o TabNet/DATASUS. A distinção está explicada no atributo <code>notas</code> do arquivo <code>mi_brasil.rds</code>.</p>
+</section>
+<section id="ibge-tabela-sidra-7358-população-por-grupo-de-idade-e-sexo" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="ibge-tabela-sidra-7358-população-por-grupo-de-idade-e-sexo"><span class="header-section-number">1.3</span> IBGE — Tabela SIDRA 7358 (População por grupo de idade e sexo)</h2>
+<p><strong>URL da tabela:</strong> <a href="https://sidra.ibge.gov.br/tabela/7358" class="uri">https://sidra.ibge.gov.br/tabela/7358</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Indicador</th>
+<th>Anos filtrados</th>
+<th>Usado em</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>piramide_brasil.rds</code></td>
+<td>População por faixa etária e sexo (projeções)</td>
+<td>2000, 2010, 2020, 2030, 2040</td>
+<td>Cap. 7</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="dados-transcritos-manualmente-de-fontes-públicas" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Dados transcritos manualmente de fontes públicas</h1>
+<p>Os indicadores abaixo foram <strong>consultados nas fontes públicas</strong> indicadas, mas digitados como <code>tribble</code> no próprio capítulo. Isso ocorre quando (a) a fonte não oferece API pública acessível via <code>sidrar</code>/CRAN; (b) a consulta requer navegação interativa no TabNet; ou (c) o dado foi extraído de relatórios/boletins em PDF. Em todos os casos, a <strong>origem primária</strong> é citada no código e na legenda do gráfico, acompanhada da ressalva de que os valores mostrados são aproximados e <strong>não devem ser usados como estatística oficial</strong>.</p>
+<section id="capítulo-2-comparação-internacional-de-tft" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="capítulo-2-comparação-internacional-de-tft"><span class="header-section-number">2.1</span> Capítulo 2 — Comparação internacional de TFT</h2>
+<p><strong><code>tft_paises</code></strong> (Figura <em>fig-tft-internacional</em>).</p>
+<ul>
+<li><strong>Fonte primária:</strong> ONU — <em>World Population Prospects 2022</em>.</li>
+<li><strong>URL:</strong> <a href="https://population.un.org/wpp/" class="uri">https://population.un.org/wpp/</a></li>
+<li><strong>Brasil:</strong> IBGE Projeções 2018 (coerência com os demais dados do capítulo).</li>
+<li><strong>Natureza:</strong> valores oficiais do relatório WPP 2022, selecionados para ilustrar o intervalo global de TFT (Níger, Nigéria, Índia, EUA, Brasil, Canadá, Japão, Coreia do Sul).</li>
+</ul>
+</section>
+<section id="capítulo-3-mortalidade" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="capítulo-3-mortalidade"><span class="header-section-number">2.2</span> Capítulo 3 — Mortalidade</h2>
+<p><strong><code>mp_brasil</code></strong> — mortalidade proporcional por grupo de causas, Brasil, 2022 (Figura <em>fig-mp-brasil</em>).</p>
+<ul>
+<li><strong>Fonte:</strong> SIM/DATASUS, TabNet Mortalidade por Capítulo CID-10, ano 2022.</li>
+<li><strong>URL:</strong> <a href="http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10uf.def" class="uri">http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10uf.def</a></li>
+<li><strong>Ressalva explícita na legenda:</strong> “(valores aproximados — não usar como estatística oficial)”. A tabela reflete as ordens de grandeza consolidadas do TabNet à época da redação; para qualquer uso em trabalho científico, acadêmico ou decisório, a consulta direta ao TabNet é indispensável.</li>
+</ul>
+<p><strong><code>daly_brasil</code></strong> — principais causas de DALYs no Brasil (Figura <em>fig-daly-brasil</em>).</p>
+<ul>
+<li><strong>Fonte:</strong> IHME — <em>Global Burden of Disease Study 2019</em>.</li>
+<li><strong>URL:</strong> <a href="https://vizhub.healthdata.org/gbd-compare/" class="uri">https://vizhub.healthdata.org/gbd-compare/</a></li>
+<li><strong>Ressalva explícita:</strong> “valores ilustrativos baseados em GBD 2019 — IHME. Ordem de magnitude aproximada — consulte o GBD Results Tool para dados exatos.”</li>
+<li><strong>Natureza:</strong> valores ordenados por magnitude, fiéis à hierarquia de causas do GBD 2019; os números em milhares são aproximações editoriais para fins didáticos.</li>
+</ul>
+</section>
+<section id="capítulo-4-morbidade" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="capítulo-4-morbidade"><span class="header-section-number">2.3</span> Capítulo 4 — Morbidade</h2>
+<p><strong><code>dengue</code></strong> — série histórica 2010–2024 (Figura <em>fig-dengue-incidencia</em>).</p>
+<ul>
+<li><strong>Fonte primária:</strong> SINAN/SVS/Ministério da Saúde — Série histórica de casos prováveis.</li>
+<li><strong>Complementação:</strong> Boletins Epidemiológicos da SVS e consolidação final de 2024 (Agência Brasil).</li>
+<li><strong>Natureza:</strong> contagem de casos prováveis (em milhares) e população (IBGE projeções) transcrita dos boletins; a incidência por 100 mil hab. foi calculada a partir desses valores.</li>
+<li><strong>Observação:</strong> o ano de 2024 aparece como preliminar na legenda.</li>
+</ul>
+<p><strong><code>dcnt</code></strong> — prevalência de DCNTs em adultos brasileiros (Figura <em>fig-prevalencia-dcnt</em>).</p>
+<ul>
+<li><strong>Fontes primárias:</strong> IBGE — <em>Pesquisa Nacional de Saúde</em> (PNS) 2019, e SVS/MS — <em>Vigitel</em> 2023.</li>
+<li><strong>Valores exatos verificados:</strong>
+<ul>
+<li>PNS 2019: hipertensão 23,9%; diabetes 7,7%; depressão 10,2%; asma 5,3%; DRC 1,4% (autodeclaração de diagnóstico médico).</li>
+<li>Vigitel 2023: obesidade 24,3%.</li>
+</ul></li>
+<li><strong>URLs:</strong> <a href="https://www.ibge.gov.br/estatisticas/sociais/saude/9160-pesquisa-nacional-de-saude.html" class="uri">https://www.ibge.gov.br/estatisticas/sociais/saude/9160-pesquisa-nacional-de-saude.html</a>; <a href="https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/vigitel" class="uri">https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/vigitel</a></li>
+</ul>
+</section>
+<section id="capítulo-5-cobertura-vacinal" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="capítulo-5-cobertura-vacinal"><span class="header-section-number">2.4</span> Capítulo 5 — Cobertura vacinal</h2>
+<p><strong><code>cob_vacinal</code></strong> — cobertura histórica 2010–2023, vacinas Tríplice Viral, Poliomielite e Pentavalente (Figura <em>fig-cobertura-historica</em>).</p>
+<ul>
+<li><strong>Fonte:</strong> SI-PNI / DATASUS — TabNet, Coberturas Vacinais.</li>
+<li><strong>URL:</strong> <a href="http://tabnet.datasus.gov.br/cgi/deftohtm.exe?pni/cnv/cpniuf.def" class="uri">http://tabnet.datasus.gov.br/cgi/deftohtm.exe?pni/cnv/cpniuf.def</a></li>
+<li><strong>Ressalva explícita na legenda:</strong> “(valores aproximados — não usar como estatística oficial)”.</li>
+</ul>
+<p><strong><code>cob_regiao</code></strong> — cobertura da Tríplice Viral por região (Figura <em>fig-cobertura-regiao</em>).</p>
+<ul>
+<li>Mesma fonte; mesma ressalva.</li>
+</ul>
+</section>
+<section id="capítulo-6-padronização" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="capítulo-6-padronização"><span class="header-section-number">2.5</span> Capítulo 6 — Padronização</h2>
+<p><strong><code>tbn_pad</code></strong> — TBN bruta vs.&nbsp;padronizada por região, Brasil, 2004 (Figura <em>fig-tbn-padronizada</em>).</p>
+<ul>
+<li><strong>Fontes:</strong> IBGE/DATASUS e OPAS (2008) — <em>Indicadores Básicos para a Saúde no Brasil: Conceitos e Aplicações</em>, 2ª ed.</li>
+<li><strong>Ressalva explícita na legenda:</strong> “(valores aproximados — não usar como estatística oficial)”.</li>
+</ul>
+</section>
+<section id="capítulo-7-transição-epidemiológica" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="capítulo-7-transição-epidemiológica"><span class="header-section-number">2.6</span> Capítulo 7 — Transição epidemiológica</h2>
+<p><strong><code>mp_historica</code></strong> — mortalidade proporcional por período, Brasil, 1930–2020 (Figura <em>fig-transicao-mp</em>).</p>
+<ul>
+<li><strong>Fontes:</strong> SIM/DATASUS (para as décadas mais recentes) e Rouquayrol &amp; Gurgel, <em>Epidemiologia e Saúde</em>, 2017 (para a reconstrução histórica).</li>
+<li><strong>Ressalva explícita na legenda:</strong> “(valores aproximados — não usar como estatística oficial)”.</li>
+<li><strong>Natureza:</strong> ordens de grandeza para ilustrar as quatro etapas da transição epidemiológica brasileira.</li>
+</ul>
+</section>
+<section id="capítulo-8-atenção-primária" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="capítulo-8-atenção-primária"><span class="header-section-number">2.7</span> Capítulo 8 — Atenção Primária</h2>
+<p><strong><code>esf</code></strong> — cobertura da Estratégia Saúde da Família 2008–2023 (Figura <em>fig-cobertura-esf</em>).</p>
+<ul>
+<li><strong>Fonte:</strong> e-Gestor AB / Ministério da Saúde.</li>
+<li><strong>URL:</strong> <a href="https://egestorab.saude.gov.br/" class="uri">https://egestorab.saude.gov.br/</a></li>
+<li><strong>Ressalva explícita:</strong> “(valores aproximados — não usar como estatística oficial)”.</li>
+</ul>
+<p><strong><code>icsap</code></strong> — Internações por Condições Sensíveis à Atenção Primária por região, 2010–2020 (Figura <em>fig-icsap</em>).</p>
+<ul>
+<li><strong>Fonte:</strong> SIH/DATASUS — TabNet.</li>
+<li><strong>URL:</strong> <a href="http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sih/cnv/qiuf.def" class="uri">http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sih/cnv/qiuf.def</a></li>
+<li><strong>Ressalva explícita:</strong> “(valores aproximados — não usar como estatística oficial)”.</li>
+</ul>
+<p><strong><code>prenatal</code></strong> — proporção de gestantes com 7+ consultas de pré-natal por região (Figura <em>fig-prenatal</em>).</p>
+<ul>
+<li><strong>Fonte:</strong> SINASC/DATASUS — TabNet.</li>
+<li><strong>Ressalva explícita:</strong> “(valores aproximados — não usar como estatística oficial)”.</li>
+</ul>
+</section>
+<section id="capítulo-9-desigualdades-raciais" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="capítulo-9-desigualdades-raciais"><span class="header-section-number">2.8</span> Capítulo 9 — Desigualdades raciais</h2>
+<p><strong><code>rmm</code></strong> — Razão de Mortalidade Materna por raça/cor (Figura <em>fig-rmm-raca</em>).</p>
+<ul>
+<li><strong>Fonte:</strong> SVS/MS — DATASUS, SIM; Painel de Mortalidade Materna.</li>
+<li><strong>URL:</strong> <a href="https://www.gov.br/saude/pt-br/composicao/svsa/mortalidade-materna" class="uri">https://www.gov.br/saude/pt-br/composicao/svsa/mortalidade-materna</a></li>
+<li><strong>Ressalva explícita:</strong> “(valores aproximados — não usar como estatística oficial)”.</li>
+</ul>
+<p><strong><code>mi_raca</code></strong> — Mortalidade Infantil por raça/cor (Figura <em>fig-mi-raca</em>).</p>
+<ul>
+<li><strong>Fonte:</strong> SVS/MS — DATASUS, SIM/SINASC — TabNet (cruzamento raça/cor do nascido vivo).</li>
+<li><strong>Ressalva explícita:</strong> “(valores aproximados — não usar como estatística oficial)”.</li>
+</ul>
+<p><strong><code>homic</code></strong> — homicídios por raça/cor (Figura <em>fig-homicidios-raca</em>).</p>
+<ul>
+<li><strong>Fonte:</strong> IPEA / FBSP — <em>Atlas da Violência 2023</em>, com dados referentes a 2021.</li>
+<li><strong>URL:</strong> <a href="https://www.ipea.gov.br/atlasviolencia/" class="uri">https://www.ipea.gov.br/atlasviolencia/</a></li>
+<li><strong>Valores exatos verificados no Atlas:</strong> taxa de 31,0 por 100 mil hab. entre negros; 10,8 entre não negros; negros representaram 79% das vítimas.</li>
+</ul>
+</section>
+<section id="capítulo-10-limitações" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="capítulo-10-limitações"><span class="header-section-number">2.9</span> Capítulo 10 — Limitações</h2>
+<p><strong><code>subreg</code></strong> — estimativas de subregistro de óbitos por região (Figura <em>fig-subregistro</em>).</p>
+<ul>
+<li><strong>Fonte:</strong> estimativas baseadas no projeto <em>Busca Ativa de Óbitos e Nascimentos</em>, SVS/MS; e em relatórios técnicos do Ministério da Saúde sobre cobertura do SIM.</li>
+<li><strong>Ressalva explícita:</strong> “(valores aproximados — não usar como estatística oficial)”.</li>
+</ul>
+</section>
+</section>
+<section id="exemplos-hipotéticos-didáticos" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Exemplos hipotéticos (didáticos)</h1>
+<p>Todos os exemplos abaixo são <strong>explicitamente identificados como hipotéticos</strong> na legenda do respectivo gráfico. Existem para isolar o mecanismo epidemiológico que se quer demonstrar, livre do ruído de dados empíricos. Nenhum deles é apresentado como informação sobre o Brasil ou qualquer outro país específico.</p>
+<section id="capítulo-3-eua-câncer-19202011-eua_cancer" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="capítulo-3-eua-câncer-19202011-eua_cancer"><span class="header-section-number">3.1</span> Capítulo 3 — EUA / câncer, 1920–2011 (<code>eua_cancer</code>)</h2>
+<ul>
+<li><strong>Uso didático:</strong> mostrar como contagens absolutas podem exagerar uma tendência que, em taxas por 100 mil hab., é muito mais modesta.</li>
+<li><strong>Base:</strong> exemplo didático adaptado de Gordis, <em>Epidemiology</em>, 5ª ed., 2017.</li>
+<li><strong>Natureza:</strong> “valores ilustrativos aproximados” (explícito na legenda). Não devem ser citados como estatísticas dos EUA.</li>
+</ul>
+</section>
+<section id="capítulo-6-cidades-a-e-b-cidades-pop_padrao-pad_result" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="capítulo-6-cidades-a-e-b-cidades-pop_padrao-pad_result"><span class="header-section-number">3.2</span> Capítulo 6 — Cidades A e B (<code>cidades</code>, <code>pop_padrao</code>, <code>pad_result</code>)</h2>
+<ul>
+<li><strong>Uso didático:</strong> demonstrar, com números redondos, por que taxas brutas enganam e como a padronização corrige o viés de estrutura etária.</li>
+<li><strong>Natureza:</strong> números fabricados para o exercício. O caption da tabela descreve explicitamente o mecanismo pedagógico.</li>
+</ul>
+</section>
+<section id="capítulo-10-bairros-da-cidade-falacia" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="capítulo-10-bairros-da-cidade-falacia"><span class="header-section-number">3.3</span> Capítulo 10 — Bairros da cidade (<code>falacia</code>)</h2>
+<ul>
+<li><strong>Uso didático:</strong> ilustrar a falácia ecológica — um bairro com alta renda e alta violência pode esconder profunda desigualdade interna.</li>
+<li><strong>Caption explícito:</strong> “Dados hipotéticos para fins ilustrativos”.</li>
+</ul>
+</section>
+<section id="capítulo-10-tvs-e-mortalidade-infantil-espuria" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="capítulo-10-tvs-e-mortalidade-infantil-espuria"><span class="header-section-number">3.4</span> Capítulo 10 — TVs e mortalidade infantil (<code>espuria</code>)</h2>
+<ul>
+<li><strong>Uso didático:</strong> ilustrar correlação espúria (ambas variáveis refletem desenvolvimento socioeconômico, não há relação causal entre elas).</li>
+<li><strong>Caption explícito:</strong> “Dados hipotéticos — variável de confusão: renda/desenvolvimento”.</li>
+</ul>
+</section>
+</section>
+<section id="tabelas-conceituais" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Tabelas conceituais</h1>
+<p>Estas não são “dados” em sentido estrito — são <strong>classificações, fórmulas e listas de referência</strong> extraídas da literatura epidemiológica ou da documentação oficial. Listo aqui para completude.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Localização</th>
+<th>Tabela</th>
+<th>Origem da classificação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cap. 1</td>
+<td>Categorias de indicadores (RIPSA/OPAS)</td>
+<td>OPAS, <em>Indicadores Básicos para a Saúde no Brasil</em>, 2ª ed., 2008</td>
+</tr>
+<tr class="even">
+<td>Cap. 1</td>
+<td>Tipos de medida epidemiológica</td>
+<td>Literatura clássica (Last; Rouquayrol; Gordis)</td>
+</tr>
+<tr class="odd">
+<td>Cap. 1</td>
+<td>Sistemas de informação em saúde do Brasil</td>
+<td>Ministério da Saúde — DATASUS</td>
+</tr>
+<tr class="even">
+<td>Cap. 3</td>
+<td>Mortalidades específicas (fórmulas)</td>
+<td>Literatura clássica</td>
+</tr>
+<tr class="odd">
+<td>Cap. 3</td>
+<td>Componentes da mortalidade infantil</td>
+<td>Literatura clássica</td>
+</tr>
+<tr class="even">
+<td>Cap. 3</td>
+<td>CFR vs.&nbsp;IFR (definições)</td>
+<td>Literatura clássica</td>
+</tr>
+<tr class="odd">
+<td>Cap. 4</td>
+<td>Incidência vs.&nbsp;prevalência</td>
+<td>Literatura clássica</td>
+</tr>
+<tr class="even">
+<td>Cap. 4</td>
+<td>Exemplos de doenças de notificação compulsória</td>
+<td>Portaria GM/MS nº 264/2020 e atualizações</td>
+</tr>
+<tr class="odd">
+<td>Cap. 5</td>
+<td>Metas de cobertura vacinal</td>
+<td>Programa Nacional de Imunizações (PNI) / MS</td>
+</tr>
+<tr class="even">
+<td>Cap. 6</td>
+<td>Interpretação do SMR</td>
+<td>Literatura clássica</td>
+</tr>
+<tr class="odd">
+<td>Cap. 7</td>
+<td>Fases da transição epidemiológica</td>
+<td>Omran, AR. <em>The Epidemiologic Transition</em>, 1971</td>
+</tr>
+<tr class="even">
+<td>Cap. 8</td>
+<td>Indicadores do Previne Brasil</td>
+<td>Portaria GM/MS nº 3.222/2019</td>
+</tr>
+<tr class="odd">
+<td>Cap. 9</td>
+<td>Fontes de dados sobre saúde e raça/cor</td>
+<td>Compilação do autor</td>
+</tr>
+<tr class="even">
+<td>Cap. 11</td>
+<td>Boas práticas / dimensões do poder dos dados</td>
+<td>Elaboração do autor</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="funções-auxiliares-rutils.r" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Funções auxiliares (<code>R/utils.R</code>)</h1>
+<p>Todos os capítulos começam com <code>source("../R/utils.R")</code>, que carrega os pacotes, define o tema gráfico padrão e disponibiliza as funções <code>carregar_dados()</code> e <code>fonte_dados()</code> usadas para acessar os <code>.rds</code> e extrair sua fonte documentada. Código completo:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># utils.R — Funções auxiliares para o livreto Indicadores de Saúde</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># ============================================================</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># Pacotes necessários ----</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>pacotes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="st">"tidyverse"</span>,    <span class="co"># manipulação e visualização</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="st">"httr2"</span>,        <span class="co"># requisições HTTP</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="st">"janitor"</span>,      <span class="co"># limpeza de dados</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="st">"scales"</span>,       <span class="co"># formatação de eixos</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="st">"knitr"</span>,        <span class="co"># tabelas</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="st">"kableExtra"</span>,   <span class="co"># tabelas avançadas</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="st">"glue"</span>,         <span class="co"># strings interpoladas</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="st">"patchwork"</span>     <span class="co"># composição de gráficos</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>)</span>
+<span id="cb3-16"><a href="#cb3-16"></a></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co"># Instalar pacotes faltantes</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a>instalar_se_necessario <span class="ot">&lt;-</span> <span class="cf">function</span>(pkgs) {</span>
+<span id="cb3-19"><a href="#cb3-19"></a>  faltantes <span class="ot">&lt;-</span> pkgs[<span class="sc">!</span>pkgs <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">"Package"</span>]]</span>
+<span id="cb3-20"><a href="#cb3-20"></a>  <span class="cf">if</span> (<span class="fu">length</span>(faltantes) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb3-21"><a href="#cb3-21"></a>    <span class="fu">install.packages</span>(faltantes, <span class="at">repos =</span> <span class="st">"https://cran.r-project.org"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22"></a>  }</span>
+<span id="cb3-23"><a href="#cb3-23"></a>}</span>
+<span id="cb3-24"><a href="#cb3-24"></a></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co"># Tema padrão para gráficos ----</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a>tema_indicadores <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">12</span>) {</span>
+<span id="cb3-27"><a href="#cb3-27"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> base_size) <span class="sc">+</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a>    <span class="fu">theme</span>(</span>
+<span id="cb3-29"><a href="#cb3-29"></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> base_size <span class="sc">*</span> <span class="fl">1.2</span>, <span class="at">color =</span> <span class="st">"#2c3e50"</span>),</span>
+<span id="cb3-30"><a href="#cb3-30"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#6c757d"</span>, <span class="at">size =</span> base_size <span class="sc">*</span> <span class="fl">0.9</span>),</span>
+<span id="cb3-31"><a href="#cb3-31"></a>      <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#adb5bd"</span>, <span class="at">size =</span> base_size <span class="sc">*</span> <span class="fl">0.7</span>, <span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb3-32"><a href="#cb3-32"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-33"><a href="#cb3-33"></a>      <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-34"><a href="#cb3-34"></a>      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#495057"</span>),</span>
+<span id="cb3-35"><a href="#cb3-35"></a>      <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#6c757d"</span>),</span>
+<span id="cb3-36"><a href="#cb3-36"></a>      <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb3-37"><a href="#cb3-37"></a>      <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> base_size <span class="sc">*</span> <span class="fl">0.85</span>),</span>
+<span id="cb3-38"><a href="#cb3-38"></a>      <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> base_size <span class="sc">*</span> <span class="fl">0.9</span>)</span>
+<span id="cb3-39"><a href="#cb3-39"></a>    )</span>
+<span id="cb3-40"><a href="#cb3-40"></a>}</span>
+<span id="cb3-41"><a href="#cb3-41"></a></span>
+<span id="cb3-42"><a href="#cb3-42"></a><span class="co"># Paleta de cores padrão ----</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a>cores_indicadores <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-44"><a href="#cb3-44"></a>  <span class="st">"destaque"</span>  <span class="ot">=</span> <span class="st">"#2c7fb8"</span>,</span>
+<span id="cb3-45"><a href="#cb3-45"></a>  <span class="st">"alerta"</span>    <span class="ot">=</span> <span class="st">"#d95f02"</span>,</span>
+<span id="cb3-46"><a href="#cb3-46"></a>  <span class="st">"sucesso"</span>   <span class="ot">=</span> <span class="st">"#1b9e77"</span>,</span>
+<span id="cb3-47"><a href="#cb3-47"></a>  <span class="st">"perigo"</span>    <span class="ot">=</span> <span class="st">"#e31a1c"</span>,</span>
+<span id="cb3-48"><a href="#cb3-48"></a>  <span class="st">"neutro"</span>    <span class="ot">=</span> <span class="st">"#6c757d"</span>,</span>
+<span id="cb3-49"><a href="#cb3-49"></a>  <span class="st">"branca"</span>    <span class="ot">=</span> <span class="st">"#4575b4"</span>,</span>
+<span id="cb3-50"><a href="#cb3-50"></a>  <span class="st">"parda"</span>     <span class="ot">=</span> <span class="st">"#fc8d59"</span>,</span>
+<span id="cb3-51"><a href="#cb3-51"></a>  <span class="st">"preta"</span>     <span class="ot">=</span> <span class="st">"#d73027"</span>,</span>
+<span id="cb3-52"><a href="#cb3-52"></a>  <span class="st">"indigena"</span>  <span class="ot">=</span> <span class="st">"#1a9850"</span>,</span>
+<span id="cb3-53"><a href="#cb3-53"></a>  <span class="st">"amarela"</span>   <span class="ot">=</span> <span class="st">"#fee08b"</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a>)</span>
+<span id="cb3-55"><a href="#cb3-55"></a></span>
+<span id="cb3-56"><a href="#cb3-56"></a><span class="co"># Cores para regiões do Brasil</span></span>
+<span id="cb3-57"><a href="#cb3-57"></a>cores_regioes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-58"><a href="#cb3-58"></a>  <span class="st">"Norte"</span>        <span class="ot">=</span> <span class="st">"#1b9e77"</span>,</span>
+<span id="cb3-59"><a href="#cb3-59"></a>  <span class="st">"Nordeste"</span>     <span class="ot">=</span> <span class="st">"#d95f02"</span>,</span>
+<span id="cb3-60"><a href="#cb3-60"></a>  <span class="st">"Sudeste"</span>      <span class="ot">=</span> <span class="st">"#7570b3"</span>,</span>
+<span id="cb3-61"><a href="#cb3-61"></a>  <span class="st">"Sul"</span>          <span class="ot">=</span> <span class="st">"#e7298a"</span>,</span>
+<span id="cb3-62"><a href="#cb3-62"></a>  <span class="st">"Centro-Oeste"</span> <span class="ot">=</span> <span class="st">"#66a61e"</span></span>
+<span id="cb3-63"><a href="#cb3-63"></a>)</span>
+<span id="cb3-64"><a href="#cb3-64"></a></span>
+<span id="cb3-65"><a href="#cb3-65"></a><span class="co"># Formatar números no padrão brasileiro ----</span></span>
+<span id="cb3-66"><a href="#cb3-66"></a>fmt_br <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">digits =</span> <span class="dv">1</span>) {</span>
+<span id="cb3-67"><a href="#cb3-67"></a>  <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> digits, <span class="at">big.mark =</span> <span class="st">"."</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
+<span id="cb3-68"><a href="#cb3-68"></a>}</span>
+<span id="cb3-69"><a href="#cb3-69"></a></span>
+<span id="cb3-70"><a href="#cb3-70"></a><span class="co"># Tabela formatada padrão ----</span></span>
+<span id="cb3-71"><a href="#cb3-71"></a>tabela_indicador <span class="ot">&lt;-</span> <span class="cf">function</span>(df, <span class="at">caption =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb3-72"><a href="#cb3-72"></a>  <span class="fu">kable</span>(df, <span class="at">caption =</span> caption, <span class="at">align =</span> <span class="st">"l"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-73"><a href="#cb3-73"></a>    <span class="fu">kable_styling</span>(</span>
+<span id="cb3-74"><a href="#cb3-74"></a>      <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
+<span id="cb3-75"><a href="#cb3-75"></a>      <span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-76"><a href="#cb3-76"></a>      <span class="at">font_size =</span> <span class="dv">14</span></span>
+<span id="cb3-77"><a href="#cb3-77"></a>    )</span>
+<span id="cb3-78"><a href="#cb3-78"></a>}</span>
+<span id="cb3-79"><a href="#cb3-79"></a></span>
+<span id="cb3-80"><a href="#cb3-80"></a><span class="co"># Detectar raiz do projeto ----</span></span>
+<span id="cb3-81"><a href="#cb3-81"></a>raiz_projeto <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb3-82"><a href="#cb3-82"></a>  dir <span class="ot">&lt;-</span> <span class="fu">getwd</span>()</span>
+<span id="cb3-83"><a href="#cb3-83"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb3-84"><a href="#cb3-84"></a>    <span class="cf">if</span> (<span class="fu">file.exists</span>(<span class="fu">file.path</span>(dir, <span class="st">"_quarto.yml"</span>))) <span class="fu">return</span>(dir)</span>
+<span id="cb3-85"><a href="#cb3-85"></a>    dir <span class="ot">&lt;-</span> <span class="fu">dirname</span>(dir)</span>
+<span id="cb3-86"><a href="#cb3-86"></a>  }</span>
+<span id="cb3-87"><a href="#cb3-87"></a>  <span class="fu">getwd</span>()</span>
+<span id="cb3-88"><a href="#cb3-88"></a>}</span>
+<span id="cb3-89"><a href="#cb3-89"></a></span>
+<span id="cb3-90"><a href="#cb3-90"></a><span class="co"># Carregar dados reais com metadados ----</span></span>
+<span id="cb3-91"><a href="#cb3-91"></a>carregar_dados <span class="ot">&lt;-</span> <span class="cf">function</span>(nome_arquivo) {</span>
+<span id="cb3-92"><a href="#cb3-92"></a>  caminho <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">raiz_projeto</span>(), <span class="st">"data"</span>, <span class="fu">paste0</span>(nome_arquivo, <span class="st">".rds"</span>))</span>
+<span id="cb3-93"><a href="#cb3-93"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(caminho)) {</span>
+<span id="cb3-94"><a href="#cb3-94"></a>    <span class="fu">stop</span>(<span class="st">"Arquivo de dados não encontrado: "</span>, nome_arquivo,</span>
+<span id="cb3-95"><a href="#cb3-95"></a>         <span class="st">"</span><span class="sc">\n</span><span class="st">Execute Rscript R/obter_dados.R para baixar os dados."</span>)</span>
+<span id="cb3-96"><a href="#cb3-96"></a>  }</span>
+<span id="cb3-97"><a href="#cb3-97"></a>  <span class="fu">readRDS</span>(caminho)</span>
+<span id="cb3-98"><a href="#cb3-98"></a>}</span>
+<span id="cb3-99"><a href="#cb3-99"></a></span>
+<span id="cb3-100"><a href="#cb3-100"></a><span class="co"># Exibir fonte dos dados (string curta para caption de gráficos) ----</span></span>
+<span id="cb3-101"><a href="#cb3-101"></a>fonte_dados <span class="ot">&lt;-</span> <span class="cf">function</span>(nome_arquivo) {</span>
+<span id="cb3-102"><a href="#cb3-102"></a>  caminho <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">raiz_projeto</span>(), <span class="st">"data"</span>, <span class="fu">paste0</span>(nome_arquivo, <span class="st">".rds"</span>))</span>
+<span id="cb3-103"><a href="#cb3-103"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(caminho)) <span class="fu">return</span>(<span class="st">"Fonte: dados não encontrados"</span>)</span>
+<span id="cb3-104"><a href="#cb3-104"></a>  df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(caminho)</span>
+<span id="cb3-105"><a href="#cb3-105"></a>  fonte <span class="ot">&lt;-</span> <span class="fu">attr</span>(df, <span class="st">"fonte"</span>)</span>
+<span id="cb3-106"><a href="#cb3-106"></a>  tabela <span class="ot">&lt;-</span> <span class="fu">attr</span>(df, <span class="st">"tabela"</span>)</span>
+<span id="cb3-107"><a href="#cb3-107"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(fonte)) fonte <span class="ot">&lt;-</span> <span class="st">"Não informada"</span></span>
+<span id="cb3-108"><a href="#cb3-108"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(tabela)) tabela <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb3-109"><a href="#cb3-109"></a>  <span class="fu">paste0</span>(<span class="st">"Fonte: "</span>, fonte, <span class="st">" | "</span>, tabela)</span>
+<span id="cb3-110"><a href="#cb3-110"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="software-e-reprodutibilidade" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Software e reprodutibilidade</h1>
+<p>Todo o processamento é executado em <strong>R</strong> (≥ 4.2) a partir dos arquivos <code>.qmd</code>. Dependências declaradas em <code>R/utils.R</code>:</p>
+<ul>
+<li><code>tidyverse</code>, <code>scales</code>, <code>knitr</code>, <code>kableExtra</code>, <code>glue</code>, <code>patchwork</code></li>
+<li><code>sidrar</code> (apenas para <code>R/obter_dados.R</code>)</li>
+<li><code>httr2</code>, <code>janitor</code> (utilitários)</li>
+</ul>
+<p>O livro é compilado com <strong>Quarto</strong> (≥ 1.4), e o <code>freeze: auto</code> garante que gráficos cached não sejam re-renderizados quando os dados não mudam.</p>
+</section>
+<section id="limitações-assumidas" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Limitações assumidas</h1>
+<ol type="1">
+<li><strong>Projeções ≠ observações.</strong> Os indicadores das tabelas SIDRA 7360 e 7362 são projeções demográficas do IBGE (Revisão 2018), não medições diretas. Para dados observados, consulte o SIM/SINASC via TabNet.</li>
+<li><strong>Valores aproximados em figuras.</strong> Sempre que uma figura usa valores manualmente transcritos, a legenda o declara explicitamente. Não use esses números como referência numérica primária em trabalhos científicos — consulte sempre a fonte original citada.</li>
+<li><strong>Dados hipotéticos.</strong> Os exemplos dos Capítulos 3, 6 e 10 listados na seção anterior são didáticos e estão marcados como tais. Não representam nenhuma realidade empírica.</li>
+<li><strong>Defasagem temporal.</strong> A data de coleta dos dados via SIDRA está registrada no atributo <code>data_coleta</code> de cada <code>.rds</code>. Boletins e relatórios nacionais podem ter sido atualizados após a redação dos capítulos.</li>
+</ol>
+</section>
+<section id="como-consultar-a-fonte-de-um-dado-específico" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Como consultar a fonte de um dado específico</h1>
+<p>Para qualquer figura ou tabela do livro, a fonte pode ser recuperada por:</p>
+<ol type="1">
+<li><strong>Legenda do gráfico</strong> — sempre inclui a fonte e, quando aplicável, a ressalva “valores aproximados — não usar como estatística oficial” ou “dados hipotéticos”.</li>
+<li><strong>Comentário no código-fonte</strong> — todo <code>tribble</code> é precedido por um comentário que identifica a fonte.</li>
+<li><strong>Atributos do arquivo <code>.rds</code></strong> — para dados extraídos via <code>R/obter_dados.R</code>.</li>
+<li><strong>Este documento</strong>, que consolida tudo em um só lugar.</li>
+</ol>
+<section id="demonstração-ao-vivo-inspecionando-os-metadados" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="demonstração-ao-vivo-inspecionando-os-metadados"><span class="header-section-number">8.1</span> Demonstração ao vivo: inspecionando os metadados</h2>
+<p>O bloco abaixo é <strong>executado de verdade</strong> a cada renderização do site. Ele lê um dos <code>.rds</code> extraídos via API e imprime os metadados que o script de coleta gravou:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/tft_brasil.rds"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">cat</span>(<span class="st">"Fonte      :"</span>, <span class="fu">attr</span>(dados, <span class="st">"fonte"</span>),       <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Fonte      : IBGE — Projeções da População do Brasil (Revisão 2018)</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">cat</span>(<span class="st">"Tabela     :"</span>, <span class="fu">attr</span>(dados, <span class="st">"tabela"</span>),      <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Tabela     : SIDRA 7360 — Variável: Taxa de fecundidade total</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">cat</span>(<span class="st">"URL        :"</span>, <span class="fu">attr</span>(dados, <span class="st">"url"</span>),         <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; URL        : https://sidra.ibge.gov.br/tabela/7360</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">cat</span>(<span class="st">"Descrição  :"</span>, <span class="fu">attr</span>(dados, <span class="st">"descricao"</span>),   <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Descrição  : Taxa de Fecundidade Total (filhos por mulher) — Brasil, série 2000-2060</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">cat</span>(<span class="st">"Data coleta:"</span>, <span class="fu">format</span>(<span class="fu">attr</span>(dados, <span class="st">"data_coleta"</span>)), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Data coleta: 2026-03-12</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">cat</span>(<span class="st">"Linhas     :"</span>, <span class="fu">nrow</span>(dados),                <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Linhas     : 61</code></pre>
+</div>
+</div>
+<p>E aqui estão as primeiras linhas do próprio conteúdo:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">head</span>(dados, <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Ano"</span>, <span class="st">"TFT (filhos por mulher)"</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Ano</th>
+<th style="text-align: right;">TFT (filhos por mulher)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2.32</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2001</td>
+<td style="text-align: right;">2.15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">2.07</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2003</td>
+<td style="text-align: right;">2.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2004</td>
+<td style="text-align: right;">1.97</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2005</td>
+<td style="text-align: right;">1.95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">1.88</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2007</td>
+<td style="text-align: right;">1.82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">1.82</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">1.77</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="inventário-automático-dos-arquivos-em-data" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="inventário-automático-dos-arquivos-em-data"><span class="header-section-number">8.2</span> Inventário automático dos arquivos em <code>data/</code></h2>
+<p>A tabela a seguir é <strong>gerada automaticamente</strong> a partir da pasta <code>data/</code> no momento da renderização. Se um novo <code>.rds</code> for adicionado (e vier acompanhado dos atributos padronizados de <code>salvar_dados()</code>), ele aparece aqui sem qualquer edição manual deste documento:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>arquivos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"data"</span>, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.rds$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>inventario <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dfr</span>(arquivos, <span class="cf">function</span>(f) {</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(f)</span>
+<span id="cb17-5"><a href="#cb17-5"></a>  dc <span class="ot">&lt;-</span> <span class="fu">attr</span>(df, <span class="st">"data_coleta"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6"></a>  tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb17-7"><a href="#cb17-7"></a>    <span class="at">Arquivo       =</span> <span class="fu">basename</span>(f),</span>
+<span id="cb17-8"><a href="#cb17-8"></a>    <span class="at">Linhas        =</span> <span class="fu">nrow</span>(df),</span>
+<span id="cb17-9"><a href="#cb17-9"></a>    <span class="at">Fonte         =</span> <span class="fu">ou_travessao</span>(<span class="fu">attr</span>(df, <span class="st">"fonte"</span>)),</span>
+<span id="cb17-10"><a href="#cb17-10"></a>    <span class="at">Tabela        =</span> <span class="fu">ou_travessao</span>(<span class="fu">attr</span>(df, <span class="st">"tabela"</span>)),</span>
+<span id="cb17-11"><a href="#cb17-11"></a>    <span class="st">`</span><span class="at">Data coleta</span><span class="st">`</span> <span class="ot">=</span> <span class="cf">if</span> (<span class="fu">is.null</span>(dc)) <span class="st">"—"</span> <span class="cf">else</span> <span class="fu">format</span>(dc)</span>
+<span id="cb17-12"><a href="#cb17-12"></a>  )</span>
+<span id="cb17-13"><a href="#cb17-13"></a>})</span>
+<span id="cb17-14"><a href="#cb17-14"></a></span>
+<span id="cb17-15"><a href="#cb17-15"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(inventario)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 4%">
+<col style="width: 36%">
+<col style="width: 34%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Arquivo</th>
+<th style="text-align: right;">Linhas</th>
+<th style="text-align: left;">Fonte</th>
+<th style="text-align: left;">Tabela</th>
+<th style="text-align: left;">Data coleta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ev_brasil.rds</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7362 — Variável: Esperança de vida ao nascer</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ie_brasil.rds</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7360 — Variável: Índice de envelhecimento</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mi_brasil.rds</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7362 — Variável: Taxa de mortalidade infantil</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mi_regiao.rds</td>
+<td style="text-align: right;">305</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7362 — MI por Grande Região</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nascimentos_brasil.rds</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7360 — Variável: Nascimentos</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">piramide_brasil.rds</td>
+<td style="text-align: right;">1074</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7358 — População por grupo de idade e sexo</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rd_brasil.rds</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7360 — Variável: Razão de dependência total</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tbm_brasil.rds</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7360 — Variável: Taxa bruta de mortalidade</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tbm_regiao.rds</td>
+<td style="text-align: right;">255</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7360 — TBM por Grande Região</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tbn_brasil.rds</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7360 — Variável: Taxa bruta de natalidade</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tbn_regiao.rds</td>
+<td style="text-align: right;">305</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7360 — TBN por Grande Região</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tft_brasil.rds</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7360 — Variável: Taxa de fecundidade total</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tft_regiao.rds</td>
+<td style="text-align: right;">305</td>
+<td style="text-align: left;">IBGE — Projeções da População do Brasil (Revisão 2018)</td>
+<td style="text-align: left;">SIDRA 7360 — TFT por Grande Região</td>
+<td style="text-align: left;">2026-03-12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> De volta ao topo</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/henriquealvarenga\.com\/indicadores");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./references.html" class="pagination-link" aria-label="Referências Bibliográficas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Referências Bibliográficas</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./about.html" class="pagination-link" aria-label="Sobre este livro">
+        <span class="nav-page-text">Sobre este livro</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Indicadores de Saúde<br>© 2026 <a href="https://henriquealvarenga.com">Henrique Alvarenga da Silva</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p>Material didático de acesso livre — edição do autor</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/henriquealvarenga/indicadores-de-saude/edit/main/metodologia.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/henriquealvarenga/indicadores-de-saude/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Feito com <a href="https://quarto.org/">Quarto</a> e <a href="https://www.r-project.org/">R</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

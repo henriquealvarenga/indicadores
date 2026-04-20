@@ -1,64 +1,122 @@
 project:
-  type: book
+  type: website
   output-dir: docs
 
 lang: pt-BR
 
-book:
-  title: "Indicadores de Saúde"
-  subtitle: "Conceitos, Métodos e Aplicações com Dados do Brasil"
-  author:
-    - name: "Prof. Henrique Alvarenga da Silva"
-      affiliation: "UNIPTAN (AFYA)"
-      orcid: ""
-  date: today
-  date-format: "DD/MM/YYYY"
+language:
+  search-no-results-text: "Nenhum resultado"
+  search-matching-documents-text: "documentos correspondentes"
+  search-copy-link-title: "Copiar link para a busca"
+  search-hide-matches-text: "Esconder correspondências adicionais"
+  search-more-match-text: "mais correspondência neste documento"
+  search-more-matches-text: "mais correspondências neste documento"
+  search-clear-button-title: "Limpar"
+  search-text-placeholder: ""
+  search-detached-cancel-button-title: "Cancelar"
+  search-submit-button-title: "Enviar"
+  search-label: "Procurar"
 
-  reader-mode: true
-  page-navigation: true
-  back-to-top-navigation: true
-  search: true
+website:
+  title: "Indicadores de Saúde"
+  description: |
+    Conceitos, métodos e aplicações com dados do Brasil.
+    Material didático sobre indicadores de saúde, com exemplos reproduzíveis em R.
+  site-url: https://henriquealvarenga.com/indicadores
   repo-url: https://github.com/henriquealvarenga/indicadores-de-saude
   repo-actions: [edit, issue]
-  sharing: [twitter, facebook, linkedin]
+  reader-mode: false
+  back-to-top-navigation: true
+  page-navigation: true
+  search:
+    location: navbar
+    type: overlay
+    copy-button: false
+
+  navbar:
+    background: dark
+    pinned: true
+    collapse-below: lg
+    logo: images/logo.svg
+    logo-alt: "Indicadores de Saúde"
+    title: false
+    left:
+      - text: "<i class='bi bi-house'></i> Início"
+        href: index.qmd
+      - text: "Fundamentos"
+        menu:
+          - text: "<i class='bi bi-book'></i> O que são indicadores de saúde?"
+            href: chapters/01-introducao.qmd
+          - text: "<i class='bi bi-gender-female'></i> Fecundidade e natalidade"
+            href: chapters/02-fecundidade-natalidade.qmd
+          - text: "<i class='bi bi-heart-pulse'></i> Mortalidade"
+            href: chapters/03-mortalidade.qmd
+      - text: "Indicadores Avançados"
+        menu:
+          - text: "<i class='bi bi-thermometer-half'></i> Morbidade"
+            href: chapters/04-morbidade.qmd
+          - text: "<i class='bi bi-shield-plus'></i> Cobertura vacinal"
+            href: chapters/05-cobertura-vacinal.qmd
+          - text: "<i class='bi bi-rulers'></i> Padronização de taxas"
+            href: chapters/06-padronizacao.qmd
+      - text: "Contexto Brasileiro"
+        menu:
+          - text: "<i class='bi bi-arrow-repeat'></i> Transição epidemiológica"
+            href: chapters/07-transicao-epidemiologica.qmd
+          - text: "<i class='bi bi-geo-alt'></i> Atenção Primária à Saúde"
+            href: chapters/08-atencao-primaria.qmd
+          - text: "<i class='bi bi-people'></i> Desigualdades raciais"
+            href: chapters/09-desigualdades-raca.qmd
+      - text: "Pensamento Crítico"
+        menu:
+          - text: "<i class='bi bi-exclamation-diamond'></i> Limitações dos indicadores"
+            href: chapters/10-limitacoes.qmd
+          - text: "<i class='bi bi-check-circle'></i> Uso responsável dos dados"
+            href: chapters/11-uso-responsavel.qmd
+      - text: "Referências"
+        href: references.qmd
+    right:
+      - text: "<i class='bi bi-clipboard-data'></i> Metodologia"
+        href: metodologia.qmd
+      - text: "<i class='bi bi-info-circle'></i> Sobre"
+        href: about.qmd
 
   sidebar:
-    style: docked
-    background: light
-    logo: images/logo.png
+    style: floating
+    align: left
     collapse-level: 2
+    contents:
+      - section: "Fundamentos"
+        contents:
+          - chapters/01-introducao.qmd
+          - chapters/02-fecundidade-natalidade.qmd
+          - chapters/03-mortalidade.qmd
+      - section: "Indicadores Avançados"
+        contents:
+          - chapters/04-morbidade.qmd
+          - chapters/05-cobertura-vacinal.qmd
+          - chapters/06-padronizacao.qmd
+      - section: "Contexto Brasileiro"
+        contents:
+          - chapters/07-transicao-epidemiologica.qmd
+          - chapters/08-atencao-primaria.qmd
+          - chapters/09-desigualdades-raca.qmd
+      - section: "Pensamento Crítico"
+        contents:
+          - chapters/10-limitacoes.qmd
+          - chapters/11-uso-responsavel.qmd
+      - references.qmd
+      - metodologia.qmd
+      - about.qmd
 
   page-footer:
+    background: light
     left: |
-      Indicadores de Saúde — UNIPTAN (AFYA)
+      Indicadores de Saúde<br>© 2026 [Henrique Alvarenga da Silva](https://henriquealvarenga.com)
     center: |
-      Material de apoio para Métodos Científicos em Medicina 2
+      Material didático de acesso livre — edição do autor
     right: |
-      Construído com [Quarto](https://quarto.org/)
-
-  chapters:
-    - index.qmd
-    - part: "Fundamentos"
-      chapters:
-        - chapters/01-introducao.qmd
-        - chapters/02-fecundidade-natalidade.qmd
-        - chapters/03-mortalidade.qmd
-    - part: "Indicadores Avançados"
-      chapters:
-        - chapters/04-morbidade.qmd
-        - chapters/05-cobertura-vacinal.qmd
-        - chapters/06-padronizacao.qmd
-    - part: "Contexto Brasileiro"
-      chapters:
-        - chapters/07-transicao-epidemiologica.qmd
-        - chapters/08-atencao-primaria.qmd
-        - chapters/09-desigualdades-raca.qmd
-    - part: "Pensamento Crítico"
-      chapters:
-        - chapters/10-limitacoes.qmd
-        - chapters/11-uso-responsavel.qmd
-    - references.qmd
-    - about.qmd
+      Feito com [Quarto](https://quarto.org/) e [R](https://www.r-project.org/)
 
 bibliography: references.bib
 csl: references/csl_styles/ABNT.csl
@@ -76,7 +134,7 @@ format:
     number-depth: 3
     code-fold: true
     code-summary: "Mostrar código R"
-    code-tools: true
+    code-tools: false
     code-overflow: wrap
     code-line-numbers: true
     highlight-style: github
@@ -86,7 +144,7 @@ format:
     fig-height: 5
     df-print: kable
     smooth-scroll: true
-    link-external-icon: true
+    link-external-icon: false
     link-external-newwindow: true
     fontsize: 1rem
     linestretch: 1.6

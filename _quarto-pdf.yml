@@ -1,0 +1,62 @@
+# Perfil PDF — ativado apenas com: quarto render --profile pdf
+# Sem esse flag, o Quarto ignora este arquivo e continua usando só _quarto.yml.
+
+project:
+  type: book
+
+book:
+  title: "Indicadores de Saúde"
+  subtitle: "Conceitos, Métodos e Aplicações com Dados do Brasil"
+  author: "Prof. Henrique Alvarenga da Silva"
+  date: today
+  date-format: "DD/MM/YYYY"
+  output-file: "indicadores-de-saude"
+  chapters:
+    - index.qmd
+    - part: "Fundamentos"
+      chapters:
+        - chapters/01-introducao.qmd
+        - chapters/02-fecundidade-natalidade.qmd
+        - chapters/03-mortalidade.qmd
+    - part: "Indicadores Avançados"
+      chapters:
+        - chapters/04-morbidade.qmd
+        - chapters/05-cobertura-vacinal.qmd
+        - chapters/06-padronizacao.qmd
+    - part: "Contexto Brasileiro"
+      chapters:
+        - chapters/07-transicao-epidemiologica.qmd
+        - chapters/08-atencao-primaria.qmd
+        - chapters/09-desigualdades-raca.qmd
+    - part: "Pensamento Crítico"
+      chapters:
+        - chapters/10-limitacoes.qmd
+        - chapters/11-uso-responsavel.qmd
+    - references.qmd
+
+format:
+  pdf:
+    documentclass: scrbook
+    classoption:
+      - oneside
+      - open=any
+    papersize: A4
+    geometry:
+      - inner=2.8cm
+      - outer=2.3cm
+      - top=2.5cm
+      - bottom=2.5cm
+    fontsize: 11pt
+    linestretch: 1.3
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    number-depth: 2
+    colorlinks: true
+    fig-pos: "H"
+    fig-align: center
+    code-overflow: wrap
+    code-line-numbers: false
+    code-fold: false
+    keep-tex: false
+    lang: pt-BR

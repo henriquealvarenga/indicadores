@@ -89,7 +89,7 @@ ggplot(cob_long, aes(x = ano, y = cobertura, color = vacina)) +
     title = "Queda da cobertura vacinal no Brasil (2010–2023)",
     subtitle = "Nenhuma das três vacinas atingiu a meta de 95% nos últimos 5 anos",
     x = "Ano", y = "Cobertura (%)", color = "Vacina",
-    caption = "Fonte: SI-PNI / DATASUS (valores aproximados)"
+    caption = "Fonte: SI-PNI / DATASUS (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores()
 ```
@@ -129,7 +129,7 @@ ggplot(cob_regiao, aes(x = reorder(regiao, cobertura), y = cobertura, fill = reg
     title = "Desigualdade regional na cobertura vacinal",
     subtitle = "Nenhuma região atingiu a meta de 95% para Tríplice Viral em 2023",
     x = NULL, y = "Cobertura (%)",
-    caption = "Fonte: SI-PNI / DATASUS (dados aproximados)"
+    caption = "Fonte: SI-PNI / DATASUS (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores() +
   theme(legend.position = "none")

@@ -1,0 +1,335 @@
+---
+title: "Metodologia e Fontes dos Dados"
+toc: true
+toc-depth: 3
+number-sections: true
+code-fold: false
+code-line-numbers: true
+---
+
+```{r}
+#| label: setup-metodologia
+#| include: false
+source("R/utils.R")
+library(dplyr)
+library(tibble)
+library(purrr)
+library(knitr)
+library(kableExtra)
+
+# Helper para lidar com atributos ausentes (compatível com R >= 4.2)
+ou_travessao <- function(x) if (is.null(x) || length(x) == 0) "—" else as.character(x)
+```
+
+Este documento descreve, com precisão, a origem de cada dado utilizado no livreto *Indicadores de Saúde — Conceitos, Métodos e Aplicações com Dados do Brasil*. Compromissos editoriais:
+
+1. **Dados extraídos via API** de fontes públicas têm a origem documentada, com tabela, URL e data de acesso; são reproduzíveis a partir do código disponível no repositório.
+2. **Dados transcritos manualmente de fontes públicas** (por indisponibilidade de API ou por requererem consulta interativa) trazem a citação completa da fonte original e a ressalva de que os valores exibidos são aproximados e **não devem ser usados como estatística oficial** — para uso científico ou regulatório, o leitor é sempre orientado a consultar a fonte primária.
+3. **Dados hipotéticos ou ilustrativos**, quando usados para fins exclusivamente didáticos (demonstrar um conceito epidemiológico), estão **explicitamente identificados como tais** na legenda do gráfico correspondente e repetidos aqui com a mesma ressalva.
+4. **Tabelas conceituais** (classificações, fórmulas, listas de referência) são apresentadas como conteúdo didático, não como dados empíricos, e citam a fonte da classificação quando aplicável.
+
+Por opção editorial, este livro não faz afirmação genérica de que os valores exibidos são "dados reais" ou "estatísticas oficiais". O leitor interessado em precisão numérica deve consultar diretamente as fontes citadas em cada figura e no inventário deste documento.
+
+# Dados extraídos via API (reproduzíveis)
+
+Estes dados são obtidos automaticamente pelo script [`R/obter_dados.R`](https://github.com/henriquealvarenga/indicadores-de-saude/blob/main/R/obter_dados.R), que usa o pacote [`sidrar`](https://cran.r-project.org/package=sidrar) para consultar a API pública do IBGE/SIDRA. Cada arquivo `.rds` gerado carrega atributos com `fonte`, `tabela`, `url`, `descricao` e `data_coleta`, inspecionáveis via `attributes(readRDS("data/<arquivo>.rds"))`.
+
+**Para reproduzir a coleta:**
+
+```bash
+Rscript R/obter_dados.R
+```
+
+### Código completo do script de coleta
+
+O código abaixo é **lido diretamente** do arquivo `R/obter_dados.R` a cada renderização do site — portanto, representa sempre a versão mais atual que gerou os dados em `data/`.
+
+```{r}
+#| file: R/obter_dados.R
+#| eval: false
+```
+
+## IBGE — Tabela SIDRA 7360 (Projeções da População do Brasil, Revisão 2018)
+
+**URL da tabela:** <https://sidra.ibge.gov.br/tabela/7360>
+
+Variáveis extraídas para o nível Brasil e para cada Grande Região (Norte, Nordeste, Sudeste, Sul, Centro-Oeste):
+
+| Arquivo (`data/`) | Indicador | Série | Usado em |
+|---|---|---|---|
+| `tft_brasil.rds` | Taxa de Fecundidade Total — filhos por mulher | 2000–2060 | Cap. 2 |
+| `tft_regiao.rds` | TFT por Grande Região | 2000–2060 | Cap. 2 |
+| `tbn_brasil.rds` | Taxa Bruta de Natalidade (por 1.000 hab.) | 2000–2060 | Cap. 2 |
+| `tbn_regiao.rds` | TBN por Grande Região | 2000–2060 | Cap. 2 |
+| `tbm_brasil.rds` | Taxa Bruta de Mortalidade (por 1.000 hab.) | 2010–2060 | Cap. 3 |
+| `tbm_regiao.rds` | TBM por Grande Região | 2010–2060 | (reserva) |
+| `ie_brasil.rds` | Índice de Envelhecimento | série | (reserva) |
+| `rd_brasil.rds` | Razão de Dependência Total | série | (reserva) |
+| `nascimentos_brasil.rds` | Nascimentos projetados | série | (reserva) |
+
+## IBGE — Tabela SIDRA 7362 (Mortalidade Infantil e Esperança de Vida)
+
+**URL da tabela:** <https://sidra.ibge.gov.br/tabela/7362>
+
+| Arquivo | Indicador | Observação | Usado em |
+|---|---|---|---|
+| `mi_brasil.rds` | Taxa de Mortalidade Infantil — por 1.000 NV | **Projeções** do IBGE, não dados observados do SIM | Cap. 3 |
+| `mi_regiao.rds` | MI por Grande Região | Projeções | Cap. 3 |
+| `ev_brasil.rds` | Esperança de vida ao nascer (total, masculino, feminino) | Projeções | Cap. 3 |
+
+Nota importante sobre MI: os valores representam as **projeções demográficas** da Revisão 2018 do IBGE. Para a mortalidade infantil observada (com base nos registros efetivos do SIM/SINASC), é necessário consultar o TabNet/DATASUS. A distinção está explicada no atributo `notas` do arquivo `mi_brasil.rds`.
+
+## IBGE — Tabela SIDRA 7358 (População por grupo de idade e sexo)
+
+**URL da tabela:** <https://sidra.ibge.gov.br/tabela/7358>
+
+| Arquivo | Indicador | Anos filtrados | Usado em |
+|---|---|---|---|
+| `piramide_brasil.rds` | População por faixa etária e sexo (projeções) | 2000, 2010, 2020, 2030, 2040 | Cap. 7 |
+
+# Dados transcritos manualmente de fontes públicas
+
+Os indicadores abaixo foram **consultados nas fontes públicas** indicadas, mas digitados como `tribble` no próprio capítulo. Isso ocorre quando (a) a fonte não oferece API pública acessível via `sidrar`/CRAN; (b) a consulta requer navegação interativa no TabNet; ou (c) o dado foi extraído de relatórios/boletins em PDF. Em todos os casos, a **origem primária** é citada no código e na legenda do gráfico, acompanhada da ressalva de que os valores mostrados são aproximados e **não devem ser usados como estatística oficial**.
+
+## Capítulo 2 — Comparação internacional de TFT
+
+**`tft_paises`** (Figura *fig-tft-internacional*).
+
+- **Fonte primária:** ONU — *World Population Prospects 2022*.
+- **URL:** <https://population.un.org/wpp/>
+- **Brasil:** IBGE Projeções 2018 (coerência com os demais dados do capítulo).
+- **Natureza:** valores oficiais do relatório WPP 2022, selecionados para ilustrar o intervalo global de TFT (Níger, Nigéria, Índia, EUA, Brasil, Canadá, Japão, Coreia do Sul).
+
+## Capítulo 3 — Mortalidade
+
+**`mp_brasil`** — mortalidade proporcional por grupo de causas, Brasil, 2022 (Figura *fig-mp-brasil*).
+
+- **Fonte:** SIM/DATASUS, TabNet Mortalidade por Capítulo CID-10, ano 2022.
+- **URL:** <http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10uf.def>
+- **Ressalva explícita na legenda:** "(valores aproximados — não usar como estatística oficial)". A tabela reflete as ordens de grandeza consolidadas do TabNet à época da redação; para qualquer uso em trabalho científico, acadêmico ou decisório, a consulta direta ao TabNet é indispensável.
+
+**`daly_brasil`** — principais causas de DALYs no Brasil (Figura *fig-daly-brasil*).
+
+- **Fonte:** IHME — *Global Burden of Disease Study 2019*.
+- **URL:** <https://vizhub.healthdata.org/gbd-compare/>
+- **Ressalva explícita:** "valores ilustrativos baseados em GBD 2019 — IHME. Ordem de magnitude aproximada — consulte o GBD Results Tool para dados exatos."
+- **Natureza:** valores ordenados por magnitude, fiéis à hierarquia de causas do GBD 2019; os números em milhares são aproximações editoriais para fins didáticos.
+
+## Capítulo 4 — Morbidade
+
+**`dengue`** — série histórica 2010–2024 (Figura *fig-dengue-incidencia*).
+
+- **Fonte primária:** SINAN/SVS/Ministério da Saúde — Série histórica de casos prováveis.
+- **Complementação:** Boletins Epidemiológicos da SVS e consolidação final de 2024 (Agência Brasil).
+- **Natureza:** contagem de casos prováveis (em milhares) e população (IBGE projeções) transcrita dos boletins; a incidência por 100 mil hab. foi calculada a partir desses valores.
+- **Observação:** o ano de 2024 aparece como preliminar na legenda.
+
+**`dcnt`** — prevalência de DCNTs em adultos brasileiros (Figura *fig-prevalencia-dcnt*).
+
+- **Fontes primárias:** IBGE — *Pesquisa Nacional de Saúde* (PNS) 2019, e SVS/MS — *Vigitel* 2023.
+- **Valores exatos verificados:**
+  - PNS 2019: hipertensão 23,9%; diabetes 7,7%; depressão 10,2%; asma 5,3%; DRC 1,4% (autodeclaração de diagnóstico médico).
+  - Vigitel 2023: obesidade 24,3%.
+- **URLs:** <https://www.ibge.gov.br/estatisticas/sociais/saude/9160-pesquisa-nacional-de-saude.html>; <https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/vigitel>
+
+## Capítulo 5 — Cobertura vacinal
+
+**`cob_vacinal`** — cobertura histórica 2010–2023, vacinas Tríplice Viral, Poliomielite e Pentavalente (Figura *fig-cobertura-historica*).
+
+- **Fonte:** SI-PNI / DATASUS — TabNet, Coberturas Vacinais.
+- **URL:** <http://tabnet.datasus.gov.br/cgi/deftohtm.exe?pni/cnv/cpniuf.def>
+- **Ressalva explícita na legenda:** "(valores aproximados — não usar como estatística oficial)".
+
+**`cob_regiao`** — cobertura da Tríplice Viral por região (Figura *fig-cobertura-regiao*).
+
+- Mesma fonte; mesma ressalva.
+
+## Capítulo 6 — Padronização
+
+**`tbn_pad`** — TBN bruta vs. padronizada por região, Brasil, 2004 (Figura *fig-tbn-padronizada*).
+
+- **Fontes:** IBGE/DATASUS e OPAS (2008) — *Indicadores Básicos para a Saúde no Brasil: Conceitos e Aplicações*, 2ª ed.
+- **Ressalva explícita na legenda:** "(valores aproximados — não usar como estatística oficial)".
+
+## Capítulo 7 — Transição epidemiológica
+
+**`mp_historica`** — mortalidade proporcional por período, Brasil, 1930–2020 (Figura *fig-transicao-mp*).
+
+- **Fontes:** SIM/DATASUS (para as décadas mais recentes) e Rouquayrol & Gurgel, *Epidemiologia e Saúde*, 2017 (para a reconstrução histórica).
+- **Ressalva explícita na legenda:** "(valores aproximados — não usar como estatística oficial)".
+- **Natureza:** ordens de grandeza para ilustrar as quatro etapas da transição epidemiológica brasileira.
+
+## Capítulo 8 — Atenção Primária
+
+**`esf`** — cobertura da Estratégia Saúde da Família 2008–2023 (Figura *fig-cobertura-esf*).
+
+- **Fonte:** e-Gestor AB / Ministério da Saúde.
+- **URL:** <https://egestorab.saude.gov.br/>
+- **Ressalva explícita:** "(valores aproximados — não usar como estatística oficial)".
+
+**`icsap`** — Internações por Condições Sensíveis à Atenção Primária por região, 2010–2020 (Figura *fig-icsap*).
+
+- **Fonte:** SIH/DATASUS — TabNet.
+- **URL:** <http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sih/cnv/qiuf.def>
+- **Ressalva explícita:** "(valores aproximados — não usar como estatística oficial)".
+
+**`prenatal`** — proporção de gestantes com 7+ consultas de pré-natal por região (Figura *fig-prenatal*).
+
+- **Fonte:** SINASC/DATASUS — TabNet.
+- **Ressalva explícita:** "(valores aproximados — não usar como estatística oficial)".
+
+## Capítulo 9 — Desigualdades raciais
+
+**`rmm`** — Razão de Mortalidade Materna por raça/cor (Figura *fig-rmm-raca*).
+
+- **Fonte:** SVS/MS — DATASUS, SIM; Painel de Mortalidade Materna.
+- **URL:** <https://www.gov.br/saude/pt-br/composicao/svsa/mortalidade-materna>
+- **Ressalva explícita:** "(valores aproximados — não usar como estatística oficial)".
+
+**`mi_raca`** — Mortalidade Infantil por raça/cor (Figura *fig-mi-raca*).
+
+- **Fonte:** SVS/MS — DATASUS, SIM/SINASC — TabNet (cruzamento raça/cor do nascido vivo).
+- **Ressalva explícita:** "(valores aproximados — não usar como estatística oficial)".
+
+**`homic`** — homicídios por raça/cor (Figura *fig-homicidios-raca*).
+
+- **Fonte:** IPEA / FBSP — *Atlas da Violência 2023*, com dados referentes a 2021.
+- **URL:** <https://www.ipea.gov.br/atlasviolencia/>
+- **Valores exatos verificados no Atlas:** taxa de 31,0 por 100 mil hab. entre negros; 10,8 entre não negros; negros representaram 79% das vítimas.
+
+## Capítulo 10 — Limitações
+
+**`subreg`** — estimativas de subregistro de óbitos por região (Figura *fig-subregistro*).
+
+- **Fonte:** estimativas baseadas no projeto *Busca Ativa de Óbitos e Nascimentos*, SVS/MS; e em relatórios técnicos do Ministério da Saúde sobre cobertura do SIM.
+- **Ressalva explícita:** "(valores aproximados — não usar como estatística oficial)".
+
+# Exemplos hipotéticos (didáticos)
+
+Todos os exemplos abaixo são **explicitamente identificados como hipotéticos** na legenda do respectivo gráfico. Existem para isolar o mecanismo epidemiológico que se quer demonstrar, livre do ruído de dados empíricos. Nenhum deles é apresentado como informação sobre o Brasil ou qualquer outro país específico.
+
+## Capítulo 3 — EUA / câncer, 1920–2011 (`eua_cancer`)
+
+- **Uso didático:** mostrar como contagens absolutas podem exagerar uma tendência que, em taxas por 100 mil hab., é muito mais modesta.
+- **Base:** exemplo didático adaptado de Gordis, *Epidemiology*, 5ª ed., 2017.
+- **Natureza:** "valores ilustrativos aproximados" (explícito na legenda). Não devem ser citados como estatísticas dos EUA.
+
+## Capítulo 6 — Cidades A e B (`cidades`, `pop_padrao`, `pad_result`)
+
+- **Uso didático:** demonstrar, com números redondos, por que taxas brutas enganam e como a padronização corrige o viés de estrutura etária.
+- **Natureza:** números fabricados para o exercício. O caption da tabela descreve explicitamente o mecanismo pedagógico.
+
+## Capítulo 10 — Bairros da cidade (`falacia`)
+
+- **Uso didático:** ilustrar a falácia ecológica — um bairro com alta renda e alta violência pode esconder profunda desigualdade interna.
+- **Caption explícito:** "Dados hipotéticos para fins ilustrativos".
+
+## Capítulo 10 — TVs e mortalidade infantil (`espuria`)
+
+- **Uso didático:** ilustrar correlação espúria (ambas variáveis refletem desenvolvimento socioeconômico, não há relação causal entre elas).
+- **Caption explícito:** "Dados hipotéticos — variável de confusão: renda/desenvolvimento".
+
+# Tabelas conceituais
+
+Estas não são "dados" em sentido estrito — são **classificações, fórmulas e listas de referência** extraídas da literatura epidemiológica ou da documentação oficial. Listo aqui para completude.
+
+| Localização | Tabela | Origem da classificação |
+|---|---|---|
+| Cap. 1 | Categorias de indicadores (RIPSA/OPAS) | OPAS, *Indicadores Básicos para a Saúde no Brasil*, 2ª ed., 2008 |
+| Cap. 1 | Tipos de medida epidemiológica | Literatura clássica (Last; Rouquayrol; Gordis) |
+| Cap. 1 | Sistemas de informação em saúde do Brasil | Ministério da Saúde — DATASUS |
+| Cap. 3 | Mortalidades específicas (fórmulas) | Literatura clássica |
+| Cap. 3 | Componentes da mortalidade infantil | Literatura clássica |
+| Cap. 3 | CFR vs. IFR (definições) | Literatura clássica |
+| Cap. 4 | Incidência vs. prevalência | Literatura clássica |
+| Cap. 4 | Exemplos de doenças de notificação compulsória | Portaria GM/MS nº 264/2020 e atualizações |
+| Cap. 5 | Metas de cobertura vacinal | Programa Nacional de Imunizações (PNI) / MS |
+| Cap. 6 | Interpretação do SMR | Literatura clássica |
+| Cap. 7 | Fases da transição epidemiológica | Omran, AR. *The Epidemiologic Transition*, 1971 |
+| Cap. 8 | Indicadores do Previne Brasil | Portaria GM/MS nº 3.222/2019 |
+| Cap. 9 | Fontes de dados sobre saúde e raça/cor | Compilação do autor |
+| Cap. 11 | Boas práticas / dimensões do poder dos dados | Elaboração do autor |
+
+# Funções auxiliares (`R/utils.R`)
+
+Todos os capítulos começam com `source("../R/utils.R")`, que carrega os pacotes, define o tema gráfico padrão e disponibiliza as funções `carregar_dados()` e `fonte_dados()` usadas para acessar os `.rds` e extrair sua fonte documentada. Código completo:
+
+```{r}
+#| file: R/utils.R
+#| eval: false
+```
+
+# Software e reprodutibilidade
+
+Todo o processamento é executado em **R** (≥ 4.2) a partir dos arquivos `.qmd`. Dependências declaradas em `R/utils.R`:
+
+- `tidyverse`, `scales`, `knitr`, `kableExtra`, `glue`, `patchwork`
+- `sidrar` (apenas para `R/obter_dados.R`)
+- `httr2`, `janitor` (utilitários)
+
+O livro é compilado com **Quarto** (≥ 1.4), e o `freeze: auto` garante que gráficos cached não sejam re-renderizados quando os dados não mudam.
+
+# Limitações assumidas
+
+1. **Projeções ≠ observações.** Os indicadores das tabelas SIDRA 7360 e 7362 são projeções demográficas do IBGE (Revisão 2018), não medições diretas. Para dados observados, consulte o SIM/SINASC via TabNet.
+2. **Valores aproximados em figuras.** Sempre que uma figura usa valores manualmente transcritos, a legenda o declara explicitamente. Não use esses números como referência numérica primária em trabalhos científicos — consulte sempre a fonte original citada.
+3. **Dados hipotéticos.** Os exemplos dos Capítulos 3, 6 e 10 listados na seção anterior são didáticos e estão marcados como tais. Não representam nenhuma realidade empírica.
+4. **Defasagem temporal.** A data de coleta dos dados via SIDRA está registrada no atributo `data_coleta` de cada `.rds`. Boletins e relatórios nacionais podem ter sido atualizados após a redação dos capítulos.
+
+# Como consultar a fonte de um dado específico
+
+Para qualquer figura ou tabela do livro, a fonte pode ser recuperada por:
+
+1. **Legenda do gráfico** — sempre inclui a fonte e, quando aplicável, a ressalva "valores aproximados — não usar como estatística oficial" ou "dados hipotéticos".
+2. **Comentário no código-fonte** — todo `tribble` é precedido por um comentário que identifica a fonte.
+3. **Atributos do arquivo `.rds`** — para dados extraídos via `R/obter_dados.R`.
+4. **Este documento**, que consolida tudo em um só lugar.
+
+## Demonstração ao vivo: inspecionando os metadados
+
+O bloco abaixo é **executado de verdade** a cada renderização do site. Ele lê um dos `.rds` extraídos via API e imprime os metadados que o script de coleta gravou:
+
+```{r}
+#| label: demo-atributos
+#| echo: true
+dados <- readRDS("data/tft_brasil.rds")
+
+cat("Fonte      :", attr(dados, "fonte"),       "\n")
+cat("Tabela     :", attr(dados, "tabela"),      "\n")
+cat("URL        :", attr(dados, "url"),         "\n")
+cat("Descrição  :", attr(dados, "descricao"),   "\n")
+cat("Data coleta:", format(attr(dados, "data_coleta")), "\n")
+cat("Linhas     :", nrow(dados),                "\n")
+```
+
+E aqui estão as primeiras linhas do próprio conteúdo:
+
+```{r}
+#| label: demo-head
+head(dados, 10) |>
+  knitr::kable(col.names = c("Ano", "TFT (filhos por mulher)"))
+```
+
+## Inventário automático dos arquivos em `data/`
+
+A tabela a seguir é **gerada automaticamente** a partir da pasta `data/` no momento da renderização. Se um novo `.rds` for adicionado (e vier acompanhado dos atributos padronizados de `salvar_dados()`), ele aparece aqui sem qualquer edição manual deste documento:
+
+```{r}
+#| label: inventario-dados
+#| echo: true
+arquivos <- list.files("data", pattern = "\\.rds$", full.names = TRUE)
+
+inventario <- purrr::map_dfr(arquivos, function(f) {
+  df <- readRDS(f)
+  dc <- attr(df, "data_coleta")
+  tibble::tibble(
+    Arquivo       = basename(f),
+    Linhas        = nrow(df),
+    Fonte         = ou_travessao(attr(df, "fonte")),
+    Tabela        = ou_travessao(attr(df, "tabela")),
+    `Data coleta` = if (is.null(dc)) "—" else format(dc)
+  )
+})
+
+knitr::kable(inventario)
+```

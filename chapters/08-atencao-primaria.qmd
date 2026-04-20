@@ -45,7 +45,7 @@ ggplot(esf, aes(x = ano, y = cobertura)) +
     title = "Cobertura da Estratégia Saúde da Família",
     subtitle = "Cerca de 2/3 da população brasileira coberta pela ESF",
     x = "Ano", y = "Cobertura (%)",
-    caption = "Fonte: e-Gestor AB / Ministério da Saúde (valores aproximados)"
+    caption = "Fonte: e-Gestor AB / Ministério da Saúde (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores()
 ```
@@ -102,7 +102,7 @@ ggplot(icsap_long, aes(x = ano, y = prop, color = regiao, group = regiao)) +
     title = "Queda das ICSAP em todas as regiões",
     subtitle = "Internações evitáveis diminuem com a expansão da ESF",
     x = "Ano", y = "ICSAP (% das internações SUS)", color = "Região",
-    caption = "Fonte: SIH/DATASUS (valores aproximados)"
+    caption = "Fonte: SIH/DATASUS (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores()
 ```
@@ -139,7 +139,7 @@ ggplot(prenatal, aes(x = reorder(regiao, prop), y = prop, fill = regiao)) +
     title = "Desigualdade regional no acesso ao pré-natal",
     subtitle = "Norte e Nordeste com proporções muito abaixo do Sul e Sudeste",
     x = NULL, y = "Gestantes com 7+ consultas (%)",
-    caption = "Fonte: SINASC/DATASUS (valores aproximados)"
+    caption = "Fonte: SINASC/DATASUS (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores() +
   theme(legend.position = "none")

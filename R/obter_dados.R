@@ -43,7 +43,7 @@ salvar_dados <- function(df, nome_arquivo, fonte, tabela, url, descricao, notas 
 # ============================================================
 cat("\n=== Baixando IBGE Projeções — Brasil (tabela 7360) ===\n")
 
-proj_br <- get_sidra(7360, period = "all", geo = "Brazil")
+proj_br <- sidrar::get_sidra(7360, period = "all", geo = "Brazil")
 names(proj_br)[c(8, 9)]   <- c("ano_pub_cod", "ano_pub")
 names(proj_br)[c(12, 13)] <- c("ano_proj_cod", "ano_proj")
 
@@ -118,7 +118,7 @@ salvar_dados(nasc_brasil, "nascimentos_brasil",
 # ============================================================
 cat("\n=== Baixando IBGE Projeções — Regiões (tabela 7360) ===\n")
 
-proj_reg <- get_sidra(7360, period = "all", geo = "Region")
+proj_reg <- sidrar::get_sidra(7360, period = "all", geo = "Region")
 names(proj_reg)[c(8, 9)]   <- c("ano_pub_cod", "ano_pub")
 names(proj_reg)[c(12, 13)] <- c("ano_proj_cod", "ano_proj")
 
@@ -167,7 +167,7 @@ salvar_dados(tbm_regiao, "tbm_regiao",
 # ============================================================
 cat("\n=== Baixando MI e Esperança de Vida (tabela 7362) ===\n")
 
-proj_7362 <- get_sidra(7362, period = "all", geo = "Brazil")
+proj_7362 <- sidrar::get_sidra(7362, period = "all", geo = "Brazil")
 names(proj_7362)[c(8, 9)]   <- c("ano_pub_cod", "ano_pub")
 names(proj_7362)[c(14, 15)] <- c("ano_proj_cod", "ano_proj")
 
@@ -215,7 +215,7 @@ salvar_dados(ev_brasil, "ev_brasil",
 
 # 3c. MI por região
 cat("\n=== Baixando MI por Região (tabela 7362) ===\n")
-proj_7362_reg <- get_sidra(7362, period = "all", geo = "Region")
+proj_7362_reg <- sidrar::get_sidra(7362, period = "all", geo = "Region")
 names(proj_7362_reg)[c(8, 9)]   <- c("ano_pub_cod", "ano_pub")
 names(proj_7362_reg)[c(14, 15)] <- c("ano_proj_cod", "ano_proj")
 
@@ -246,7 +246,7 @@ salvar_dados(mi_regiao, "mi_regiao",
 # ============================================================
 cat("\n=== Baixando população por faixa etária (tabela 7358) ===\n")
 
-proj_7358 <- get_sidra(7358, period = "all", geo = "Brazil")
+proj_7358 <- sidrar::get_sidra(7358, period = "all", geo = "Brazil")
 names(proj_7358)[c(8, 9)]   <- c("ano_pub_cod", "ano_pub")
 names(proj_7358)[c(16, 17)] <- c("ano_proj_cod", "ano_proj")
 

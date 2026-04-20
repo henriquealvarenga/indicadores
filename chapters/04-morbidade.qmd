@@ -63,7 +63,7 @@ tabela_indicador(conceito, caption = "Incidência vs. Prevalência")
 #| label: fig-dengue-incidencia
 #| fig-cap: "Taxa de incidência de dengue no Brasil (2010–2024)"
 
-# Dados oficiais: SINAN/SVS/Ministério da Saúde — Série histórica de casos prováveis
+# Fonte: SINAN/SVS/Ministério da Saúde — Série histórica de casos prováveis
 # Fontes: Boletins Epidemiológicos SVS e Agência Brasil (consolidação final 2024)
 # Casos em milhares; população IBGE projeções; incidência calculada
 dengue <- tibble::tribble(
@@ -107,7 +107,7 @@ ggplot(dengue, aes(x = ano, y = incidencia)) +
 #| label: fig-prevalencia-dcnt
 #| fig-cap: "Prevalência estimada de DCNT selecionadas — Brasil adulto"
 
-# Dados reais da PNS 2019 (IBGE) e Vigitel 2023 (SVS/MS)
+# Fonte: PNS 2019 (IBGE) e Vigitel 2023 (SVS/MS)
 # PNS 2019: hipertensão 23,9%, diabetes 7,7%, depressão 10,2%, asma 5,3%
 # Vigitel 2023: obesidade 24,3%
 # DRC: PNS 2019 reportou 1,4% (autodeclaração de diagnóstico médico)

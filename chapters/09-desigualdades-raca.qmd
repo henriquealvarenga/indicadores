@@ -57,7 +57,7 @@ ggplot(rmm, aes(x = reorder(raca_cor, rmm), y = rmm,
     title = "Mulheres negras e indígenas morrem mais por causas maternas",
     subtitle = "RMM por 100.000 nascidos vivos — razão em relação à mulher branca entre parênteses",
     x = NULL, y = "RMM (por 100.000 NV)",
-    caption = "Fonte: SVS/MS — DATASUS, SIM (valores aproximados)"
+    caption = "Fonte: SVS/MS — DATASUS, SIM (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores() +
   theme(legend.position = "none")
@@ -101,7 +101,7 @@ ggplot(mi_raca, aes(x = reorder(raca_cor, mi), y = mi, fill = raca_cor)) +
     title = "Mortalidade infantil: crianças indígenas morrem 3× mais",
     subtitle = "MI por 1.000 NV — razão em relação à criança branca entre parênteses",
     x = NULL, y = "MI (por 1.000 NV)",
-    caption = "Fonte: SVS/MS — DATASUS, SIM/SINASC (valores aproximados)"
+    caption = "Fonte: SVS/MS — DATASUS, SIM/SINASC (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores() +
   theme(legend.position = "none")
@@ -121,7 +121,7 @@ As causas externas revelam a face mais dramática das desigualdades raciais em s
 #| label: fig-homicidios-raca
 #| fig-cap: "Taxa de homicídios por raça/cor — Brasil"
 
-# Dados reais: Atlas da Violência 2023 (IPEA/FBSP), referentes a 2021
+# Fonte: Atlas da Violência 2023 (IPEA/FBSP), referentes a 2021
 # Taxa por 100 mil hab.: negros 31,0; não negros 10,8
 # Proporção: negros 79% das vítimas
 homic <- tibble::tribble(

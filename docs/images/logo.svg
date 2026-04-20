@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" role="img" aria-label="Indicadores de Saúde">
+  <title>Indicadores de Saúde</title>
+  <!-- mini bar chart -->
+  <g transform="translate(8, 16)">
+    <rect x="0"  y="18" width="6" height="14" rx="1.5" fill="#60A5FA"/>
+    <rect x="10" y="10" width="6" height="22" rx="1.5" fill="#3B82F6"/>
+    <rect x="20" y="16" width="6" height="16" rx="1.5" fill="#93C5FD"/>
+    <rect x="30" y="4"  width="6" height="28" rx="1.5" fill="#3B82F6"/>
+  </g>
+  <!-- pulse line -->
+  <g transform="translate(48, 30)" fill="none" stroke="#EF4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="0,8 6,8 10,-2 14,14 18,-8 22,10 26,8 34,8"/>
+  </g>
+  <!-- wordmark -->
+  <g fill="#FFFFFF" font-family="'Nunito Sans', system-ui, -apple-system, Segoe UI, sans-serif">
+    <text x="92" y="28" font-size="16" font-weight="700" letter-spacing="0.2">Indicadores</text>
+    <text x="92" y="46" font-size="13" font-weight="400" letter-spacing="0.6" opacity="0.85">de Saúde</text>
+  </g>
+</svg>

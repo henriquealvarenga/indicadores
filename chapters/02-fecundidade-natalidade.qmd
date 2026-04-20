@@ -30,7 +30,7 @@ A Taxa de Fecundidade Total representa o número médio de filhos que uma mulher
 #| label: fig-tft-brasil
 #| fig-cap: "Evolução da Taxa de Fecundidade Total no Brasil — dados IBGE"
 
-# Dados reais: IBGE — Projeções da População (Revisão 2018) — SIDRA tabela 7360
+# Fonte: IBGE — Projeções da População (Revisão 2018) — SIDRA tabela 7360
 tft_brasil <- carregar_dados("tft_brasil") |>
   filter(ano >= 2000, ano <= 2030)
 
@@ -57,7 +57,7 @@ ggplot(tft_brasil, aes(x = ano, y = valor)) +
 #| label: fig-tft-regiao
 #| fig-cap: "TFT por Grande Região — dados IBGE"
 
-# Dados reais: IBGE — SIDRA 7360 por região
+# Fonte: IBGE — SIDRA 7360 por região
 tft_regiao <- carregar_dados("tft_regiao") |>
   filter(ano %in% c(2000, 2010, 2020))
 
@@ -143,7 +143,7 @@ Uma população envelhecida pode ter baixa natalidade mesmo com fecundidade rela
 #| label: fig-tbn-regioes
 #| fig-cap: "Taxa Bruta de Natalidade por região do Brasil — dados IBGE"
 
-# Dados reais: IBGE — SIDRA 7360 por região
+# Fonte: IBGE — SIDRA 7360 por região
 tbn_regiao <- carregar_dados("tbn_regiao") |>
   filter(ano >= 2000, ano <= 2030)
 

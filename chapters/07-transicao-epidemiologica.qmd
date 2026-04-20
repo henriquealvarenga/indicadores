@@ -86,7 +86,7 @@ ggplot(mp_long, aes(x = periodo, y = proporcao, fill = causa, group = causa)) +
     title = "Transição epidemiológica brasileira (1930–2020)",
     subtitle = "Queda das infecciosas, ascensão das DCNT e das causas externas",
     x = "Período", y = "Mortalidade proporcional (%)", fill = "Grupo de causas",
-    caption = "Fonte: SIM/DATASUS; Rouquayrol & Gurgel, 2017 (valores aproximados)"
+    caption = "Fonte: SIM/DATASUS; Rouquayrol & Gurgel, 2017 (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores()
 ```
@@ -99,7 +99,7 @@ A transição demográfica acompanha a epidemiológica: redução da mortalidade
 #| label: fig-piramide-transicao
 #| fig-cap: "Mudança na estrutura etária brasileira (2000 vs. 2030 projetado)"
 
-# Dados reais: IBGE — SIDRA 7358 — Projeções por grupo de idade e sexo
+# Fonte: IBGE — SIDRA 7358 — Projeções por grupo de idade e sexo
 piramide_raw <- carregar_dados("piramide_brasil") |>
   filter(ano %in% c(2000, 2030))
 

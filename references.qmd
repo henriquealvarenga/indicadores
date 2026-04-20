@@ -1,4 +1,8 @@
-# Referências Bibliográficas {.unnumbered}
+---
+title: "Referências Bibliográficas"
+nocite: |
+  @*
+---
 
 ::: {#refs}
 :::

@@ -64,13 +64,13 @@ Precisamos sempre trabalhar com **taxas** (mortes por unidade de população exp
 **TBM** = (Total de óbitos no ano / População no meio do ano) × 1.000
 :::
 
-Caracteriza o risco médio de morte por qualquer causa. Contudo, a TBM **não controla a estrutura etária** — populações mais envelhecidas apresentam TBM mais elevada, mesmo com riscos etários idênticos (ver @sec-padronizacao).
+Caracteriza o risco médio de morte por qualquer causa. Contudo, a TBM **não controla a estrutura etária** — populações mais envelhecidas apresentam TBM mais elevada, mesmo com riscos etários idênticos (ver [capítulo sobre padronização](06-padronizacao.qmd)).
 
 ```{r}
 #| label: fig-tbm-brasil
 #| fig-cap: "Evolução da Taxa Bruta de Mortalidade no Brasil — projeções IBGE"
 
-# Dados reais: IBGE — SIDRA 7360
+# Fonte: IBGE — SIDRA 7360
 tbm_brasil <- carregar_dados("tbm_brasil") |>
   filter(ano >= 2010, ano <= 2040)
 
@@ -133,7 +133,7 @@ tabela_indicador(mi_comp)
 #| label: fig-mi-serie
 #| fig-cap: "Evolução da mortalidade infantil no Brasil — projeções IBGE"
 
-# Dados reais: IBGE — SIDRA 7362
+# Fonte: IBGE — SIDRA 7362
 mi_brasil <- carregar_dados("mi_brasil") |>
   filter(ano >= 2000, ano <= 2030)
 
@@ -157,7 +157,7 @@ ggplot(mi_brasil, aes(x = ano, y = valor)) +
 #| label: fig-mi-regiao
 #| fig-cap: "Mortalidade Infantil por Grande Região — projeções IBGE"
 
-# Dados reais: IBGE — SIDRA 7362 por região
+# Fonte: IBGE — SIDRA 7362 por região
 mi_regiao <- carregar_dados("mi_regiao") |>
   filter(ano %in% c(2000, 2010, 2020))
 
@@ -181,7 +181,7 @@ ggplot(mi_regiao, aes(x = factor(ano), y = valor, fill = regiao)) +
 #| label: fig-ev-brasil
 #| fig-cap: "Esperança de vida ao nascer por sexo — projeções IBGE"
 
-# Dados reais: IBGE — SIDRA 7362
+# Fonte: IBGE — SIDRA 7362
 ev_brasil <- carregar_dados("ev_brasil") |>
   filter(ano >= 2000, ano <= 2040)
 
@@ -242,7 +242,7 @@ ggplot(mp_brasil, aes(x = reorder(causa, proporcao), y = proporcao)) +
     title = "Perfil de mortalidade do Brasil em 2022",
     subtitle = "DCNT dominam o perfil de mortalidade",
     x = NULL, y = "Proporção (%)",
-    caption = "Fonte: SIM/DATASUS — TabNet, Mortalidade por capítulo CID-10, 2022 (valores aproximados)"
+    caption = "Fonte: SIM/DATASUS — TabNet, Mortalidade por capítulo CID-10, 2022 (valores aproximados — não usar como estatística oficial)"
   ) +
   tema_indicadores()
 ```
