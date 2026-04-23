@@ -15,7 +15,7 @@
     "href": "about.html",
     "title": "Sobre este livro",
     "section": "",
-    "text": "Prof. Henrique Alvarenga da Silva Professor do Curso de Medicina — UNIPTAN (AFYA)\n\n\n\nEste livreto digital foi desenvolvido como material didático de apoio para estudantes de graduação em Medicina e áreas da Saúde. O conteúdo aborda os principais indicadores de saúde utilizados na prática epidemiológica e em saúde pública, com ênfase no contexto brasileiro.\n\n\n\nBases públicas: gráficos construídos a partir de consultas a fontes públicas brasileiras (DATASUS, IBGE, SINAN, SI-PNI)\nCódigo aberto: todo o código R é visível e reprodutível\nAnálise crítica: ênfase nas limitações, vieses e no uso ético dos indicadores\nEquidade: capítulo dedicado às desigualdades raciais em saúde\n\n\n\n\n\nISBN 978-65-02-06225-8\nRegistro na Câmara Brasileira do Livro (CBL).\n\n\n\nCódigo de barras do ISBN 978-65-02-06225-8\n\n\n\n\n\nEste material é disponibilizado sob licença Creative Commons BY-NC-SA 4.0. Você pode compartilhar e adaptar, desde que atribua crédito, não use para fins comerciais e distribua sob a mesma licença.\n\n\n\n\nSILVA, H. A. Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil. Edição do autor, 2026. ISBN 978-65-02-06225-8. Disponível em: https://henriquealvarenga.com/indicadores.\n\n\n\n\nEste livro foi construído com:\n\nQuarto — sistema de publicação científica\nR — linguagem estatística\nggplot2 — visualização de dados\nDados públicos do DATASUS e IBGE\n\n\n\n\nEste é um material didático elaborado e publicado pelo autor em caráter independente. As opiniões, análises e interpretações aqui expressas são de responsabilidade exclusiva do autor e não representam posição oficial de qualquer instituição à qual ele esteja ou tenha estado vinculado. A menção à afiliação institucional tem finalidade unicamente identificatória.\n\n\n\nPara sugestões, correções ou contribuições, abra uma issue no repositório GitHub do projeto.",
+    "text": "Prof. Henrique Alvarenga da Silva Professor do Curso de Medicina — UNIPTAN (AFYA)\n\n\n\nEste livreto digital foi desenvolvido como material didático de apoio para estudantes de graduação em Medicina e áreas da Saúde. O conteúdo aborda os principais indicadores de saúde utilizados na prática epidemiológica e em saúde pública, com ênfase no contexto brasileiro.\n\n\n\nBases públicas: gráficos construídos a partir de consultas a fontes públicas brasileiras (DATASUS, IBGE, SINAN, SI-PNI)\nCódigo aberto: todo o código R é visível e reprodutível\nAnálise crítica: ênfase nas limitações, vieses e no uso ético dos indicadores\nEquidade: capítulo dedicado às desigualdades raciais em saúde\n\n\n\n\n\nISBN 978-65-02-06225-8\nRegistro na Câmara Brasileira do Livro (CBL).\n\n\n\nCódigo de barras do ISBN 978-65-02-06225-8\n\n\n\n\n\n\n\n\nFicha Catalográfica\n\n\n\n\n\nEste material é disponibilizado sob licença Creative Commons BY-NC-SA 4.0. Você pode compartilhar e adaptar, desde que atribua crédito, não use para fins comerciais e distribua sob a mesma licença.\n\n\n\n\nSILVA, H. A. Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil. Edição do autor, 2026. ISBN 978-65-02-06225-8. Disponível em: https://henriquealvarenga.com/indicadores.\n\n\n\n\nEste livro foi construído com:\n\nQuarto — sistema de publicação científica\nR — linguagem estatística\nggplot2 — visualização de dados\nDados públicos do DATASUS e IBGE\n\n\n\n\nEste é um material didático elaborado e publicado pelo autor em caráter independente. As opiniões, análises e interpretações aqui expressas são de responsabilidade exclusiva do autor e não representam posição oficial de qualquer instituição à qual ele esteja ou tenha estado vinculado. A menção à afiliação institucional tem finalidade unicamente identificatória.\n\n\n\nPara sugestões, correções ou contribuições, abra uma issue no repositório GitHub do projeto.",
     "crumbs": [
       "<i class='bi bi-house'></i> Início",
       "Sobre este livro"
@@ -49,6 +49,17 @@
     "title": "Sobre este livro",
     "section": "",
     "text": "ISBN 978-65-02-06225-8\nRegistro na Câmara Brasileira do Livro (CBL).\n\n\n\nCódigo de barras do ISBN 978-65-02-06225-8",
+    "crumbs": [
+      "<i class='bi bi-house'></i> Início",
+      "Sobre este livro"
+    ]
+  },
+  {
+    "objectID": "about.html#ficha-catalográfica",
+    "href": "about.html#ficha-catalográfica",
+    "title": "Sobre este livro",
+    "section": "",
+    "text": "Ficha Catalográfica",
     "crumbs": [
       "<i class='bi bi-house'></i> Início",
       "Sobre este livro"

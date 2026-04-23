@@ -1,22 +1,22 @@
 # Sobre este livro {.unnumbered}
 
-## Autor
+## Autor {.unnumbered}
 
 **Prof. Henrique Alvarenga da Silva**
 Professor do Curso de Medicina — UNIPTAN (AFYA)
 
-## Sobre o material
+## Sobre o material {.unnumbered}
 
 Este livreto digital foi desenvolvido como material didático de apoio para estudantes de graduação em Medicina e áreas da Saúde. O conteúdo aborda os principais indicadores de saúde utilizados na prática epidemiológica e em saúde pública, com ênfase no contexto brasileiro.
 
-### Diferenciais deste material
+### Diferenciais deste material {.unnumbered}
 
 - **Bases públicas**: gráficos construídos a partir de consultas a fontes públicas brasileiras (DATASUS, IBGE, SINAN, SI-PNI)
 - **Código aberto**: todo o código R é visível e reprodutível
 - **Análise crítica**: ênfase nas limitações, vieses e no uso ético dos indicadores
 - **Equidade**: capítulo dedicado às desigualdades raciais em saúde
 
-## ISBN
+## ISBN {.unnumbered}
 
 **ISBN 978-65-02-06225-8**
 
@@ -24,15 +24,19 @@ Registro na Câmara Brasileira do Livro (CBL).
 
 ![Código de barras do ISBN 978-65-02-06225-8](images/barcode.jpeg){width=260 fig-alt="Código de barras do ISBN 978-65-02-06225-8"}
 
-## Licença
+## Ficha Catalográfica {.unnumbered}
+
+![Ficha Catalográfica](images/ficha-catalografica.png)
+
+## Licença {.unnumbered}
 
 Este material é disponibilizado sob licença [Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br). Você pode compartilhar e adaptar, desde que atribua crédito, não use para fins comerciais e distribua sob a mesma licença.
 
-## Como citar
+## Como citar {.unnumbered}
 
 > SILVA, H. A. **Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil**. Edição do autor, 2026. ISBN 978-65-02-06225-8. Disponível em: <https://henriquealvarenga.com/indicadores>.
 
-## Ferramentas utilizadas
+## Ferramentas utilizadas {.unnumbered}
 
 Este livro foi construído com:
 
@@ -41,10 +45,10 @@ Este livro foi construído com:
 - [ggplot2](https://ggplot2.tidyverse.org/) — visualização de dados
 - Dados públicos do [DATASUS](https://datasus.saude.gov.br/) e [IBGE](https://www.ibge.gov.br/)
 
-## Isenção de responsabilidade
+## Isenção de responsabilidade {.unnumbered}
 
 Este é um material didático **elaborado e publicado pelo autor em caráter independente**. As opiniões, análises e interpretações aqui expressas são de responsabilidade exclusiva do autor e **não representam posição oficial de qualquer instituição** à qual ele esteja ou tenha estado vinculado. A menção à afiliação institucional tem finalidade unicamente identificatória.
 
-## Contato
+## Contato {.unnumbered}
 
 Para sugestões, correções ou contribuições, abra uma *issue* no [repositório GitHub](https://github.com/henriquealvarenga/indicadores-de-saude) do projeto.

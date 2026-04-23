@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,9 +73,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-400497f035c4132613b40194b40ed1dd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -295,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text"><i class="bi bi-house"></i> Início</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -371,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./references.html"> 
+    <a class="nav-link active" href="./references.html" aria-current="page"> 
 <span class="menu-text">Referências</span></a>
   </li>  
 </ul>
@@ -406,10 +406,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -673,7 +669,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-43"><a href="#cb2-43"></a><span class="co"># ============================================================</span></span>
 <span id="cb2-44"><a href="#cb2-44"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Baixando IBGE Projeções — Brasil (tabela 7360) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb2-45"><a href="#cb2-45"></a></span>
-<span id="cb2-46"><a href="#cb2-46"></a>proj_br <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="dv">7360</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Brazil"</span>)</span>
+<span id="cb2-46"><a href="#cb2-46"></a>proj_br <span class="ot">&lt;-</span> sidrar<span class="sc">::</span><span class="fu">get_sidra</span>(<span class="dv">7360</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Brazil"</span>)</span>
 <span id="cb2-47"><a href="#cb2-47"></a><span class="fu">names</span>(proj_br)[<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_pub_cod"</span>, <span class="st">"ano_pub"</span>)</span>
 <span id="cb2-48"><a href="#cb2-48"></a><span class="fu">names</span>(proj_br)[<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">13</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_proj_cod"</span>, <span class="st">"ano_proj"</span>)</span>
 <span id="cb2-49"><a href="#cb2-49"></a></span>
@@ -748,7 +744,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-118"><a href="#cb2-118"></a><span class="co"># ============================================================</span></span>
 <span id="cb2-119"><a href="#cb2-119"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Baixando IBGE Projeções — Regiões (tabela 7360) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb2-120"><a href="#cb2-120"></a></span>
-<span id="cb2-121"><a href="#cb2-121"></a>proj_reg <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="dv">7360</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Region"</span>)</span>
+<span id="cb2-121"><a href="#cb2-121"></a>proj_reg <span class="ot">&lt;-</span> sidrar<span class="sc">::</span><span class="fu">get_sidra</span>(<span class="dv">7360</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Region"</span>)</span>
 <span id="cb2-122"><a href="#cb2-122"></a><span class="fu">names</span>(proj_reg)[<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_pub_cod"</span>, <span class="st">"ano_pub"</span>)</span>
 <span id="cb2-123"><a href="#cb2-123"></a><span class="fu">names</span>(proj_reg)[<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">13</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_proj_cod"</span>, <span class="st">"ano_proj"</span>)</span>
 <span id="cb2-124"><a href="#cb2-124"></a></span>
@@ -797,7 +793,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-167"><a href="#cb2-167"></a><span class="co"># ============================================================</span></span>
 <span id="cb2-168"><a href="#cb2-168"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Baixando MI e Esperança de Vida (tabela 7362) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb2-169"><a href="#cb2-169"></a></span>
-<span id="cb2-170"><a href="#cb2-170"></a>proj_7362 <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="dv">7362</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Brazil"</span>)</span>
+<span id="cb2-170"><a href="#cb2-170"></a>proj_7362 <span class="ot">&lt;-</span> sidrar<span class="sc">::</span><span class="fu">get_sidra</span>(<span class="dv">7362</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Brazil"</span>)</span>
 <span id="cb2-171"><a href="#cb2-171"></a><span class="fu">names</span>(proj_7362)[<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_pub_cod"</span>, <span class="st">"ano_pub"</span>)</span>
 <span id="cb2-172"><a href="#cb2-172"></a><span class="fu">names</span>(proj_7362)[<span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">15</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_proj_cod"</span>, <span class="st">"ano_proj"</span>)</span>
 <span id="cb2-173"><a href="#cb2-173"></a></span>
@@ -845,7 +841,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-215"><a href="#cb2-215"></a></span>
 <span id="cb2-216"><a href="#cb2-216"></a><span class="co"># 3c. MI por região</span></span>
 <span id="cb2-217"><a href="#cb2-217"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Baixando MI por Região (tabela 7362) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb2-218"><a href="#cb2-218"></a>proj_7362_reg <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="dv">7362</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Region"</span>)</span>
+<span id="cb2-218"><a href="#cb2-218"></a>proj_7362_reg <span class="ot">&lt;-</span> sidrar<span class="sc">::</span><span class="fu">get_sidra</span>(<span class="dv">7362</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Region"</span>)</span>
 <span id="cb2-219"><a href="#cb2-219"></a><span class="fu">names</span>(proj_7362_reg)[<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_pub_cod"</span>, <span class="st">"ano_pub"</span>)</span>
 <span id="cb2-220"><a href="#cb2-220"></a><span class="fu">names</span>(proj_7362_reg)[<span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">15</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_proj_cod"</span>, <span class="st">"ano_proj"</span>)</span>
 <span id="cb2-221"><a href="#cb2-221"></a></span>
@@ -876,7 +872,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-246"><a href="#cb2-246"></a><span class="co"># ============================================================</span></span>
 <span id="cb2-247"><a href="#cb2-247"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Baixando população por faixa etária (tabela 7358) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb2-248"><a href="#cb2-248"></a></span>
-<span id="cb2-249"><a href="#cb2-249"></a>proj_7358 <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="dv">7358</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Brazil"</span>)</span>
+<span id="cb2-249"><a href="#cb2-249"></a>proj_7358 <span class="ot">&lt;-</span> sidrar<span class="sc">::</span><span class="fu">get_sidra</span>(<span class="dv">7358</span>, <span class="at">period =</span> <span class="st">"all"</span>, <span class="at">geo =</span> <span class="st">"Brazil"</span>)</span>
 <span id="cb2-250"><a href="#cb2-250"></a><span class="fu">names</span>(proj_7358)[<span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_pub_cod"</span>, <span class="st">"ano_pub"</span>)</span>
 <span id="cb2-251"><a href="#cb2-251"></a><span class="fu">names</span>(proj_7358)[<span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ano_proj_cod"</span>, <span class="st">"ano_proj"</span>)</span>
 <span id="cb2-252"><a href="#cb2-252"></a></span>
