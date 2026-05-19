@@ -1,26 +1,43 @@
-# Quarto output
-_freeze/
-.quarto/
+# ==============================================================
+# .gitignore — Indicadores de Saúde
+# Quarto + GitHub Pages (publicado via GitHub Actions)
+# ==============================================================
 
-# R
+# --- Saída do Quarto (gerada pelo GitHub Actions, não versionar) ---
+docs/
+
+# --- Cache do knitr (regenerado localmente) ---
+**/*_cache/
+
+# --- Cache de build do Quarto ---
+.quarto/
+**/*.quarto_ipynb
+
+# Nota: _freeze/ É versionado neste projeto.
+# Contém os resultados das chunks R executadas localmente,
+# para que o GitHub Actions não precise instalar R.
+
+# --- R ---
 .Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
 *.Rproj
 
-# OS files
+# --- OS ---
 .DS_Store
 Thumbs.db
 
-# Environment
+# --- Ambiente ---
 .env
 .Renviron
 
-# Temporary files
+# --- Configurações locais do Claude Code (não versionar) ---
+.claude/
+
+# --- Temporários ---
 *~
 *.swp
 *.bak
 
 /.quarto/
-**/*.quarto_ipynb
