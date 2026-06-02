@@ -28,7 +28,7 @@ A Taxa de Fecundidade Total representa o número médio de filhos que uma mulher
 
 ```{r}
 #| label: fig-tft-brasil
-#| fig-cap: "Evolução da Taxa de Fecundidade Total no Brasil — dados IBGE"
+#| fig-cap: "Evolução da Taxa de Fecundidade Total no Brasil — projeções IBGE"
 
 # Fonte: IBGE — Projeções da População (Revisão 2018) — SIDRA tabela 7360
 tft_brasil <- carregar_dados("tft_brasil") |>
@@ -51,11 +51,17 @@ ggplot(tft_brasil, aes(x = ano, y = valor)) +
   tema_indicadores()
 ```
 
+::: {.callout-note}
+## Projeções, não dados observados
+
+As séries de fecundidade, natalidade, mortalidade e estrutura etária do IBGE usadas neste livro (capítulos 2, 3 e 7) vêm das **Projeções da População — Revisão 2018**: estimativas demográficas **modeladas**, e não medições diretas dos registros de nascimentos e óbitos. Elas captam bem a **tendência** de longo prazo, mas não refletem choques conjunturais (como a COVID-19). Para os valores **observados** ano a ano, consulte o SINASC e o SIM via [TabNet/DATASUS](http://tabnet.datasus.gov.br/).
+:::
+
 ### TFT por região do Brasil
 
 ```{r}
 #| label: fig-tft-regiao
-#| fig-cap: "TFT por Grande Região — dados IBGE"
+#| fig-cap: "TFT por Grande Região — projeções IBGE"
 
 # Fonte: IBGE — SIDRA 7360 por região
 tft_regiao <- carregar_dados("tft_regiao") |>
@@ -141,7 +147,7 @@ Uma população envelhecida pode ter baixa natalidade mesmo com fecundidade rela
 
 ```{r}
 #| label: fig-tbn-regioes
-#| fig-cap: "Taxa Bruta de Natalidade por região do Brasil — dados IBGE"
+#| fig-cap: "Taxa Bruta de Natalidade por região do Brasil — projeções IBGE"
 
 # Fonte: IBGE — SIDRA 7360 por região
 tbn_regiao <- carregar_dados("tbn_regiao") |>

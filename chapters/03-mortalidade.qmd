@@ -151,6 +151,12 @@ ggplot(mi_brasil, aes(x = ano, y = valor)) +
   tema_indicadores()
 ```
 
+::: {.callout-note}
+## Série projetada, não observada
+
+A curva acima é a **projeção** demográfica do IBGE (Revisão 2018), não a mortalidade infantil **observada** pelo SIM/SINASC. A tendência de queda é real e bem documentada, mas os valores ano a ano são estimativas modeladas — para os dados observados, consulte o [TabNet/DATASUS](http://tabnet.datasus.gov.br/).
+:::
+
 ### Mortalidade Infantil por Região
 
 ```{r}
