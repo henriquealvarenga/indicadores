@@ -39,3 +39,8 @@ Thumbs.db
 *~
 *.swp
 *.bak
+
+# --- Rascunhos / manuscritos de origem (não versionar) ---
+*.docx
+
+/.quarto/
