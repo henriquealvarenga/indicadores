@@ -148,7 +148,7 @@ notif <- tibble::tribble(
   "Dengue (óbito)",     "Imediata (24h)",  "Monitoramento de surtos",
   "COVID-19",           "Imediata (24h)",  "Vigilância epidemiológica",
   "Meningite",          "Imediata (24h)",  "Risco de surto",
-  "Sarampo",            "Imediata (24h)",  "Doença eliminada — vigilância ativa",
+  "Sarampo",            "Imediata (24h)",  "Brasil perdeu a certificação de eliminação (2019)",
   "Tuberculose",        "Semanal",         "Endemia nacional",
   "Sífilis congênita",  "Semanal",         "Indicador sentinela de pré-natal",
   "Hanseníase",         "Semanal",         "Endemia em eliminação"

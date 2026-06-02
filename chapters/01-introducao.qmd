@@ -80,7 +80,8 @@ fontes <- tibble::tribble(
   "Sistema de Informação de Agravos de Notificação", "SINAN", "Doenças de notificação compulsória",
   "Sistema de Informações Hospitalares",          "SIH",    "Internações pelo SUS",
   "Sistema de Informação do PNI",                 "SI-PNI", "Coberturas vacinais",
-  "Pesquisa Nacional por Amostra de Domicílios",  "PNAD",   "Dados socioeconômicos e de saúde"
+  "Pesquisa Nacional por Amostra de Domicílios Contínua", "PNAD Contínua", "Dados socioeconômicos e de saúde",
+  "Pesquisa Nacional de Saúde",                   "PNS",    "Inquérito de saúde da população (IBGE/MS)"
 )
 
 tabela_indicador(fontes, caption = "Sistemas de Informação em Saúde — Brasil")

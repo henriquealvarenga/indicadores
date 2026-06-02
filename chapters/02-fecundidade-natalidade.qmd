@@ -16,7 +16,9 @@ library(glue)
 A Taxa de Fecundidade Total representa o número médio de filhos que uma mulher teria ao final do seu período reprodutivo (convencionalmente, dos 15 aos 49 anos), caso seguisse as taxas de fecundidade específicas por idade observadas em uma determinada população e período.
 
 ::: {.formula-box}
-**TFT** = Σ (Taxa de fecundidade específica por idade) × 5
+**TFT** = Σ (Taxa de fecundidade específica por idade) × amplitude do grupo etário
+
+*O fator é a largura do intervalo etário: **× 5** quando se usam grupos quinquenais (15–19, 20–24, …); **× 1** para taxas por idade simples.*
 :::
 
 ### Interpretação e valores de referência

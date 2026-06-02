@@ -274,6 +274,10 @@ cfr_ifr <- tibble::tribble(
 tabela_indicador(cfr_ifr)
 ```
 
+::: {.callout-note}
+Apesar de o nome histórico conter "*rate*", a CFR e a IFR são **proporções** (óbitos sobre casos), sem dimensão de pessoa-tempo — não são taxas no sentido epidemiológico estrito. O nome consagrado pelo uso foi mantido.
+:::
+
 ## DALY — Disability-Adjusted Life Year
 
 O DALY captura mortalidade prematura e morbidade. Amplamente utilizado pela OMS [@who2022].
