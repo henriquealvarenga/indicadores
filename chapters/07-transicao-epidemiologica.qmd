@@ -100,8 +100,18 @@ A transição demográfica acompanha a epidemiológica: redução da mortalidade
 #| fig-cap: "Mudança na estrutura etária brasileira (2000 vs. 2030 projetado)"
 
 # Fonte: IBGE — SIDRA 7358 — Projeções por grupo de idade e sexo
+# Ordem etária canônica (grupos quinquenais + grupo terminal aberto), garante
+# o empilhamento correto da pirâmide independentemente da forma do dado de origem.
+faixas_ordem <- c(
+  "0 a 4 anos", "5 a 9 anos", "10 a 14 anos", "15 a 19 anos", "20 a 24 anos",
+  "25 a 29 anos", "30 a 34 anos", "35 a 39 anos", "40 a 44 anos", "45 a 49 anos",
+  "50 a 54 anos", "55 a 59 anos", "60 a 64 anos", "65 a 69 anos", "70 a 74 anos",
+  "75 a 79 anos", "80 a 84 anos", "85 a 89 anos", "90 anos ou mais"
+)
+
 piramide_raw <- carregar_dados("piramide_brasil") |>
-  filter(ano %in% c(2000, 2030))
+  mutate(faixa = factor(as.character(faixa), levels = faixas_ordem)) |>
+  filter(ano %in% c(2000, 2030), !is.na(faixa))
 
 # Calcular proporção em relação ao total de cada ano
 piramide_pct <- piramide_raw |>

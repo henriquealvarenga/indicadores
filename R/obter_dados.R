@@ -250,15 +250,29 @@ proj_7358 <- sidrar::get_sidra(7358, period = "all", geo = "Brazil")
 names(proj_7358)[c(8, 9)]   <- c("ano_pub_cod", "ano_pub")
 names(proj_7358)[c(16, 17)] <- c("ano_proj_cod", "ano_proj")
 
+# A tabela 7358 traz a idade em três granularidades sobrepostas na mesma coluna:
+# anos simples ("0 ano", "1 ano", ...), grupos quinquenais ("0 a 4 anos", ...) e
+# grupos abertos ("80 anos ou mais", "90 anos ou mais"). Somá-las multiplica a
+# população. Mantemos APENAS uma partição não sobreposta: os grupos quinquenais
+# (0-4 ... 85-89) + o grupo terminal "90 anos ou mais".
+faixas_ordem <- c(
+  "0 a 4 anos", "5 a 9 anos", "10 a 14 anos", "15 a 19 anos", "20 a 24 anos",
+  "25 a 29 anos", "30 a 34 anos", "35 a 39 anos", "40 a 44 anos", "45 a 49 anos",
+  "50 a 54 anos", "55 a 59 anos", "60 a 64 anos", "65 a 69 anos", "70 a 74 anos",
+  "75 a 79 anos", "80 a 84 anos", "85 a 89 anos", "90 anos ou mais"
+)
+
 piramide <- proj_7358 %>%
   mutate(
     ano   = as.numeric(as.character(ano_proj)),
     valor = as.numeric(as.character(Valor)),
     sexo  = proj_7358[["Sexo"]],
-    faixa = Idade
+    faixa = as.character(Idade)
   ) %>%
-  filter(!is.na(valor), !is.na(ano), sexo != "Total", faixa != "Total",
+  filter(!is.na(valor), !is.na(ano), sexo != "Total",
+         faixa %in% faixas_ordem,
          ano %in% c(2000, 2010, 2020, 2030, 2040)) %>%
+  mutate(faixa = factor(faixa, levels = faixas_ordem)) %>%
   select(ano, sexo, faixa, valor) %>%
   arrange(ano, sexo, faixa)
 
