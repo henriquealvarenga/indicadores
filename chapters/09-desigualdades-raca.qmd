@@ -47,10 +47,10 @@ ggplot(rmm, aes(x = reorder(raca_cor, rmm), y = rmm,
   annotate("text", x = 0.7, y = 78, label = "Meta ODS: 70",
            fontface = "italic", size = 3) +
   scale_fill_manual(values = c(
-    "Branca" = cores_indicadores["branca"],
-    "Parda" = cores_indicadores["parda"],
-    "Preta" = cores_indicadores["preta"],
-    "Indígena" = cores_indicadores["indigena"]
+    "Branca" = cores_indicadores[["branca"]],
+    "Parda" = cores_indicadores[["parda"]],
+    "Preta" = cores_indicadores[["preta"]],
+    "Indígena" = cores_indicadores[["indigena"]]
   )) +
   scale_y_continuous(limits = c(0, 220)) +
   labs(
@@ -91,10 +91,10 @@ ggplot(mi_raca, aes(x = reorder(raca_cor, mi), y = mi, fill = raca_cor)) +
   geom_text(aes(label = paste0(fmt_br(mi), "\n(", razao, "×)")),
             vjust = -0.3, size = 3.5, fontface = "bold") +
   scale_fill_manual(values = c(
-    "Branca" = cores_indicadores["branca"],
-    "Parda" = cores_indicadores["parda"],
-    "Preta" = cores_indicadores["preta"],
-    "Indígena" = cores_indicadores["indigena"]
+    "Branca" = cores_indicadores[["branca"]],
+    "Parda" = cores_indicadores[["parda"]],
+    "Preta" = cores_indicadores[["preta"]],
+    "Indígena" = cores_indicadores[["indigena"]]
   )) +
   scale_y_continuous(limits = c(0, 35)) +
   labs(

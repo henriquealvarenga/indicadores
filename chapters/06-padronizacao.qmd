@@ -119,8 +119,8 @@ ggplot(tbn_pad_long, aes(x = regiao, y = taxa, fill = tipo)) +
   geom_col(position = "dodge", width = 0.7) +
   geom_text(aes(label = fmt_br(taxa)), position = position_dodge(0.7),
             vjust = -0.5, size = 3) +
-  scale_fill_manual(values = c("Taxa Bruta" = cores_indicadores["alerta"],
-                                "Taxa Padronizada" = cores_indicadores["destaque"])) +
+  scale_fill_manual(values = c("Taxa Bruta" = cores_indicadores[["alerta"]],
+                                "Taxa Padronizada" = cores_indicadores[["destaque"]])) +
   scale_y_continuous(limits = c(0, 30)) +
   labs(
     title = "Padronização reduz diferenças regionais de natalidade",
