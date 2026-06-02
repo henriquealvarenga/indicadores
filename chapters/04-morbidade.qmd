@@ -95,7 +95,7 @@ ggplot(dengue, aes(x = ano, y = incidencia)) +
     title = "Padrão epidêmico da dengue no Brasil",
     subtitle = "Grandes surtos cíclicos — 2024 bateu recorde com >6,4 milhões de casos",
     x = "Ano", y = "Incidência (por 100 mil hab.)",
-    caption = "Fonte: SINAN/SVS/Ministério da Saúde (2024 = dados preliminares)"
+    caption = "Fonte: SINAN/SVS/MS — valores aproximados transcritos de boletins (não usar como estatística oficial); 2024 preliminar"
   ) +
   tema_indicadores() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))

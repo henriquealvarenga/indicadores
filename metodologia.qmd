@@ -122,7 +122,7 @@ Os indicadores abaixo foram **consultados nas fontes públicas** indicadas, mas 
 - **Fonte primária:** SINAN/SVS/Ministério da Saúde — Série histórica de casos prováveis.
 - **Complementação:** Boletins Epidemiológicos da SVS e consolidação final de 2024 (Agência Brasil).
 - **Natureza:** contagem de casos prováveis (em milhares) e população (IBGE projeções) transcrita dos boletins; a incidência por 100 mil hab. foi calculada a partir desses valores.
-- **Observação:** o ano de 2024 aparece como preliminar na legenda.
+- **Ressalva explícita na legenda:** "valores aproximados transcritos de boletins (não usar como estatística oficial); 2024 preliminar".
 
 **`dcnt`** — prevalência de DCNTs em adultos brasileiros (Figura *fig-prevalencia-dcnt*).
 
@@ -146,10 +146,10 @@ Os indicadores abaixo foram **consultados nas fontes públicas** indicadas, mas 
 
 ## Capítulo 6 — Padronização
 
-**`tbn_pad`** — TBN bruta vs. padronizada por região, Brasil, 2004 (Figura *fig-tbn-padronizada*).
+**`tbn_pad`** — TBN bruta vs. padronizada por região (Figura *fig-tbn-padronizada*).
 
-- **Fontes:** IBGE/DATASUS e OPAS (2008) — *Indicadores Básicos para a Saúde no Brasil: Conceitos e Aplicações*, 2ª ed.
-- **Ressalva explícita na legenda:** "(valores aproximados — não usar como estatística oficial)".
+- **Natureza:** exemplo **ilustrativo** (valores fictícios) inspirado nos padrões reais descritos em IBGE/DATASUS e OPAS (2008) — *Indicadores Básicos para a Saúde no Brasil: Conceitos e Aplicações*, 2ª ed. Demonstra o **efeito** da padronização; não corresponde à estatística oficial de nenhum ano específico.
+- **Ressalva explícita na legenda:** "exemplo ilustrativo ... valores fictícios, não são estatística oficial".
 
 ## Capítulo 7 — Transição epidemiológica
 
@@ -184,12 +184,12 @@ Os indicadores abaixo foram **consultados nas fontes públicas** indicadas, mas 
 
 - **Fonte:** SVS/MS — DATASUS, SIM; Painel de Mortalidade Materna.
 - **URL:** <https://www.gov.br/saude/pt-br/composicao/svsa/mortalidade-materna>
-- **Ressalva explícita:** "(valores aproximados — não usar como estatística oficial)".
+- **Ressalva explícita:** "valores ilustrativos: disparidade real, magnitudes aproximadas (não oficiais)".
 
 **`mi_raca`** — Mortalidade Infantil por raça/cor (Figura *fig-mi-raca*).
 
 - **Fonte:** SVS/MS — DATASUS, SIM/SINASC — TabNet (cruzamento raça/cor do nascido vivo).
-- **Ressalva explícita:** "(valores aproximados — não usar como estatística oficial)".
+- **Ressalva explícita:** "valores ilustrativos: disparidade real, magnitudes aproximadas (não oficiais)".
 
 **`homic`** — homicídios por raça/cor (Figura *fig-homicidios-raca*).
 

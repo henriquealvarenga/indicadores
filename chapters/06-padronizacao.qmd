@@ -97,10 +97,11 @@ tabela_indicador(pad_result, caption = "Após padronização, as taxas se equipa
 
 ```{r}
 #| label: fig-tbn-padronizada
-#| fig-cap: "TBN bruta vs. padronizada por região — Brasil 2004"
+#| fig-cap: "TBN bruta vs. padronizada por região — exemplo ilustrativo"
 
-# Valores aproximados baseados em IBGE/DATASUS e OPAS, 2008
-# Servem para demonstrar o conceito de padronização — consulte fontes originais para dados exatos
+# Valores ILUSTRATIVOS (fictícios), inspirados nos padrões reais descritos em
+# IBGE/DATASUS e OPAS, 2008. Servem apenas para demonstrar o EFEITO da
+# padronização; não correspondem à estatística oficial de nenhum ano específico.
 tbn_pad <- tibble::tribble(
   ~regiao, ~bruta, ~padronizada,
   "Norte",        25.5, 22.1,
@@ -125,7 +126,7 @@ ggplot(tbn_pad_long, aes(x = regiao, y = taxa, fill = tipo)) +
     title = "Padronização reduz diferenças regionais de natalidade",
     subtitle = "Sudeste e Sul 'sobem' após padronização; Norte e Nordeste 'descem'",
     x = NULL, y = "TBN (por 1.000 hab.)", fill = NULL,
-    caption = "Fonte: IBGE/DATASUS; OPAS, 2008 (valores aproximados — não usar como estatística oficial)"
+    caption = "Exemplo ilustrativo inspirado em padrões reais (IBGE/DATASUS; OPAS, 2008) — valores fictícios, não são estatística oficial"
   ) +
   tema_indicadores()
 ```
