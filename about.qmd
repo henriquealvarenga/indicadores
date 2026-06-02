@@ -11,8 +11,8 @@ Este livreto digital foi desenvolvido como material didático de apoio para estu
 
 ### Diferenciais deste material {.unnumbered}
 
-- **Bases públicas**: gráficos construídos a partir de consultas a fontes públicas brasileiras (DATASUS, IBGE, SINAN, SI-PNI)
-- **Código aberto**: todo o código R é visível e reprodutível
+- **Bases públicas**: os dados vêm de fontes públicas brasileiras (IBGE, DATASUS, SINAN, SI-PNI). Parte das séries é extraída automaticamente via API (IBGE/SIDRA); as demais são transcritas de boletins e painéis oficiais. Em todos os casos a fonte é citada na figura e consolidada na [Metodologia](metodologia.qmd)
+- **Código aberto**: todo o código R é visível, e a origem de cada dado — extração via API, transcrição de fonte oficial ou exemplo didático — está documentada de forma transparente
 - **Análise crítica**: ênfase nas limitações, vieses e no uso ético dos indicadores
 - **Equidade**: capítulo dedicado às desigualdades raciais em saúde
 
