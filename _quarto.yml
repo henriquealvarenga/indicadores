@@ -112,7 +112,8 @@ website:
   page-footer:
     background: light
     left: |
-      Indicadores de Saúde<br>© 2026 [Henrique Alvarenga da Silva](https://henriquealvarenga.com)
+      Dr. Henrique Alvarenga da Silva · Médico Psiquiatra · CRM-MG 31.778 · RQE 8381<br>
+      [henriquealvarenga.com](https://henriquealvarenga.com) · © 2026
     center: |
       Material didático de acesso livre — edição do autor
     right: |
@@ -150,7 +151,10 @@ format:
     linestretch: 1.6
     mainfont: "Nunito Sans, sans-serif"
     monofont: "Fira Code, monospace"
+    canonical-url: true
     include-in-header:
+      - file: _includes/autor.html
+      - file: _includes/rodape.html
       - text: |
           <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
