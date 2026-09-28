@@ -1,6 +1,6 @@
 ---
 pagetitle: "Indicadores de Saúde"
-description-meta: "Conceitos, métodos e aplicações com dados do Brasil."
+description-meta: "Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil. Livro digital de acesso livre, em Edição do Autor."
 page-layout: full
 toc: false
 number-sections: false
@@ -16,7 +16,7 @@ format:
 
 # Prefácio {.unnumbered}
 
-Este livreto é um material didático **elaborado pelo autor** e utilizado em suas aulas de Métodos Científicos em Medicina no Curso de Medicina. É uma iniciativa independente, disponibilizada em acesso livre.
+Este livro, **escrito pelo autor** e utilizado em suas aulas de Métodos Científicos em Medicina no Curso de Medicina, é publicado em **Edição do Autor** e disponibilizado em acesso livre.
 
 ## Objetivo
 
@@ -28,7 +28,7 @@ O livro está organizado em quatro partes: **I — Fundamentos** apresenta os co
 
 ## Reprodutibilidade
 
-Todos os gráficos e tabelas deste livro foram construídos com código em R, disponível na versão digital do material. Os dados utilizados são, sempre que possível, obtidos diretamente de bases públicas brasileiras.
+Todos os gráficos e tabelas deste livro foram construídos com código em R, disponível na versão digital do livro. Os dados utilizados são, sempre que possível, obtidos diretamente de bases públicas brasileiras.
 
 \newpage
 
@@ -61,7 +61,7 @@ Todos os gráficos e tabelas deste livro foram construídos com código em R, di
     <h1>Indicadores<br>de <span class="highlight">Saúde</span></h1>
 
     <p class="cover-subtitle">
-      Conceitos, métodos e aplicações com dados do Brasil.<br>
+      Conceitos, Métodos e Aplicações com Dados do Brasil<br>
       Dos fundamentos epidemiológicos ao uso crítico e responsável dos dados, com R.
     </p>
 

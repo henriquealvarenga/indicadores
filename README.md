@@ -1,6 +1,6 @@
 # Indicadores de Saúde
 
-Material didático sobre indicadores de saúde, com exemplos reproduzíveis em R e dados do Brasil. Construído com [Quarto](https://quarto.org/).
+**Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil** — livro digital de acesso livre (Edição do Autor, 2026; ISBN 978-65-02-06225-8), com exemplos reproduzíveis em R. Construído com [Quarto](https://quarto.org/).
 
 **Site publicado:** https://henriquealvarenga.com/indicadores
 
@@ -28,7 +28,7 @@ git push                       # 2. GitHub Actions monta o HTML e publica
 | Caminho | Função |
 |---|---|
 | `index.qmd`, `about.qmd`, `metodologia.qmd`, `references.qmd` | Páginas principais |
-| `chapters/*.qmd` | Capítulos do material |
+| `chapters/*.qmd` | Capítulos do livro |
 | `R/obter_dados.R` | **Aquisição** de dados via `sidrar` (IBGE/SIDRA). Rode manualmente. |
 | `R/utils.R` | Funções auxiliares usadas nos chapters |
 | `data/*.rds` | Snapshots versionados dos dados (lidos pelos chapters via `readRDS`) |

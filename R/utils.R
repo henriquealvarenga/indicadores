@@ -1,5 +1,5 @@
 # ============================================================
-# utils.R — Funções auxiliares para o livreto Indicadores de Saúde
+# utils.R — Funções auxiliares para o livro Indicadores de Saúde
 # ============================================================
 
 # Pacotes necessários ----

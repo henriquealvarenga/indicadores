@@ -20,8 +20,8 @@ language:
 website:
   title: "Indicadores de Saúde"
   description: |
-    Conceitos, métodos e aplicações com dados do Brasil.
-    Material didático sobre indicadores de saúde, com exemplos reproduzíveis em R.
+    Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil.
+    Livro digital de acesso livre, com exemplos reproduzíveis em R.
   site-url: https://henriquealvarenga.com/indicadores
   repo-url: https://github.com/henriquealvarenga/indicadores-de-saude
   repo-actions: [edit, issue]
@@ -115,7 +115,8 @@ website:
       Dr. Henrique Alvarenga da Silva · Médico Psiquiatra · CRM-MG 31.778 · RQE 8381<br>
       [henriquealvarenga.com](https://henriquealvarenga.com) · © 2026
     center: |
-      Material didático de acesso livre — edição do autor
+      Livro digital de acesso livre · Edição do Autor<br>
+      Publicado em 20 de abril de 2026 · ISBN 978-65-02-06225-8
     right: |
       Feito com [Quarto](https://quarto.org/) e [R](https://www.r-project.org/)
 

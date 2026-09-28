@@ -5,22 +5,27 @@
 **Prof. Henrique Alvarenga da Silva**
 Professor do Curso de Medicina — UNIPTAN (AFYA)
 
-## Sobre o material {.unnumbered}
+## Apresentação {.unnumbered}
 
-Este livreto digital foi desenvolvido como material didático de apoio para estudantes de graduação em Medicina e áreas da Saúde. O conteúdo aborda os principais indicadores de saúde utilizados na prática epidemiológica e em saúde pública, com ênfase no contexto brasileiro.
+Este livro digital foi escrito para estudantes de graduação em Medicina e demais áreas da Saúde. O conteúdo aborda os principais indicadores de saúde utilizados na prática epidemiológica e em saúde pública, com ênfase no contexto brasileiro.
 
-### Diferenciais deste material {.unnumbered}
+### Diferenciais deste livro {.unnumbered}
 
 - **Bases públicas**: os dados vêm de fontes públicas brasileiras (IBGE, DATASUS, SINAN, SI-PNI). Parte das séries é extraída automaticamente via API (IBGE/SIDRA); as demais são transcritas de boletins e painéis oficiais. Em todos os casos a fonte é citada na figura e consolidada na [Metodologia](metodologia.qmd)
 - **Código aberto**: todo o código R é visível, e a origem de cada dado — extração via API, transcrição de fonte oficial ou exemplo didático — está documentada de forma transparente
 - **Análise crítica**: ênfase nas limitações, vieses e no uso ético dos indicadores
 - **Equidade**: capítulo dedicado às desigualdades raciais em saúde
 
-## ISBN {.unnumbered}
+## Dados da publicação {.unnumbered #isbn}
 
-**ISBN 978-65-02-06225-8**
+- **Título:** Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil
+- **Autor:** Henrique Alvarenga da Silva
+- **Edição:** Edição do Autor — São João del Rei, MG
+- **Data de publicação:** 20 de abril de 2026
+- **Formato:** livro eletrônico (HTML)
+- **ISBN:** 978-65-02-06225-8
 
-Registro na Câmara Brasileira do Livro (CBL).
+ISBN registrado na Câmara Brasileira do Livro (CBL).
 
 ![Código de barras do ISBN 978-65-02-06225-8](images/barcode.jpeg){width=260 fig-alt="Código de barras do ISBN 978-65-02-06225-8"}
 
@@ -30,11 +35,11 @@ Registro na Câmara Brasileira do Livro (CBL).
 
 ## Licença {.unnumbered}
 
-Este material é disponibilizado sob licença [Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br). Você pode compartilhar e adaptar, desde que atribua crédito, não use para fins comerciais e distribua sob a mesma licença.
+Este livro é disponibilizado sob licença [Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br). Você pode compartilhar e adaptar, desde que atribua crédito, não use para fins comerciais e distribua sob a mesma licença.
 
 ## Como citar {.unnumbered}
 
-> SILVA, H. A. **Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil**. Edição do autor, 2026. ISBN 978-65-02-06225-8. Disponível em: <https://henriquealvarenga.com/indicadores>.
+> SILVA, H. A. **Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil**. São João del Rei, MG: Edição do Autor, 2026. ISBN 978-65-02-06225-8. Disponível em: <https://henriquealvarenga.com/indicadores>.
 
 ## Ferramentas utilizadas {.unnumbered}
 
@@ -47,7 +52,7 @@ Este livro foi construído com:
 
 ## Isenção de responsabilidade {.unnumbered}
 
-Este é um material didático **elaborado e publicado pelo autor em caráter independente**. As opiniões, análises e interpretações aqui expressas são de responsabilidade exclusiva do autor e **não representam posição oficial de qualquer instituição** à qual ele esteja ou tenha estado vinculado. A menção à afiliação institucional tem finalidade unicamente identificatória.
+Este livro foi escrito pelo autor e publicado em **Edição do Autor**. As opiniões, análises e interpretações aqui expressas são de responsabilidade exclusiva do autor e **não representam posição oficial de qualquer instituição** à qual ele esteja ou tenha estado vinculado. A menção à afiliação institucional tem finalidade unicamente identificatória.
 
 ## Contato {.unnumbered}
 

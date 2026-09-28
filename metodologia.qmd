@@ -21,7 +21,7 @@ library(kableExtra)
 ou_travessao <- function(x) if (is.null(x) || length(x) == 0) "—" else as.character(x)
 ```
 
-Este documento descreve, com precisão, a origem de cada dado utilizado no livreto *Indicadores de Saúde — Conceitos, Métodos e Aplicações com Dados do Brasil*. Compromissos editoriais:
+Este documento descreve, com precisão, a origem de cada dado utilizado no livro *Indicadores de Saúde: Conceitos, Métodos e Aplicações com Dados do Brasil*. Compromissos editoriais:
 
 1. **Dados extraídos via API** de fontes públicas têm a origem documentada, com tabela, URL e data de acesso; são reproduzíveis a partir do código disponível no repositório.
 2. **Dados transcritos manualmente de fontes públicas** (por indisponibilidade de API ou por requererem consulta interativa) trazem a citação completa da fonte original e a ressalva de que os valores exibidos são aproximados e **não devem ser usados como estatística oficial** — para uso científico ou regulatório, o leitor é sempre orientado a consultar a fonte primária.
